@@ -8,5 +8,10 @@ class PublicController extends BaseController
         include VIEW_PATH . '/home.php';
     }
 
+    public function product()
+    {
+        include VIEW_PATH . '/product.php';
+    }
+
     public function notFound() {}
 }

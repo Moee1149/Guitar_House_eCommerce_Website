@@ -15,6 +15,9 @@ switch ($path) {
     case '/':
         $controller->index();
         break;
+    case '/product':
+        $controller->product();
+        break;
     case '/about':
         // $controller->about();
         break;

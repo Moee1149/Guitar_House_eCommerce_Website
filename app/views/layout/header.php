@@ -24,13 +24,13 @@
         </div>
         <div class="navigation">
             <ul>
-                <li><a href="./index.html">Home</a></li>
-                <li><a href="./product-page.html">Products</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/product">Products</a></li>
                 <li>
-                    <a href="./categories-page.html">Categories</a>
+                    <a href="/categories">Categories</a>
                 </li>
                 <li>
-                    <a href="./contact-page.html">Contact Us</a>
+                    <a href="/contact">Contact Us</a>
                 </li>
             </ul>
         </div>
