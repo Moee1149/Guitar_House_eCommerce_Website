@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Guitar House | Home</title>
-    <link rel="stylesheet" href="public/css/styles.css" />
-    <link rel="stylesheet" href="public/css/index-page.css" />
+    <link rel="stylesheet" href="/public/css/styles.css" />
+    <link rel="stylesheet" href="/public/css/index-page.css" />
 </head>
 
 <body>
@@ -78,7 +78,7 @@
                         </div>
                         <div class="hero-right-side">
                             <div class="image-container">
-                                <img src="public/products/p1.jpeg" alt="" />
+                                <img src="/public/images/products/p1.jpeg" alt="" />
                             </div>
                         </div>
                     </div>
@@ -144,7 +144,7 @@
                         </div>
                         <div class="hero-right-side">
                             <div class="image-container">
-                                <img src="public/products/p2.jpeg" alt="" />
+                                <img src="public/images/products/p2.jpeg" alt="" />
                             </div>
                         </div>
                     </div>
@@ -210,7 +210,7 @@
                         </div>
                         <div class="hero-right-side">
                             <div class="image-container">
-                                <img src="public/products/p3.jpeg" alt="" />
+                                <img src="public/images/products/p3.jpeg" alt="" />
                             </div>
                         </div>
                     </div>
@@ -275,7 +275,7 @@
                         </div>
                         <div class="hero-right-side">
                             <div class="image-container">
-                                <img src="public/products/p4.png" alt="" />
+                                <img src="public/images/products/p4.png" alt="" />
                             </div>
                         </div>
                     </div>
@@ -338,7 +338,7 @@
                         </div>
                         <div class="hero-right-side">
                             <div class="image-container">
-                                <img src="public/products/p5.png" alt="" />
+                                <img src="public/images/products/p5.png" alt="" />
                             </div>
                         </div>
                     </div>
@@ -443,7 +443,7 @@
                     <div class="product-card">
                         <div class="product-image">
                             <span class="sale-badge">Sale</span>
-                            <img src="public/products/fp1.png" alt="" />
+                            <img src="public/images/products/fp1.png" alt="" />
                         </div>
                         <div class="product-info">
                             <h3 class="product-name">
@@ -476,7 +476,7 @@
                     <div class="product-card">
                         <div class="product-image">
                             <span class="sale-badge">Sale</span>
-                            <img src="public/products/fp2.png" alt="" />
+                            <img src="public/images/products/fp2.png" alt="" />
                         </div>
                         <div class="product-info">
                             <h3 class="product-name">
@@ -509,7 +509,7 @@
                     <div class="product-card">
                         <div class="product-image">
                             <span class="sale-badge">Sale</span>
-                            <img src="public/products/fp3.png" alt="" />
+                            <img src="public/images/products/fp3.png" alt="" />
                         </div>
                         <div class="product-info">
                             <h3 class="product-name">
@@ -542,7 +542,7 @@
                     <div class="product-card">
                         <div class="product-image">
                             <span class="sale-badge">Sale</span>
-                            <img src="public/products/fp4.png" alt="" />
+                            <img src="public/images/products/fp4.png" alt="" />
                         </div>
                         <div class="product-info">
                             <h3 class="product-name">
