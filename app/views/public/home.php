@@ -572,7 +572,7 @@
                     </div>
                 </div>
                 <button class="btn btn-primary view-all-product-btn">
-                    <a href="./product-page.html">View All Products</a>
+                    <a href="/product">View All Products</a>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"

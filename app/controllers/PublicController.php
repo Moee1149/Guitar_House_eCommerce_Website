@@ -28,6 +28,11 @@ class PublicController extends BaseController
         include VIEW_PATH . '/auth/customer-login.php';
     }
 
+    public function categories()
+    {
+        include VIEW_PATH . '/public/categories.php';
+    }
+
     public function customerRegister()
     {
         include VIEW_PATH . '/auth/customer-register.php';

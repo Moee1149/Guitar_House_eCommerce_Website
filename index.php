@@ -25,6 +25,9 @@ switch ($path) {
     case '/contact':
         $controller->contact();
         break;
+    case '/categories':
+        $controller->categories();
+        break;
     case '/login':
         $controller->customerLogin();
         break;
