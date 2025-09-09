@@ -60,7 +60,7 @@
             <div class="button-container">
                 <button class="btn btn-primary">
                     <a
-                        href="./signin-page.html"
+                        href="/login"
                         style="text-decoration: none; color: #fff">Sign in</a>
                 </button>
             </div>

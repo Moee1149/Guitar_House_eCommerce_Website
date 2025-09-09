@@ -16,13 +16,20 @@ switch ($path) {
         $controller->index();
         break;
     case '/product':
-        $controller->product();
-        break;
-    case '/about':
-        // $controller->about();
+        if (isset($_GET['id'])) {
+            $controller->product($_GET['id']);
+        } else {
+            $controller->productList();
+        }
         break;
     case '/contact':
-        // $controller->contact();
+        $controller->contact();
+        break;
+    case '/login':
+        $controller->customerLogin();
+        break;
+    case '/register':
+        $controller->customerRegister();
         break;
     default:
         $controller->notFound();
