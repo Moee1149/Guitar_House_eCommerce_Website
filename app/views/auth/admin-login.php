@@ -145,8 +145,8 @@
                                 ">Login as Admin</a>
                     </button>
                 </form>
-                <a class="link" href="admin-signup-page.html">Don’t have an account? Register</a>
-                <a class="link" href="./signin-page.html">Login as Customer</a>
+                <a class="link" href="/admin-register">Don’t have an account? Register</a>
+                <a class="link" href="/login">Login as Customer</a>
             </div>
         </main>
     </div>

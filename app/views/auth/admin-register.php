@@ -192,8 +192,8 @@
                             Register Now</a>
                     </button>
                 </form>
-                <a class="link" href="./signin-page.html">Already have an account? Login</a>
-                <a class="link" href="./register.html">Register as Customer</a>
+                <a class="link" href="/admin-login">Already have an account? Login</a>
+                <a class="link" href="/register">Register as Customer</a>
             </div>
         </main>
     </div>

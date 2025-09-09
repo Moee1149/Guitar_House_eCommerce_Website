@@ -82,8 +82,8 @@
                             Register Now</a>
                     </button>
                 </form>
-                <a class="link" href="./signin-page.html">Already have an account? Login</a>
-                <a class="link" href="./admin-signup-page.html">Register as Admin/Vendor</a>
+                <a class="link" href="/login">Already have an account? Login</a>
+                <a class="link" href="/admin-register">Register as Admin/Vendor</a>
             </div>
         </main>
     </div>

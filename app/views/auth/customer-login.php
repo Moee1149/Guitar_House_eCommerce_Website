@@ -50,8 +50,8 @@
                                 ">Login</a>
                     </button>
                 </form>
-                <a class="link" href="./register.html">Don’t have an account? Register</a>
-                <a class="link" href="./admin-signin-page.html">Login as Admin/Vendor</a>
+                <a class="link" href="/register">Don’t have an account? Register</a>
+                <a class="link" href="/admin-login">Login as Admin/Vendor</a>
             </div>
         </main>
     </div>
