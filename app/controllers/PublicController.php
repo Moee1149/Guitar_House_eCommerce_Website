@@ -33,5 +33,15 @@ class PublicController extends BaseController
         include VIEW_PATH . '/auth/customer-register.php';
     }
 
+    public function adminLogin()
+    {
+        include VIEW_PATH . '/auth/admin-login.php';
+    }
+
+    public function adminRegister()
+    {
+        include VIEW_PATH . '/auth/admin-register.php';
+    }
+
     public function notFound() {}
 }

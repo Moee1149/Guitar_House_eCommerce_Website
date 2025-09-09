@@ -31,6 +31,12 @@ switch ($path) {
     case '/register':
         $controller->customerRegister();
         break;
+    case '/admin-login':
+        $controller->adminLogin();
+        break;
+    case '/admin-register':
+        $controller->adminRegister();
+        break;
     default:
         $controller->notFound();
         http_response_code(404);
