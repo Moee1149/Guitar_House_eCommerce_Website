@@ -23,30 +23,11 @@ class PublicController extends BaseController
         include VIEW_PATH . '/public/contact.php';
     }
 
-    public function customerLogin()
-    {
-        include VIEW_PATH . '/auth/customer-login.php';
-    }
-
     public function categories()
     {
         include VIEW_PATH . '/public/categories.php';
     }
 
-    public function customerRegister()
-    {
-        include VIEW_PATH . '/auth/customer-register.php';
-    }
-
-    public function adminLogin()
-    {
-        include VIEW_PATH . '/auth/admin-login.php';
-    }
-
-    public function adminRegister()
-    {
-        include VIEW_PATH . '/auth/admin-register.php';
-    }
 
     public function notFound() {}
 }

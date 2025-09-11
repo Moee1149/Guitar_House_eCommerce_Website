@@ -1,15 +1,17 @@
-<?php
+<?php session_start();
 
 //define base paths
 define("APP_PATH", __DIR__ . '/app/');
 define("VIEW_PATH", __DIR__ . '/app/views');
 
 include APP_PATH . 'controllers/PublicController.php';
+include APP_PATH . 'controllers/AuthController.php';
 
 //Decide which page to load
 $controller = new PublicController();
+$authController = new AuthController();
 
-$path = $_SERVER['PATH_INFO'] ?? '/';
+$path = $_SERVER['REQUEST_URI'];
 
 switch ($path) {
     case '/':
@@ -29,16 +31,20 @@ switch ($path) {
         $controller->categories();
         break;
     case '/login':
-        $controller->customerLogin();
+        if (isset($_POST['submit'])) {
+            $authController->handleCustomerLogin();
+        } else {
+            $authController->getCustomerLoginPage();
+        }
         break;
     case '/register':
-        $controller->customerRegister();
+        $authController->getCustomerRegisterPage();
         break;
     case '/admin-login':
-        $controller->adminLogin();
+        $authController->getAdminLoginPage();
         break;
     case '/admin-register':
-        $controller->adminRegister();
+        $authController->getAdminRegisterPage();
         break;
     default:
         $controller->notFound();
