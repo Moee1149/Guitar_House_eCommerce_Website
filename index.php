@@ -103,6 +103,14 @@ switch ($path) {
         $customer = new CustomerController();
         $customer->showThankyouPage();
         break;
+    case "/customer/dashboard":
+        if (!$login_status) {
+            header("location: /login");
+            exit;
+        }
+        $customer = new CustomerController();
+        $customer->showCustomerDashboard();
+        break;
     default:
         $controller->notFound();
         http_response_code(404);

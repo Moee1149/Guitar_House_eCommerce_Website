@@ -20,4 +20,9 @@ class CustomerController
     {
         include VIEW_PATH . '/customer/thankyou.php';
     }
+
+    public function showCustomerDashboard()
+    {
+        include VIEW_PATH . '/customer/dashboard.php';
+    }
 }
