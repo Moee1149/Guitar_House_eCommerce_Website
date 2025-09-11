@@ -148,7 +148,7 @@
 
                     <button class="btn btn-primary checkout-btn">
                         <a
-                            href="./check-out-page.html"
+                            href="/customer/checkout"
                             style="text-decoration: none; color: #fff">PROCEED TO CHECKOUT</a>
                     </button>
 
@@ -156,7 +156,7 @@
                         <p class="secure-text">Secure checkout with:</p>
                         <div class="payment-icons">
                             <div class="btn btn-primary e-sewa">
-                                <img src="public/esewa.svg" alt="" />
+                                <img src="/public/images/esewa.svg" alt="" />
                             </div>
                             <div class="btn btn-primary cash-on-delivery">
                                 <svg

@@ -6,6 +6,7 @@ define("VIEW_PATH", __DIR__ . '/app/views');
 
 include APP_PATH . 'controllers/PublicController.php';
 include APP_PATH . 'controllers/AuthController.php';
+include APP_PATH . 'controllers/CartController.php';
 
 $login_status = $_SESSION['login_status'] ?? false;
 
@@ -70,13 +71,14 @@ switch ($path) {
         }
         header("location: /admin/dashboard");
         break;
-    case '/cart':
+    case '/customer/cart':
         if (!$login_status) {
             header("location: /login");
             exit;
         }
-
-        //cart controller
+        $cartController = new CartController();
+        $cartController->showCartPage();
+        break;
     default:
         $controller->notFound();
         http_response_code(404);
