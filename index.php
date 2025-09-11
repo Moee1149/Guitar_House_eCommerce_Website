@@ -6,7 +6,7 @@ define("VIEW_PATH", __DIR__ . '/app/views');
 
 include APP_PATH . 'controllers/PublicController.php';
 include APP_PATH . 'controllers/AuthController.php';
-include APP_PATH . 'controllers/CartController.php';
+include APP_PATH . 'controllers/CustomerController.php';
 
 $login_status = $_SESSION['login_status'] ?? false;
 
@@ -76,8 +76,32 @@ switch ($path) {
             header("location: /login");
             exit;
         }
-        $cartController = new CartController();
-        $cartController->showCartPage();
+        $customer = new CustomerController();
+        $customer->showCartPage();
+        break;
+    case '/customer/checkout':
+        if (!$login_status) {
+            header("location: /login");
+            exit;
+        }
+        $customer = new CustomerController();
+        $customer->showCheckoutPage();
+        break;
+    case '/customer/payment':
+        if (!$login_status) {
+            header("location: /login");
+            exit;
+        }
+        $customer = new CustomerController();
+        $customer->showPaymentPage();
+        break;
+    case '/customer/thankyou':
+        if (!$login_status) {
+            header("location: /login");
+            exit;
+        }
+        $customer = new CustomerController();
+        $customer->showThankyouPage();
         break;
     default:
         $controller->notFound();
