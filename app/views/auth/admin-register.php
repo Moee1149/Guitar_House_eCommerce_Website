@@ -17,8 +17,8 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin-top: var(--nav-height);
-            padding-top: 1rem;
+            margin-top: 12rem;
+            padding-bottom: 5rem;
         }
 
         .register-card {
@@ -102,6 +102,12 @@
             background: var(--secondary);
         }
 
+        .error {
+            font-size: 12px;
+            color: red;
+            font-style: italic;
+        }
+
         .link {
             display: block;
             margin-top: 12px;
@@ -129,7 +135,7 @@
             <div class="register-card">
                 <h2>Admin Register</h2>
                 <form
-                    action="#"
+                    action="/admin-register"
                     method="POST"
                     name="user_form"
                     enctype="multipart/form-data"
@@ -149,6 +155,15 @@
                             id="phone"
                             name="phone"
                             placeholder="Phone"
+                            value="" />
+                    </div>
+                    <div class="form-group">
+                        <label for="addr" class="required">Address</label>
+                        <input
+                            type="text"
+                            id="addr"
+                            name="address"
+                            placeholder="Enter you address"
                             value="" />
                     </div>
                     <div class="form-group">
@@ -181,15 +196,7 @@
                         type="submit"
                         name="submit"
                         class="btn btn-primary register-btn">
-                        <a
-                            href="./admin-signin-page.html"
-                            style="
-                                    text-decoration: none;
-                                    color: #fff;
-                                    display: block;
-                                    width: 100%;
-                                ">
-                            Register Now</a>
+                        Register Now
                     </button>
                 </form>
                 <a class="link" href="/admin-login">Already have an account? Login</a>
@@ -197,6 +204,7 @@
             </div>
         </main>
     </div>
+    <script src="/public/js/form-validation.js"></script>
 </body>
 
 </html>

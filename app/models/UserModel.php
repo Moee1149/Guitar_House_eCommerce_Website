@@ -17,12 +17,11 @@ class UserModel
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $res = $stmt->get_result();
-        // $hashedPwdk = sha1($password); //hashing password
+        $hashedPwd = sha1($password); //hashing password
 
         if ($res->num_rows > 0) {
             $data = mysqli_fetch_assoc($res);
-            // return $hashedPwd === $data['password'];
-            return $password === $data['password'];
+            return $hashedPwd === $data['password'];
         }
         return;
     }

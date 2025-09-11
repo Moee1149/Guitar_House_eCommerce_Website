@@ -37,7 +37,7 @@
         <div class="header-right">
             <div class="cart-btn">
                 <a
-                    href="./cart-page.html"
+                    href="/cart"
                     style="text-decoration: none; color: #3b82f6">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -58,11 +58,15 @@
                 </a>
             </div>
             <div class="button-container">
-                <button class="btn btn-primary">
-                    <a
-                        href="/login"
-                        style="text-decoration: none; color: #fff">Sign in</a>
-                </button>
+                <?php if (isset($_SESSION['login_status']) && $_SESSION['login_status'] === true): ?>
+                    <p>Profile</p>
+                <?php else: ?>
+                    <button class="btn btn-primary">
+                        <a
+                            href="/login"
+                            style="text-decoration: none; color: #fff">Sign in</a>
+                    </button>
+                <?php endif; ?>
             </div>
         </div>
     </div>

@@ -32,7 +32,7 @@ class AuthController
 
         if ($isLogin) {
             $_SESSION['login_status'] = true;
-            header("location: /");
+            header("location: /customer/dashboard");
         } else {
             $_SESSION['msg'] = "Email/Username or password doesn't match";
             header("location: /login");
@@ -66,4 +66,23 @@ class AuthController
             $_SESSION['msg'] = "Unknow Error Occured";
         }
     }
+
+    public function handleAdminLogin()
+    {
+        $email = $_POST['email'];
+        $pwd = $_POST['password'];
+        $usermodel = new UserModel();
+        $isLogin = $usermodel->verifyCustomer($email, $pwd);
+
+        if ($isLogin) {
+            $_SESSION['login_status'] = true;
+            header("location: /");
+        } else {
+            $_SESSION['msg'] = "Email/Username or password doesn't match";
+            header("location: /login");
+            exit;
+        }
+    }
+
+    public function handleAdminRegister() {}
 }

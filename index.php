@@ -49,14 +49,29 @@ switch ($path) {
             $authController->getCustomerRegisterPage();
             break;
         }
-        header("location: /customer");
+        header("location: /customer/dashboard");
         break;
     case '/admin-login':
         $authController->getAdminLoginPage();
         break;
     case '/admin-register':
-        $authController->getAdminRegisterPage();
+        if (!$login_status && isset($_POST['submit'])) {
+            $authController->handleAdminRegister();
+            break;
+        }
+
+        if (!$login_status) {
+            $authController->getAdminRegisterPage();
+            break;
+        }
+        header("location: /admin/dashboard");
         break;
+    case '/cart':
+        if (!$login_status) {
+            header("location: /login");
+            exit;
+        }
+        //cart controller
     default:
         $controller->notFound();
         http_response_code(404);

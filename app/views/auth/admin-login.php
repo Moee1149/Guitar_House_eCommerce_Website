@@ -135,14 +135,7 @@
                         type="submit"
                         name="submit"
                         class="btn btn-primary login-btn">
-                        <a
-                            href="admin/admin-dashboard.html"
-                            style="
-                                    text-decoration: none;
-                                    color: #fff;
-                                    display: block;
-                                    width: 100%;
-                                ">Login as Admin</a>
+                        Login as Admin
                     </button>
                 </form>
                 <a class="link" href="/admin-register">Don’t have an account? Register</a>
