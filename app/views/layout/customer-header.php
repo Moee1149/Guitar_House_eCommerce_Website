@@ -36,7 +36,7 @@
         <div class="header-right">
             <div class="cart-btn">
                 <a
-                    href="../cart-page.html"
+                    href="/customer/cart"
                     style="text-decoration: none; color: #3b82f6">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"

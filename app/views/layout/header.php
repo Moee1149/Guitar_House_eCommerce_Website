@@ -57,17 +57,39 @@
                     </svg>
                 </a>
             </div>
-            <div class="button-container">
-                <?php if (isset($_SESSION['login_status']) && $_SESSION['login_status'] === true): ?>
-                    <p>Profile</p>
-                <?php else: ?>
+            <?php if (isset($_SESSION['login_status']) && $_SESSION['login_status'] === true): ?>
+                <div class="customer-profile">
+                    <!-- rounded profile -->
+                    <div class="customer-rounded-profile">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="lucide lucide-user-icon lucide-user">
+                            <path
+                                d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                    </div>
+                    <div class="customer-information">
+                        <p>Aayusha Adhikari</p>
+                    </div>
+                </div>
+            <?php else: ?>
+                <div class="button-container">
                     <button class="btn btn-primary">
                         <a
                             href="/login"
                             style="text-decoration: none; color: #fff">Sign in</a>
                     </button>
-                <?php endif; ?>
-            </div>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 </header>
