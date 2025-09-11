@@ -133,6 +133,7 @@
         <!-- main section -->
         <main class="main-container">
             <div class="register-card">
+                <?php echo isset($_SESSION['msg']) ? "<p class='msg-box'>" . $_SESSION['msg'] . "</p>" : '';  ?>
                 <h2>Admin Register</h2>
                 <form
                     action="/admin-register"
@@ -208,3 +209,4 @@
 </body>
 
 </html>
+<?php $_SESSION['msg'] = '';

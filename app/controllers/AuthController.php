@@ -84,5 +84,30 @@ class AuthController
         }
     }
 
-    public function handleAdminRegister() {}
+    public function handleAdminRegister()
+    {
+        $fname = $_POST['fullname'];
+        $email = $_POST['email'];
+        $phone = $_POST['phone'];
+        $pwd = $_POST['password'];
+        $addr = $_POST['address'];
+        $agree = $_POST['agree'];
+
+        $hashedPwd = sha1($pwd);
+        $usermodel = new UserModel();
+        $userExist = $usermodel->checkEmailAlreadyUse($email, "admin");
+        if ($userExist) {
+            $_SESSION['msg'] = "Admin with this email already exits";
+            header("location: /admin-register");
+            exit;
+        }
+
+        $isRegistered =  $usermodel->handleCreateNewAdmin($fname, $email, $phone, $hashedPwd, $addr);
+        if ($isRegistered) {
+            header("location: /admin-login");
+            exit;
+        } else {
+            $_SESSION['msg'] = "Unknow Error Occured";
+        }
+    }
 }

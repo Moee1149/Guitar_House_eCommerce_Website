@@ -113,7 +113,7 @@
         <!-- <main></main> -->
         <main class="main-container">
             <div class="login-card">
-                <h2>Vendor Admin Login</h2>
+                <h2>Admin Login</h2>
                 <form action="#" method="POST">
                     <div class="form-group">
                         <label for="email" class="required">Email Address</label>
