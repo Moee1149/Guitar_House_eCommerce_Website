@@ -26,4 +26,24 @@ class UserModel
         }
         return;
     }
+
+    public function checkEmailAlreadyUse($email)
+    {
+        $stmt = $this->conn->prepare("SELECT email, password FROM customers WHERE email= ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $res = $stmt->get_result();
+
+        if ($res->num_rows > 0) {
+            return true;
+        }
+    }
+
+    public function handleCreateNewUser($fname, $email, $phone, $hashedPwd, $addr)
+    {
+        $sql = "INSERT INTO customers (customer_name, email, password, phone, address)
+                VALUES ('$fname', '$email', '$hashedPwd','$phone', '$addr')";
+        $res = mysqli_query($this->conn, $sql);
+        return $res;
+    }
 }

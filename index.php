@@ -7,6 +7,8 @@ define("VIEW_PATH", __DIR__ . '/app/views');
 include APP_PATH . 'controllers/PublicController.php';
 include APP_PATH . 'controllers/AuthController.php';
 
+$login_status = $_SESSION['login_status'] ?? false;
+
 //Decide which page to load
 $controller = new PublicController();
 $authController = new AuthController();
@@ -38,7 +40,16 @@ switch ($path) {
         }
         break;
     case '/register':
-        $authController->getCustomerRegisterPage();
+        if (!$login_status && isset($_POST['submit'])) {
+            $authController->handleCustomerRegister();
+            break;
+        }
+
+        if (!$login_status) {
+            $authController->getCustomerRegisterPage();
+            break;
+        }
+        header("location: /customer");
         break;
     case '/admin-login':
         $authController->getAdminLoginPage();

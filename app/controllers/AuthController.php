@@ -39,4 +39,31 @@ class AuthController
             exit;
         }
     }
+
+    public function handleCustomerRegister()
+    {
+        $fname = $_POST['fullname'];
+        $email = $_POST['email'];
+        $phone = $_POST['phone'];
+        $pwd = $_POST['password'];
+        $addr = $_POST['address'];
+        $agree = $_POST['agree'];
+
+        $hashedPwd = sha1($pwd);
+        $usermodel = new UserModel();
+        $userExist = $usermodel->checkEmailAlreadyUse($email);
+        if ($userExist) {
+            $_SESSION['msg'] = "User with email already exits";
+            header("location: /register");
+            exit;
+        }
+
+        $isRegistered =  $usermodel->handleCreateNewUser($fname, $email, $phone, $hashedPwd, $addr);
+        if ($isRegistered) {
+            header("location: /login");
+            exit;
+        } else {
+            $_SESSION['msg'] = "Unknow Error Occured";
+        }
+    }
 }

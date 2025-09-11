@@ -17,9 +17,10 @@
         <!-- main section -->
         <main class="main-container">
             <div class="register-card">
+                <?php echo isset($_SESSION['msg']) ? "<p class='msg-box'>" . $_SESSION['msg'] . "</p>" : '';  ?>
                 <h2>Customer Register</h2>
                 <form
-                    action="#"
+                    action="/register"
                     method="POST"
                     name="user_form"
                     enctype="multipart/form-data"
@@ -38,7 +39,16 @@
                             type="text"
                             id="phone"
                             name="phone"
-                            placeholder="Phone"
+                            placeholder="Enter your Phone number"
+                            value="" />
+                    </div>
+                    <div class="form-group">
+                        <label for="addr" class="required">Address</label>
+                        <input
+                            type="text"
+                            id="addr"
+                            name="address"
+                            placeholder="Enter you address"
                             value="" />
                     </div>
                     <div class="form-group">
@@ -71,15 +81,7 @@
                         type="submit"
                         name="submit"
                         class="btn btn-primary register-btn">
-                        <a
-                            href="./signin-page.html"
-                            style="
-                                    text-decoration: none;
-                                    color: #fff;
-                                    display: block;
-                                    width: 100%;
-                                ">
-                            Register Now</a>
+                        Register Now
                     </button>
                 </form>
                 <a class="link" href="/login">Already have an account? Login</a>
@@ -87,6 +89,8 @@
             </div>
         </main>
     </div>
+    <script src="/public/js/form-validation.js"></script>
 </body>
 
 </html>
+<?php $_SESSION['msg'] = '';
