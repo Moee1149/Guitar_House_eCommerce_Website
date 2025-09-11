@@ -1,3 +1,7 @@
+<?php if (isset($_SESSION['login_status']) && $_SESSION['login_status'] === true) {
+    header("Location: /customer/dashboard");
+    exit;
+} ?>
 <!doctype html>
 <html lang="en">
 
@@ -48,6 +52,11 @@
             </div>
         </main>
     </div>
+    <script>
+        window.onload = function() {
+            document.getElementById('email').focus();
+        };
+    </script>
 </body>
 
 </html>

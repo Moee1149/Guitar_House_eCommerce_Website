@@ -72,14 +72,14 @@ class AuthController
         $email = $_POST['email'];
         $pwd = $_POST['password'];
         $usermodel = new UserModel();
-        $isLogin = $usermodel->verifyCustomer($email, $pwd);
+        $isLogin = $usermodel->verifyAdmin($email, $pwd);
 
         if ($isLogin) {
             $_SESSION['login_status'] = true;
-            header("location: /");
+            header("location: /admin/dashboard");
         } else {
             $_SESSION['msg'] = "Email/Username or password doesn't match";
-            header("location: /login");
+            header("location: /admin-login");
             exit;
         }
     }

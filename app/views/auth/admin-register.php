@@ -206,6 +206,11 @@
         </main>
     </div>
     <script src="/public/js/form-validation.js"></script>
+    <script>
+        window.onload = function() {
+            document.getElementById('fname').focus();
+        };
+    </script>
 </body>
 
 </html>

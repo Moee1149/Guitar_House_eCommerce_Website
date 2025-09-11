@@ -59,4 +59,19 @@ class UserModel
         $res = mysqli_query($this->conn, $sql);
         return $res;
     }
+
+    public function verifyAdmin($email, $password)
+    {
+        $stmt = $this->conn->prepare("SELECT email, password FROM users WHERE email= ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $res = $stmt->get_result();
+        $hashedPwd = sha1($password); //hashing password
+
+        if ($res->num_rows > 0) {
+            $data = mysqli_fetch_assoc($res);
+            return $hashedPwd === $data['password'];
+        }
+        return;
+    }
 }

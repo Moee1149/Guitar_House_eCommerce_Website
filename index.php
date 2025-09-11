@@ -52,7 +52,11 @@ switch ($path) {
         header("location: /customer/dashboard");
         break;
     case '/admin-login':
-        $authController->getAdminLoginPage();
+        if (isset($_POST['submit'])) {
+            $authController->handleAdminLogin();
+        } else {
+            $authController->getAdminLoginPage();
+        }
         break;
     case '/admin-register':
         if (!$login_status && isset($_POST['submit'])) {
