@@ -75,6 +75,7 @@ switch ($path) {
             header("location: /login");
             exit;
         }
+
         //cart controller
     default:
         $controller->notFound();
