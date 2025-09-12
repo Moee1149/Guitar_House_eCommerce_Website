@@ -47,4 +47,25 @@ class AdminController
     {
         include VIEW_PATH . '/admin/user_mgmt/user-edit.php';
     }
+
+    //product mgmt
+    public function showProductMgmt()
+    {
+        include VIEW_PATH . '/admin/product_mgmt/index.php';
+    }
+
+    public function showProductMgmtList()
+    {
+        include VIEW_PATH . '/admin/product_mgmt/product-list.php';
+    }
+
+    public function showProductMgmtRegister()
+    {
+        include VIEW_PATH . '/admin/product_mgmt/product-register.php';
+    }
+
+    public function showProductMgmtEdit()
+    {
+        include VIEW_PATH . '/admin/product_mgmt/product-edit.php';
+    }
 }

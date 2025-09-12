@@ -188,6 +188,34 @@ switch ($path) {
         }
         $admin->showUserMgmtEdit();
         break;
+    case "/admin/product-mgmt":
+        if (!$login_status) {
+            header("location: /admin-login");
+            exit;
+        }
+        $admin->showProductMgmt();
+        break;
+    case "/admin/product-mgmt/product-list":
+        if (!$login_status) {
+            header("location: /admin-login");
+            exit;
+        }
+        $admin->showProductMgmtList();
+        break;
+    case "/admin/product-mgmt/product-register":
+        if (!$login_status) {
+            header("location: /admin-login");
+            exit;
+        }
+        $admin->showProductMgmtRegister();
+        break;
+    case "/admin/product-mgmt/product-edit":
+        if (!$login_status) {
+            header("location: /admin-login");
+            exit;
+        }
+        $admin->showProductMgmtEdit();
+        break;
     case "/customer/logout":
         if (!$login_status) {
             header("location: /login");
