@@ -1,5 +1,7 @@
 <?php session_start();
 
+// addd role for login
+
 //define base paths
 define("APP_PATH", __DIR__ . '/app/');
 define("VIEW_PATH", __DIR__ . '/app/views');
@@ -7,6 +9,7 @@ define("VIEW_PATH", __DIR__ . '/app/views');
 include APP_PATH . 'controllers/PublicController.php';
 include APP_PATH . 'controllers/AuthController.php';
 include APP_PATH . 'controllers/CustomerController.php';
+include APP_PATH . 'controllers/AdminController.php';
 
 $login_status = $_SESSION['login_status'] ?? false;
 
@@ -14,6 +17,7 @@ $login_status = $_SESSION['login_status'] ?? false;
 $controller = new PublicController();
 $authController = new AuthController();
 $customer = new CustomerController();
+$admin = new AdminController();
 
 $path = $_SERVER['REQUEST_URI'];
 
@@ -120,6 +124,41 @@ switch ($path) {
             exit;
         }
         $customer->showCustomerProfile();
+        break;
+    case "/admin/dashboard":
+        if (!$login_status) {
+            header("location: /admin-login");
+            exit;
+        }
+        $admin->showAdminDashboard();
+        break;
+    case "/admin/customer-mgmt":
+        if (!$login_status) {
+            header("location: /admin-login");
+            exit;
+        }
+        $admin->showCustomerMgmt();
+        break;
+    case "/admin/customer-mgmt/customer-list":
+        if (!$login_status) {
+            header("location: /admin-login");
+            exit;
+        }
+        $admin->showCustomerMgmtList();
+        break;
+    case "/admin/customer-mgmt/customer-register":
+        if (!$login_status) {
+            header("location: /admin-login");
+            exit;
+        }
+        $admin->showCustomerMgmtRegister();
+        break;
+    case "/admin/customer-mgmt/customer-edit":
+        if (!$login_status) {
+            header("location: /admin-login");
+            exit;
+        }
+        $admin->showCustomerMgmtRegister();
         break;
     case "/customer/logout":
         if (!$login_status) {
