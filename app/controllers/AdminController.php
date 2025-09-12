@@ -6,6 +6,16 @@ class AdminController
         include VIEW_PATH . '/admin/admin-dashboard.php';
     }
 
+    public function showAdminReport()
+    {
+        include VIEW_PATH . '/admin/admin-report.php';
+    }
+
+    public function showAdminProfile()
+    {
+        include VIEW_PATH . '/admin/admin-profile.php';
+    }
+
     //customer management methods
     public function showCustomerMgmt()
     {

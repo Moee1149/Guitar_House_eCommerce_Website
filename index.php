@@ -132,6 +132,20 @@ switch ($path) {
         }
         $admin->showAdminDashboard();
         break;
+    case "/admin/report":
+        if (!$login_status) {
+            header("location: /admin-login");
+            exit;
+        }
+        $admin->showAdminReport();
+        break;
+    case "/admin/profile":
+        if (!$login_status) {
+            header("location: /admin-login");
+            exit;
+        }
+        $admin->showAdminProfile();
+        break;
     case "/admin/customer-mgmt":
         if (!$login_status) {
             header("location: /admin-login");
