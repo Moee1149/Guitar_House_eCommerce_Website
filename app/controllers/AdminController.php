@@ -78,4 +78,25 @@ class AdminController
     {
         include VIEW_PATH . '/admin/product_mgmt/product-edit.php';
     }
+
+    //order mgmt
+    public function showOrderMgmt()
+    {
+        include VIEW_PATH . '/admin/order_mgmt/index.php';
+    }
+
+    public function showOrderListMgmt()
+    {
+        include VIEW_PATH . '/admin/order_mgmt/order-list.php';
+    }
+
+    public function showOrderEditMgmt()
+    {
+        include VIEW_PATH . '/admin/order_mgmt/order-edit.php';
+    }
+
+    public function showOrderDetailMgmt()
+    {
+        include VIEW_PATH . '/admin/order_mgmt/order-detail.php';
+    }
 }

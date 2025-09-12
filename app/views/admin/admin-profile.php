@@ -269,14 +269,8 @@
                     </div>
 
                     <div class="button-div">
-                        <button
-                            class="btn btn-primary"
-                            style="padding: 0.5rem 0.8rem; width: 120px">
-                            Save Setting
-                        </button>
-                        <a href="../index.html" class="btn" style=" background-color: #ef4444; color: white; text-decoration: none; padding: 0.5rem 0.8rem; width: 100px; font-size: 14px; ">
-                            Log out
-                        </a>
+                        <button class="btn btn-primary" style="padding: 0.5rem 0.8rem; width: 120px"> Save Setting </button>
+                        <a href="../index.html" class="btn" style=" background-color: #ef4444; color: white; text-decoration: none; padding: 0.5rem 0.8rem; width: 100px; font-size: 14px; "> Log out </a>
                     </div>
                 </div>
             </main>
