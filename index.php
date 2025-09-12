@@ -107,6 +107,20 @@ switch ($path) {
         }
         $customer->showCustomerDashboard();
         break;
+    case "/customer/report":
+        if (!$login_status) {
+            header("location: /login");
+            exit;
+        }
+        $customer->showCustomerReport();
+        break;
+    case "/customer/profile":
+        if (!$login_status) {
+            header("location: /login");
+            exit;
+        }
+        $customer->showCustomerProfile();
+        break;
     case "/customer/logout":
         if (!$login_status) {
             header("location: /login");

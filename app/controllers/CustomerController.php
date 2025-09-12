@@ -26,6 +26,18 @@ class CustomerController
         include VIEW_PATH . '/customer/dashboard.php';
     }
 
+    public function showCustomerReport()
+    {
+
+        include VIEW_PATH . '/customer/customer-report.php';
+    }
+
+    public function showCustomerProfile()
+    {
+
+        include VIEW_PATH . '/customer/customer-profile.php';
+    }
+
     public function handleCustomerLogout()
     {
         unset($_SESSION['login_status']);
