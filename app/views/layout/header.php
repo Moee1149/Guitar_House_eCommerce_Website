@@ -60,7 +60,7 @@
             <?php if (isset($_SESSION['login_status']) && $_SESSION['login_status'] === true): ?>
                 <div class="customer-profile">
                     <!-- rounded profile -->
-                    <div class="customer-rounded-profile">
+                    <button popovertarget="profile" class="customer-rounded-profile">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
@@ -76,9 +76,29 @@
                                 d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
                             <circle cx="12" cy="7" r="4" />
                         </svg>
-                    </div>
+                    </button>
                     <div class="customer-information">
                         <p>Aayusha Adhikari</p>
+                    </div>
+                    <div popover id="profile" class="popover">
+                        <div class="popover-items">
+                            <p class="items view-profile">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-icon lucide-circle-user">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <circle cx="12" cy="10" r="3" />
+                                    <path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662" />
+                                </svg>
+                                <a href="/customer/dashboard" style="text-decoration: none; color: white;">View Profile</a>
+                            </p>
+                            <p class="items logout">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out-icon lucide-log-out">
+                                    <path d="m16 17 5-5-5-5" />
+                                    <path d="M21 12H9" />
+                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                                </svg>
+                                <a href="/customer/logout" style="text-decoration: none; color: white;">Logout</a>
+                            </p>
+                        </div>
                     </div>
                 </div>
             <?php else: ?>

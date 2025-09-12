@@ -23,6 +23,10 @@
     --color-destructive: 239 68 68; /* Red-500 */
     --color-gray-400: #9ca3af;
     --accent-secondary: #10b981;
+    --color-red-400: #f87171;
+    --color-red-500: #ef4444;
+    --color-red-600: #dc2626;
+    --color-red-700: #b91c1c;
 
     /* Typography */
     --font-sans: ui-sans-serif, system-ui, sans-serif;
@@ -161,6 +165,7 @@ body {
     display: flex;
     gap: 10px;
     align-items: center;
+    position: relative;
 }
 
 .customer-profile .customer-rounded-profile {
@@ -168,15 +173,61 @@ body {
     width: 40px;
     border-radius: 100%;
     background-color: var(--accent-secondary);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: block;
+    place-items: center;
+    border: none;
+}
+
+.customer-profile .customer-rounded-profile svg {
+    stroke: white;
 }
 
 .customer-profile .customer-information p {
     margin: 0;
     padding: 0;
     font-size: var(--text-sm);
+}
+
+.customer-profile .popover:popover-open {
+    width: 200px;
+    position: absolute;
+    inset: unset; /* Remove default positioning */
+    top: 55px; /* Position just below the profile button (adjust as needed) */
+    right: 10px;
+    margin: 0;
+    background: var(--secondary-bg);
+    color: var(--text-primary);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    font-size: 13px;
+    padding: 0.3rem;
+    z-index: 10;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    display: block; /* Popover API handles visibility */
+}
+
+.customer-profile .popover-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.customer-profile .popover-items .items {
+    padding: 0.5rem;
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    transition: background 0.25s;
+}
+
+.customer-profile .popover-items .items:hover {
+    background: var(--primary-bg);
+}
+
+.logout svg {
+    stroke: var(--color-red-500);
 }
 
 /*button styling*/

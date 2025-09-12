@@ -13,6 +13,7 @@ $login_status = $_SESSION['login_status'] ?? false;
 //Decide which page to load
 $controller = new PublicController();
 $authController = new AuthController();
+$customer = new CustomerController();
 
 $path = $_SERVER['REQUEST_URI'];
 
@@ -76,7 +77,6 @@ switch ($path) {
             header("location: /login");
             exit;
         }
-        $customer = new CustomerController();
         $customer->showCartPage();
         break;
     case '/customer/checkout':
@@ -84,7 +84,6 @@ switch ($path) {
             header("location: /login");
             exit;
         }
-        $customer = new CustomerController();
         $customer->showCheckoutPage();
         break;
     case '/customer/payment':
@@ -92,7 +91,6 @@ switch ($path) {
             header("location: /login");
             exit;
         }
-        $customer = new CustomerController();
         $customer->showPaymentPage();
         break;
     case '/customer/thankyou':
@@ -100,7 +98,6 @@ switch ($path) {
             header("location: /login");
             exit;
         }
-        $customer = new CustomerController();
         $customer->showThankyouPage();
         break;
     case "/customer/dashboard":
@@ -108,8 +105,14 @@ switch ($path) {
             header("location: /login");
             exit;
         }
-        $customer = new CustomerController();
         $customer->showCustomerDashboard();
+        break;
+    case "/customer/logout":
+        if (!$login_status) {
+            header("location: /login");
+            exit;
+        }
+        $customer->handleCustomerLogout();
         break;
     default:
         $controller->notFound();

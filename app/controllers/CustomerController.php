@@ -25,4 +25,10 @@ class CustomerController
     {
         include VIEW_PATH . '/customer/dashboard.php';
     }
+
+    public function handleCustomerLogout()
+    {
+        unset($_SESSION['login_status']);
+        header("location: /");
+    }
 }
