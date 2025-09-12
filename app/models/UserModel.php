@@ -1,77 +1,47 @@
 <?php
-include APP_PATH . '/core/connection.php';
 
 class UserModel
 {
     private $conn;
 
-    public function __construct()
+    public function __construct($conn)
     {
-        $database = new DatabaseConnection();
-        $this->conn = $database->handleConnection();
+        $this->conn = $conn;
     }
 
-    public function verifyCustomer($email, $password)
+    public function registerNewUser($fname, $email, $hashedPwd, $phone, $addr)
     {
-        $stmt = $this->conn->prepare("SELECT email, password FROM customers WHERE email= ?");
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $res = $stmt->get_result();
-        $hashedPwd = sha1($password); //hashing password
-
-        if ($res->num_rows > 0) {
-            $data = mysqli_fetch_assoc($res);
-            return $hashedPwd === $data['password'];
-        }
-        return;
-    }
-
-    public function checkEmailAlreadyUse($email, $role = "customer")
-    {
-        $table = match ($role) {
-            "admin" => "users",
-            default => "customers",
-        };
-        $stmt = $this->conn->prepare("SELECT email, password FROM $table WHERE email= ?");
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $res = $stmt->get_result();
-
-        if ($res->num_rows > 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function handleCreateNewUser($fname, $email, $phone, $hashedPwd, $addr)
-    {
-        $sql = "INSERT INTO customers (customer_name, email, password, phone, address)
-                VALUES ('$fname', '$email', '$hashedPwd','$phone', '$addr')";
+        $sql = "INSERT INTO users (user_name, email, password, phone,  address)
+                VALUES ('$fname', '$email', '$hashedPwd', '$phone', '$addr')";
         $res = mysqli_query($this->conn, $sql);
         return $res;
     }
 
-    public function handleCreateNewAdmin($fname, $email, $phone, $hashedPwd, $addr)
+    public function getAllUser()
     {
-        $sql = "INSERT INTO users (user_name, email, password, phone, address)
-                VALUES ('$fname', '$email', '$hashedPwd','$phone', '$addr')";
+        $sql = "SELECT * FROM users";
         $res = mysqli_query($this->conn, $sql);
         return $res;
     }
 
-    public function verifyAdmin($email, $password)
+    public function getUserById($user_id)
     {
-        $stmt = $this->conn->prepare("SELECT email, password FROM users WHERE email= ?");
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $res = $stmt->get_result();
-        $hashedPwd = sha1($password); //hashing password
+        $sql = "SELECT user_name, phone, email, address FROM users WHERE user_id=$user_id";
+        $res = mysqli_query($this->conn, $sql);
+        return mysqli_fetch_assoc($res);
+    }
 
-        if ($res->num_rows > 0) {
-            $data = mysqli_fetch_assoc($res);
-            return $hashedPwd === $data['password'];
-        }
-        return;
+    public function updateUser($user_id, $fname, $phone, $addr)
+    {
+        $sql = "UPDATE users SET user_name='$fname', phone='$phone', address='$addr' WHERE user_id=$user_id";
+        $res = mysqli_query($this->conn, $sql);
+        return $res;
+    }
+
+    public function deleteUser($user_id)
+    {
+        $sql = "DELETE FROM users WHERE user_id=$user_id";
+        $res = mysqli_query($this->conn, $sql);
+        return $res;
     }
 }

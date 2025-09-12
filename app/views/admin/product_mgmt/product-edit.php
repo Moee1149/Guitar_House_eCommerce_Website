@@ -24,13 +24,9 @@
                 <header class="header" style="padding: 1rem 1.3rem">
                     <div class="header-left">
                         <div class="header-text">
-                            <h1>
-                                Edit Product: Fender Squier Sonic
-                                Stratocaster Electric Guitar
+                            <h1> Edit Product: Fender Squier Sonic Stratocaster Electric Guitar
                             </h1>
-                            <p>
-                                Update details for product ID: prod00-1234
-                            </p>
+                            <p> Update details for product ID: prod00-1234 </p>
                         </div>
                     </div>
                 </header>

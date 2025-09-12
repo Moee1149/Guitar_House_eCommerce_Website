@@ -23,22 +23,11 @@
                 <div class="customer_mgmt">
                     <h1 class="page-title">Welcome to User Management</h1>
                     <div class="text-box">
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur
-                            adipisicing elit. Ipsum molestias voluptas
-                            voluptatibus quod ducimus eum eius minima hic
-                            sint reiciendis.
-                        </p>
+                        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum molestias voluptas voluptatibus quod ducimus eum eius minima hic sint reiciendis. </p>
                     </div>
                     <div class="btn-group">
-                        <a
-                            href="/admin/user-mgmt/user-register"
-                            title="Register User"
-                            class="btn btn--secondary">Register</a>
-                        <a
-                            href="/admin/user-mgmt/user-list"
-                            title="All User"
-                            class="text-link">&rarrb; All User</a>
+                        <a href="/admin/user-mgmt/user-register" title="Register User" class="btn btn--secondary">Register</a>
+                        <a href="/admin/user-mgmt/user-list" title="All User" class="text-link">&rarrb; All User</a>
                         <!--  Class naming: BEM techniques -->
                     </div>
                 </div>

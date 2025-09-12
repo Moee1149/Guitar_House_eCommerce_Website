@@ -1,8 +1,15 @@
 <?php
-include APP_PATH . '/models/UserModel.php';
+include APP_PATH . '/models/AuthModel.php';
 
 class AuthController
 {
+    private $authmodel;
+
+    public function __construct($conn)
+    {
+        $this->authmodel = new AuthModel($conn);
+    }
+
     public function getCustomerLoginPage()
     {
         include VIEW_PATH . '/auth/customer-login.php';
@@ -27,8 +34,7 @@ class AuthController
     {
         $email = $_POST['email'];
         $pwd = $_POST['password'];
-        $usermodel = new UserModel();
-        $isLogin = $usermodel->verifyCustomer($email, $pwd);
+        $isLogin = $this->authmodel->verifyCustomer($email, $pwd);
 
         if ($isLogin) {
             $_SESSION['login_status'] = true;
@@ -50,15 +56,14 @@ class AuthController
         $agree = $_POST['agree'];
 
         $hashedPwd = sha1($pwd);
-        $usermodel = new UserModel();
-        $userExist = $usermodel->checkEmailAlreadyUse($email);
+        $userExist = $this->authmodel->checkEmailAlreadyUse($email);
         if ($userExist) {
             $_SESSION['msg'] = "User with email already exits";
             header("location: /register");
             exit;
         }
 
-        $isRegistered =  $usermodel->handleCreateNewUser($fname, $email, $phone, $hashedPwd, $addr);
+        $isRegistered =  $this->authmodel->handleCreateNewUser($fname, $email, $phone, $hashedPwd, $addr);
         if ($isRegistered) {
             header("location: /login");
             exit;
@@ -71,8 +76,7 @@ class AuthController
     {
         $email = $_POST['email'];
         $pwd = $_POST['password'];
-        $usermodel = new UserModel();
-        $isLogin = $usermodel->verifyAdmin($email, $pwd);
+        $isLogin = $this->authmodel->verifyAdmin($email, $pwd);
 
         if ($isLogin) {
             $_SESSION['login_status'] = true;
@@ -94,15 +98,14 @@ class AuthController
         $agree = $_POST['agree'];
 
         $hashedPwd = sha1($pwd);
-        $usermodel = new UserModel();
-        $userExist = $usermodel->checkEmailAlreadyUse($email, "admin");
+        $userExist = $this->authmodel->checkEmailAlreadyUse($email, "admin");
         if ($userExist) {
             $_SESSION['msg'] = "Admin with this email already exits";
             header("location: /admin-register");
             exit;
         }
 
-        $isRegistered =  $usermodel->handleCreateNewAdmin($fname, $email, $phone, $hashedPwd, $addr);
+        $isRegistered = $this->authmodel->handleCreateNewAdmin($fname, $email, $phone, $hashedPwd, $addr);
         if ($isRegistered) {
             header("location: /admin-login");
             exit;

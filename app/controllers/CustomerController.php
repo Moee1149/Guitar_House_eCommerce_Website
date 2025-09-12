@@ -1,6 +1,15 @@
 <?php
+include APP_PATH . '/models/CustomerModel.php';
+
 class CustomerController
 {
+    private $customerModel;
+
+    public function __construct($conn)
+    {
+        $this->customerModel = new CustomerModel($conn);
+    }
+
     public function showCartPage()
     {
         include VIEW_PATH . '/customer/cart.php';

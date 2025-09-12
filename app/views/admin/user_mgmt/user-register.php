@@ -20,84 +20,41 @@
             <?php include VIEW_PATH . '/layout/admin-header.php'; ?>
 
             <div class="customer-page-container">
+                <?php echo isset($_SESSION['msg']) ? "<p class='msg-box'>" . $_SESSION['msg'] . "</p>" : '';  ?>
                 <div class="form-box">
                     <h1 class="page-title">Register New Admin</h1>
-                    <form
-                        action="#"
-                        method="POST"
-                        name="user_form"
-                        enctype="multipart/form-data"
-                        novalidate>
+                    <form action="/admin/user-mgmt/user-register" method="POST" name="user_form" enctype="multipart/form-data" novalidate>
                         <div class="field-group">
                             <label for="fname">Fullname</label>
-                            <input
-                                type="text"
-                                id="fname"
-                                name="fullname"
-                                value="" />
+                            <input type="text" id="fname" name="fullname" value="" />
                         </div>
                         <div class="field-group">
                             <label for="phone">Phone</label>
-                            <input
-                                type="text"
-                                id="phone"
-                                name="phone"
-                                value="" />
+                            <input type="text" id="phone" name="phone" value="" />
                         </div>
                         <div class="field-group">
                             <label for="email">E-Mail</label>
-                            <input
-                                type="text"
-                                id="email"
-                                name="email"
-                                value="" />
+                            <input type="text" id="email" name="email" value="" />
                         </div>
                         <div class="field-group">
                             <label for="pwd">Password</label>
-                            <input
-                                type="password"
-                                id="pwd"
-                                name="password"
-                                value="" />
+                            <input type="password" id="pwd" name="password" value="" />
                         </div>
                         <div class="field-group">
                             <label for="cpwd">Confirm Password</label>
-                            <input
-                                type="password"
-                                id="cpwd"
-                                name="cpassword"
-                                value="" />
+                            <input type="password" id="cpwd" name="cpassword" value="" />
                         </div>
                         <div class="field-group">
                             <label for="addr">Address</label>
-                            <input
-                                type="text"
-                                id="addr"
-                                name="address"
-                                value="" />
+                            <input type="text" id="addr" name="address" value="" />
                         </div>
                         <div class="field-group checkbox-field">
-                            <input
-                                type="checkbox"
-                                id="agree"
-                                name="agree"
-                                value="1" />
-                            <label
-                                for="agree"
-                                style="position: relative; top: 3px">I agree with the
-                                <a href="#" title="" style="color: white">Terms &amp; Conditions</a></label>
+                            <input type="checkbox" id="agree" name="agree" value="1" />
+                            <label for="agree" style="position: relative; top: 3px">I agree with the <a href="#" title="" style="color: white">Terms &amp; Conditions</a></label>
                         </div>
-                        <button
-                            type="submit"
-                            name="submit"
-                            class="btn btn--secondary">
-                            Register Now
-                        </button>
+                        <button type="submit" name="submit" class="btn btn--secondary"> Register Now </button>
                     </form>
-                    <a
-                        href="/admin/user-mgmt"
-                        title="Back to Home"
-                        class="text-link">&larr;Back to Home</a>
+                    <a href="/admin/user-mgmt" title="Back to Home" class="text-link">&larr;Back to Home</a>
                 </div>
             </div>
         </div>
@@ -107,3 +64,4 @@
 </body>
 
 </html>
+<?php unset($_SESSION["msg"]) ?>

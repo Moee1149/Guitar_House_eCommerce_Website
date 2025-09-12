@@ -22,57 +22,27 @@
             <div class="customer-page-container">
                 <div class="customer_mgmt form-box">
                     <h1 class="page-title">Update User</h1>
-                    <form
-                        action="#"
-                        method="POST"
-                        name="user_form"
-                        enctype="multipart/form-data"
-                        novalidate>
-                        <input type="hidden" name="user_id" value="1234" />
+                    <form action="/admin/user-mgmt/user-edit?user_id=<?= $user_id ?>" method="POST" name="user_form" enctype="multipart/form-data" novalidate>
+                        <input type="hidden" name="user_id" value="<?= $user_id ?>" />
                         <div class="field-group">
                             <label for="fname">Fullname</label>
-                            <input
-                                type="text"
-                                id="fname"
-                                name="fullname"
-                                value="Aayusha Adhikari" />
+                            <input type="text" id="fname" name="fullname" value="<?php echo $fname; ?>">
                         </div>
                         <div class="field-group">
                             <label for="phone">Phone</label>
-                            <input
-                                type="text"
-                                id="phone"
-                                name="phone"
-                                value="9822451234" />
+                            <input type="text" id="phone" name="phone" value="<?php echo $ph; ?>">
                         </div>
                         <div class="field-group">
                             <label for="email">E-Mail</label>
-                            <input
-                                type="text"
-                                id="email"
-                                name="email"
-                                value="aayu1234@gmail.com"
-                                disabled />
+                            <input type="text" id="email" name="email" value="<?php echo $email; ?>" disabled>
                         </div>
                         <div class="field-group">
                             <label for="addr">Address</label>
-                            <input
-                                type="text"
-                                id="addr"
-                                name="address"
-                                value="Lekhnath 31, Pokhara" />
+                            <input type="text" id="addr" name="address" value="<?php echo $addr; ?>">
                         </div>
-                        <button
-                            type="submit"
-                            name="submit"
-                            class="btn btn--secondary">
-                            Update Now
-                        </button>
+                        <button type="submit" name="submit" class="btn btn--secondary"> Update Now </button>
                     </form>
-                    <a
-                        href="/admin/user-mgmt"
-                        title="Back to Home"
-                        class="text-link">&larr;Back to Home</a>
+                    <a href="/admin/user-mgmt/user-list" title="Back to List" class="text-link">&larr;Back to User List</a>
                 </div>
             </div>
         </div>

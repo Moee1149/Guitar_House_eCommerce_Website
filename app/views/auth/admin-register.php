@@ -135,70 +135,32 @@
             <div class="register-card">
                 <?php echo isset($_SESSION['msg']) ? "<p class='msg-box'>" . $_SESSION['msg'] . "</p>" : '';  ?>
                 <h2>Admin Register</h2>
-                <form
-                    action="/admin-register"
-                    method="POST"
-                    name="user_form"
-                    enctype="multipart/form-data"
-                    novalidate>
+                <form action="/admin-register" method="POST" name="user_form" enctype="multipart/form-data" novalidate>
                     <div class="form-group">
                         <label for="fullname" class="required">Full Name</label>
-                        <input
-                            type="text"
-                            id="fname"
-                            name="fullname"
-                            placeholder="Enter your Full name" />
+                        <input type="text" id="fname" name="fullname" placeholder="Enter your Full name" />
                     </div>
                     <div class="form-group">
                         <label for="text" class="required">Phone Number</label>
-                        <input
-                            type="text"
-                            id="phone"
-                            name="phone"
-                            placeholder="Phone"
-                            value="" />
+                        <input type="text" id="phone" name="phone" placeholder="Phone" value="" />
                     </div>
                     <div class="form-group">
                         <label for="addr" class="required">Address</label>
-                        <input
-                            type="text"
-                            id="addr"
-                            name="address"
-                            placeholder="Enter you address"
-                            value="" />
+                        <input type="text" id="addr" name="address" placeholder="Enter you address" value="" />
                     </div>
                     <div class="form-group">
                         <label for="email" class="required">Email Address</label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="your.email@example.com" />
+                        <input type="email" id="email" name="email" placeholder="your.email@example.com" />
                     </div>
                     <div class="form-group">
                         <label for="password" class="required">Password</label>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            placeholder="Enter your password" />
+                        <input type="password" id="password" name="password" placeholder="Enter your password" />
                     </div>
 
                     <div class="form-group checkbox-group">
-                        <input
-                            type="checkbox"
-                            id="agree"
-                            name="agree"
-                            value="1" />
-                        <label for="agree">I agree with the
-                            <a href="#" title="" style="color: white">Terms &amp; Conditions</a></label>
+                        <input type="checkbox" id="agree" name="agree" value="1" /> <label for="agree">I agree with the <a href="#" title="" style="color: white">Terms &amp; Conditions</a></label>
                     </div>
-                    <button
-                        type="submit"
-                        name="submit"
-                        class="btn btn-primary register-btn">
-                        Register Now
-                    </button>
+                    <button type="submit" name="submit" class="btn btn-primary register-btn"> Register Now </button>
                 </form>
                 <a class="link" href="/admin-login">Already have an account? Login</a>
                 <a class="link" href="/register">Register as Customer</a>

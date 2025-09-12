@@ -10,16 +10,20 @@ include APP_PATH . 'controllers/PublicController.php';
 include APP_PATH . 'controllers/AuthController.php';
 include APP_PATH . 'controllers/CustomerController.php';
 include APP_PATH . 'controllers/AdminController.php';
+include APP_PATH . 'core/connection.php';
+
+$database = new DatabaseConnection();
+$conn = $database->handleConnection();
 
 $login_status = $_SESSION['login_status'] ?? false;
 
 //Decide which page to load
 $controller = new PublicController();
-$authController = new AuthController();
-$customer = new CustomerController();
-$admin = new AdminController();
+$authController = new AuthController($conn);
+$customer = new CustomerController($conn);
+$admin = new AdminController($conn);
 
-$path = $_SERVER['REQUEST_URI'];
+$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 switch ($path) {
     case '/':
@@ -201,6 +205,13 @@ switch ($path) {
             exit;
         }
         $admin->showUserMgmtEdit();
+        break;
+    case "/admin/user-mgmt/user-delete":
+        if (!$login_status) {
+            header("location: /admin-login");
+            exit;
+        }
+        $admin->deleteUser();
         break;
     case "/admin/product-mgmt":
         if (!$login_status) {
