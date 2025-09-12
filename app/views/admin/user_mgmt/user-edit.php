@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Guitar House | Customer</title>
+    <title>Guitar House | User Mgmt</title>
     <link rel="stylesheet" href="/public/css/admin/styles.css" />
     <link rel="stylesheet" href="/public/css/admin/sidebar.css" />
     <link rel="stylesheet" href="/public/css/admin/admin-user-mgmt.css" />
@@ -21,7 +21,7 @@
 
             <div class="customer-page-container">
                 <div class="customer_mgmt form-box">
-                    <h1 class="page-title">Update Customer Details</h1>
+                    <h1 class="page-title">Update User</h1>
                     <form
                         action="#"
                         method="POST"
@@ -70,7 +70,7 @@
                         </button>
                     </form>
                     <a
-                        href="/admin/customer-mgmt"
+                        href="/admin/user-mgmt"
                         title="Back to Home"
                         class="text-link">&larr;Back to Home</a>
                 </div>

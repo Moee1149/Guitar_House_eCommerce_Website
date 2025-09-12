@@ -32,4 +32,19 @@ class AdminController
     {
         include VIEW_PATH . '/admin/user_mgmt/index.php';
     }
+
+    public function showUserMgmtList()
+    {
+        include VIEW_PATH . '/admin/user_mgmt/user-list.php';
+    }
+
+    public function showUserMgmtRegister()
+    {
+        include VIEW_PATH . '/admin/user_mgmt/user-register.php';
+    }
+
+    public function showUserMgmtEdit()
+    {
+        include VIEW_PATH . '/admin/user_mgmt/user-edit.php';
+    }
 }

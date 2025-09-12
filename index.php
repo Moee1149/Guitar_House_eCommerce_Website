@@ -158,7 +158,35 @@ switch ($path) {
             header("location: /admin-login");
             exit;
         }
-        $admin->showCustomerMgmtRegister();
+        $admin->showCustomerMgmtEdit();
+        break;
+    case "/admin/user-mgmt":
+        if (!$login_status) {
+            header("location: /admin-login");
+            exit;
+        }
+        $admin->showUserMgmt();
+        break;
+    case "/admin/user-mgmt/user-list":
+        if (!$login_status) {
+            header("location: /admin-login");
+            exit;
+        }
+        $admin->showUserMgmtList();
+        break;
+    case "/admin/user-mgmt/user-register":
+        if (!$login_status) {
+            header("location: /admin-login");
+            exit;
+        }
+        $admin->showUserMgmtRegister();
+        break;
+    case "/admin/user-mgmt/user-edit":
+        if (!$login_status) {
+            header("location: /admin-login");
+            exit;
+        }
+        $admin->showUserMgmtEdit();
         break;
     case "/customer/logout":
         if (!$login_status) {
