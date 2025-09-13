@@ -1,5 +1,5 @@
 <?php
-include APP_PATH . '/models/CustomerModel.php';
+include_once APP_PATH . '/models/CustomerModel.php';
 
 class CustomerController
 {

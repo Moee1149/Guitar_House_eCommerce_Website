@@ -178,6 +178,13 @@ switch ($path) {
         }
         $admin->showCustomerMgmtEdit();
         break;
+    case "/admin/customer-mgmt/customer-delete":
+        if (!$login_status) {
+            header("location: /admin-login");
+            exit;
+        }
+        $admin->deleteCustomer();
+        break;
     case "/admin/user-mgmt":
         if (!$login_status) {
             header("location: /admin-login");

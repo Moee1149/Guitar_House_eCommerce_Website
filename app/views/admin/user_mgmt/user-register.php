@@ -20,8 +20,8 @@
             <?php include VIEW_PATH . '/layout/admin-header.php'; ?>
 
             <div class="customer-page-container">
-                <?php echo isset($_SESSION['msg']) ? "<p class='msg-box'>" . $_SESSION['msg'] . "</p>" : '';  ?>
-                <div class="form-box">
+                <div class="customer_mgmt form-box">
+                    <?php echo isset($_SESSION['msg']) ? "<p class='msg-box'>" . $_SESSION['msg'] . "</p>" : '';  ?>
                     <h1 class="page-title">Register New Admin</h1>
                     <form action="/admin/user-mgmt/user-register" method="POST" name="user_form" enctype="multipart/form-data" novalidate>
                         <div class="field-group">

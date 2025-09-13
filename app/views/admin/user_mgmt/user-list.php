@@ -20,8 +20,8 @@
             <?php include VIEW_PATH . '/layout/admin-header.php'; ?>
 
             <div class="customer-page-container">
-                <?php echo isset($_SESSION['msg']) ? "<p class='msg-box'>" . $_SESSION['msg'] . "</p>" : '';  ?>
                 <div class="customer_mgmt">
+                    <?php echo isset($_SESSION['msg']) ? "<p class='msg-box'>" . $_SESSION['msg'] . "</p>" : '';  ?>
                     <h1 class="page-title">Admin Users List</h1>
                     <?php if ($users): ?>
                         <table border="1" cellspacing="0" cellpadding="6">

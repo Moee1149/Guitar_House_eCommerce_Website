@@ -1,13 +1,15 @@
 <?php
-include APP_PATH . '/models/UserModel.php';
+include_once APP_PATH . '/models/UserModel.php';
 
 class AdminController
 {
     private $userModel;
+    private $customerModel;
 
     public function __construct($conn)
     {
         $this->userModel = new UserModel($conn);
+        $this->customerModel = new CustomerModel($conn);
     }
 
     public function showAdminDashboard()
@@ -33,17 +35,76 @@ class AdminController
 
     public function showCustomerMgmtList()
     {
+        $customers = $this->customerModel->getAllCustomers();
         include VIEW_PATH . '/admin/customer_mgmt/customer-list.php';
     }
 
     public function showCustomerMgmtRegister()
     {
+        if (isset($_POST['submit'])) {
+            $fname = $_POST['fullname'];
+            $email = $_POST['email'];
+            $phone = $_POST['phone'];
+            $pwd = $_POST['password'];
+            $cpwd = $_POST['cpassword'];
+            $addr = $_POST['address'];
+            $agree = $_POST['agree'];
+            switch ($pwd) {
+                case $cpwd:
+                    $hashedPwd = sha1($pwd);
+                    $res = $this->customerModel->registerNewCustomer($fname, $email, $hashedPwd, $phone, $addr);
+                    $res ?  $_SESSION['msg'] = "Hey! Customer registered successfully." :  $_SESSION['msg'] = "Oops! Customerregistration failed.";
+                    break;
+                default:
+                    $_SESSION['msg'] = "Oops! Password not matched.";
+                    break;
+            }
+        }
         include VIEW_PATH . '/admin/customer_mgmt/customer-register.php';
     }
 
     public function showCustomerMgmtEdit()
     {
+        if (!isset($_GET['customer_id'])) {
+            $_SESSION['msg'] = 'User ID not found';
+            header("location: /admin/customer-mgmt/customer-list");
+            exit;
+        }
+
+        if (isset($_POST['submit'])) {
+            $user_id = $_POST['user_id'];
+            $fname = $_POST['fullname'];
+            $phone = $_POST['phone'];
+            $addr = $_POST['address'];
+            $res = $this->customerModel->updateCustomer($user_id, $fname, $phone, $addr);
+            $res ? $_SESSION['msg'] = "Hey! Customer updated successfully." : $_SESSION['msg'] = "Oops! Error updating customer.";
+            header("location: /admin/customer-mgmt/customer-list");
+            exit;
+        }
+
+        $user_id = $_GET['customer_id'];
+        $user = $this->customerModel->getCustomerById($user_id);
+        $fname = $user['customer_name'] ?? "";
+        $ph =  $user['phone'] ?? "";
+        $email = $user['email'] ?? "";
+        $addr =  $user['address'] ?? "";
+
         include VIEW_PATH . '/admin/customer_mgmt/customer-edit.php';
+    }
+
+    public function deleteCustomer()
+    {
+        if (!isset($_GET['customer_id'])) {
+            $_SESSION['msg'] = 'User ID not found';
+            header("location: /admin/customer-mgmt/customer-list");
+            exit;
+        }
+
+        $user_id = $_GET['customer_id'];
+        $res = $this->customerModel->deleteCustomer($user_id);
+        $res ? $_SESSION['msg'] = "Hey! Customer deleted successfully." : $_SESSION['msg'] = "Oops! Error deleting customer.";
+        header("location: /admin/customer-mgmt/customer-list");
+        exit;
     }
 
     //user management methods
