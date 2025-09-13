@@ -1,18 +1,21 @@
 <?php
 include_once APP_PATH . '/models/UserModel.php';
 include_once APP_PATH . '/models/ProductModel.php';
+include_once APP_PATH . 'models/OrderModel.php';
 
 class AdminController
 {
     private $userModel;
     private $customerModel;
     private $productModel;
+    private $orderModel;
 
     public function __construct($conn)
     {
         $this->userModel = new UserModel($conn);
         $this->customerModel = new CustomerModel($conn);
         $this->productModel = new ProductModel($conn);
+        $this->orderModel = new OrderModel($conn);
     }
 
     public function showAdminDashboard()
@@ -293,11 +296,43 @@ class AdminController
 
     public function showOrderListMgmt()
     {
+        $orders = $this->orderModel->getAllOrders();
         include VIEW_PATH . '/admin/order_mgmt/order-list.php';
     }
 
     public function showOrderEditMgmt()
     {
+        if (!isset($_GET['order_id'])) {
+            $_SESSION['msg'] = 'Order ID not found';
+            header("location: /admin/order-mgmt/order-list");
+            exit;
+        }
+
+        $order_id = $_GET['order_id'];
+        $data = $this->orderModel->getOrderById($order_id);
+
+        // Extract all variables from $data
+        $order_id        = $data['order_id'] ?? '';
+        $customer_name   = $data['customer'] ?? '';
+        $customer_phone  = $data['phone'] ?? '';
+        $customer_email  = $data['email'] ?? '';
+        $order_date      = $data['order_date'] ?? '';
+        $total_amount    = $data['total_amount'] ?? '';
+        $shipping_street = $data['shipping_street'] ?? '';
+        $shipping_city   = $data['shipping_city'] ?? '';
+        $shipping_state  = $data['shipping_state'] ?? '';
+        $status          = $data['status'] ?? '';
+
+        // Get order items
+        [$order_items, $order_items_count] = $this->orderModel->getOrderItems($order_id);
+
+        // Handle form submission if needed (update logic here if you want to allow editing)
+        if (isset($_POST['submit'])) {
+            // Add your update logic here if needed
+            // Example: $res = $this->orderModel->updateOrder(...);
+            // Redirect or set message as needed
+        }
+
         include VIEW_PATH . '/admin/order_mgmt/order-edit.php';
     }
 
