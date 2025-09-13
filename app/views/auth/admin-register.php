@@ -176,4 +176,3 @@
 </body>
 
 </html>
-<?php $_SESSION['msg'] = '';

@@ -1,15 +1,18 @@
 <?php
 include_once APP_PATH . '/models/UserModel.php';
+include_once APP_PATH . '/models/ProductModel.php';
 
 class AdminController
 {
     private $userModel;
     private $customerModel;
+    private $productModel;
 
     public function __construct($conn)
     {
         $this->userModel = new UserModel($conn);
         $this->customerModel = new CustomerModel($conn);
+        $this->productModel = new ProductModel($conn);
     }
 
     public function showAdminDashboard()
@@ -195,17 +198,91 @@ class AdminController
 
     public function showProductMgmtList()
     {
+        [$products, $product_count] = $this->productModel->getAllProducts();
         include VIEW_PATH . '/admin/product_mgmt/product-list.php';
     }
 
     public function showProductMgmtRegister()
     {
+        if (isset($_POST['submit'])) {
+            $productName = $_POST['product_name'];
+            $category = $_POST['product_category'];
+            $stock = $_POST['product_stock'];
+            $price = $_POST['product_price'];
+            $description =  trim($_POST['product_description']);
+            $imagePath = null;
+
+            // Check if file is uploaded
+            if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+                $tmpName = $_FILES['image']['tmp_name'];
+                $originalName = basename($_FILES['image']['name']);
+                $extension = pathinfo($originalName, PATHINFO_EXTENSION);
+
+                // Generate unique filename to avoid overwrites
+                $newFileName = uniqid("prod_", true) . "." . $extension;
+                $destination = UPLOAD_DIR . "/" . $newFileName;
+
+                // Move file from temp directory to uploads/
+                if (move_uploaded_file($tmpName, $destination)) {
+                    // Save relative path in DB (better than absolute path)
+                    $imagePath = "/public/images/products/$newFileName";
+                    $res = $this->productModel->addNewProduct($productName, $category, $description, $price, $stock, $imagePath);
+                    $res ? $_SESSION['msg'] = "✅ Product saved successfully!" : $_SESSION['msg'] = "❌ Failed to save product.";
+                    header("location: /admin/product-mgmt/product-list");
+                } else {
+                    $_SESSION['msg'] = "❌ Failed to move uploaded file.";
+                }
+            } else {
+                $_SESSION['msg'] = "❌ No image uploaded or error occurred.";
+            }
+        }
         include VIEW_PATH . '/admin/product_mgmt/product-register.php';
     }
 
     public function showProductMgmtEdit()
     {
+        if (!isset($_GET['product_id'])) {
+            $_SESSION['msg'] = 'Product ID not found';
+            header("location: /admin/product-mgmt/prodcut-list");
+            exit;
+        }
+
+        if (isset($_POST['submit'])) {
+            $product_id = $_POST['product_id'];
+            $productName = $_POST['product_name'];
+            $stock = $_POST['product_stock'];
+            $price = $_POST['product_price'];
+            $description =  trim($_POST['product_description']);
+
+            $res = $this->productModel->updateProduct($product_id, $productName, $description, $price, $stock);
+            $res ? $_SESSION['msg'] = "✅ Product update successfully!" : $_SESSION['msg'] = "❌ Failed to update product.";
+            header("location: /admin/product-mgmt/product-list");
+            exit;
+        }
+
+        $data = $this->productModel->getProductById($_GET['product_id']);
+        $product_id    = $data['product_id'] ?? '';
+        $product_name  = $data['product_name'] ?? '';
+        $description   = $data['description'] ?? '';
+        $price         = $data['price'] ?? '';
+        $stock         = $data['stock'] ?? '';
+
         include VIEW_PATH . '/admin/product_mgmt/product-edit.php';
+    }
+
+    public function deleteProduct()
+    {
+        if (!isset($_GET['product_id'])) {
+            $_SESSION['msg'] = 'Product ID not found';
+            header("location: /admin/product-mgmt/product-list");
+            exit;
+        }
+
+        $product_id = $_GET['product_id'];
+        $res = $this->productModel->deleteProduct($product_id);
+        $res ? $_SESSION['msg'] = "Hey! Product deleted successfully." : $_SESSION['msg'] = "Oops! Error deleting product.";
+        header("location: /admin/product-mgmt/product-list");
+        exit;
     }
 
     //order mgmt

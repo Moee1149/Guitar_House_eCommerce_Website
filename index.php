@@ -5,6 +5,7 @@
 //define base paths
 define("APP_PATH", __DIR__ . '/app/');
 define("VIEW_PATH", __DIR__ . '/app/views');
+define("UPLOAD_DIR", __DIR__ . "/public/images/products");
 
 include APP_PATH . 'controllers/PublicController.php';
 include APP_PATH . 'controllers/AuthController.php';
@@ -38,9 +39,6 @@ switch ($path) {
         break;
     case '/contact':
         $controller->contact();
-        break;
-    case '/categories':
-        $controller->categories();
         break;
     case '/login':
         if (isset($_POST['submit'])) {
@@ -247,6 +245,13 @@ switch ($path) {
             exit;
         }
         $admin->showProductMgmtEdit();
+        break;
+    case "/admin/product-mgmt/product-delete":
+        if (!$login_status) {
+            header("location: /admin-login");
+            exit;
+        }
+        $admin->deleteProduct();
         break;
     case "/admin/order-mgmt":
         if (!$login_status) {

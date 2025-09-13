@@ -3,16 +3,7 @@
     <div class="sidebar-header">
         <div class="logo-section">
             <div class="logo">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="lucide lucide-guitar-icon lucide-guitar">
                     <path d="m11.9 12.1 4.514-4.514" />
                     <path
@@ -38,13 +29,10 @@
     <!-- Navigation Menu -->
     <nav class="nav-menu">
         <div class="nav-item">
-            <a
-                href="/admin/dashboard"
-                class="nav-link <?php echo (basename(dirname($_SERVER['PHP_SELF'])) == 'admin') ? 'active' : ''; ?>">
+            <a href="/admin/dashboard" class="nav-link <?php echo (basename(dirname($_SERVER['PHP_SELF'])) == 'admin') ? 'active' : ''; ?>">
                 <div class="nav-link-content">
                     <svg class="nav-icon" viewBox="0 0 24 24">
-                        <path
-                            d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" />
+                        <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" />
                     </svg>
                     <span>Dashboard</span>
                 </div>
@@ -56,21 +44,14 @@
                 href="/admin/order-mgmt"
                 class="nav-link <?php echo (basename(dirname($_SERVER['PHP_SELF'])) == 'order_mgmt') ? 'active' : ''; ?>">
                 <div class="nav-link-content">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="22"
-                        height="22"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="lucide lucide-shopping-cart-icon lucide-shopping-cart">
-                        <circle cx="8" cy="21" r="1" />
-                        <circle cx="19" cy="21" r="1" />
-                        <path
-                            d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-notepad-text-icon lucide-notepad-text">
+                        <path d="M8 2v4" />
+                        <path d="M12 2v4" />
+                        <path d="M16 2v4" />
+                        <rect width="16" height="18" x="4" y="4" rx="2" />
+                        <path d="M8 10h6" />
+                        <path d="M8 14h8" />
+                        <path d="M8 18h5" />
                     </svg>
                     <span>Orders Management</span>
                 </div>
@@ -82,9 +63,11 @@
                 href="/admin/product-mgmt"
                 class="nav-link <?php echo (basename(dirname($_SERVER['PHP_SELF'])) == 'product_mgmt') ? 'active' : ''; ?>">
                 <div class="nav-link-content">
-                    <svg class="nav-icon" viewBox="0 0 24 24">
-                        <path
-                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package-open-icon lucide-package-open">
+                        <path d="M12 22v-9" />
+                        <path d="M15.17 2.21a1.67 1.67 0 0 1 1.63 0L21 4.57a1.93 1.93 0 0 1 0 3.36L8.82 14.79a1.655 1.655 0 0 1-1.64 0L3 12.43a1.93 1.93 0 0 1 0-3.36z" />
+                        <path d="M20 13v3.87a2.06 2.06 0 0 1-1.11 1.83l-6 3.08a1.93 1.93 0 0 1-1.78 0l-6-3.08A2.06 2.06 0 0 1 4 16.87V13" />
+                        <path d="M21 12.43a1.93 1.93 0 0 0 0-3.36L8.83 2.2a1.64 1.64 0 0 0-1.63 0L3 4.57a1.93 1.93 0 0 0 0 3.36l12.18 6.86a1.636 1.636 0 0 0 1.63 0z" />
                     </svg>
                     <span>Products Management</span>
                 </div>
@@ -106,21 +89,9 @@
         </div>
 
         <div class="nav-item">
-            <a
-                href="/admin/user-mgmt"
-                class="nav-link <?php echo (basename(dirname($_SERVER['PHP_SELF'])) == 'user_mgmt') ? 'active' : ''; ?>">
+            <a href="/admin/user-mgmt" class="nav-link <?php echo (basename(dirname($_SERVER['PHP_SELF'])) == 'user_mgmt') ? 'active' : ''; ?>">
                 <div class="nav-link-content">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="22"
-                        height="22"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="lucide lucide-user-star-icon lucide-user-star">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-star-icon lucide-user-star">
                         <path
                             d="M16.051 12.616a1 1 0 0 1 1.909.024l.737 1.452a1 1 0 0 0 .737.535l1.634.256a1 1 0 0 1 .588 1.806l-1.172 1.168a1 1 0 0 0-.282.866l.259 1.613a1 1 0 0 1-1.541 1.134l-1.465-.75a1 1 0 0 0-.912 0l-1.465.75a1 1 0 0 1-1.539-1.133l.258-1.613a1 1 0 0 0-.282-.866l-1.156-1.153a1 1 0 0 1 .572-1.822l1.633-.256a1 1 0 0 0 .737-.535z" />
                         <path d="M8 15H7a4 4 0 0 0-4 4v2" />
@@ -146,21 +117,9 @@
         </div>
 
         <div class="nav-item">
-            <a
-                href="/admin/profile"
-                class="nav-link <?php echo (basename(dirname($_SERVER['PHP_SELF'])) == 'admin_profile') ? 'active' : ''; ?>">
+            <a href="/admin/profile" class="nav-link <?php echo (basename(dirname($_SERVER['PHP_SELF'])) == 'admin_profile') ? 'active' : ''; ?>">
                 <div class="nav-link-content">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="lucide lucide-settings-icon lucide-settings">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings-icon lucide-settings">
                         <path
                             d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915" />
                         <circle cx="12" cy="12" r="3" />

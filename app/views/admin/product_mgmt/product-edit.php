@@ -21,72 +21,61 @@
             <?php include VIEW_PATH . '/layout/admin-header.php'; ?>
 
             <div class="customer-page-container">
-                <header class="header" style="padding: 1rem 1.3rem">
-                    <div class="header-left">
-                        <div class="header-text">
-                            <h1> Edit Product: Fender Squier Sonic Stratocaster Electric Guitar
-                            </h1>
-                            <p> Update details for product ID: prod00-1234 </p>
-                        </div>
-                    </div>
-                </header>
+                <?php if ($data): ?>
+                    <!-- Header -->
+                    <h1>Edit Product: <?= $product_name; ?></h1>
+                    <p>Update details for product ID: prod00<?= $product_id; ?></p>
+                    </header>
 
-                <!-- Product Information Section -->
-                <section class="product-form-section">
-                    <div class="section-header">
-                        <div class="section-icon">
-                            <span class="edit-icon">✏️</span>
-                        </div>
-                        <div class="section-text">
-                            <h2>Product Information</h2>
-                            <p>Modify the product details below.</p>
-                        </div>
-                    </div>
-
-                    <form action="#" method="POST" name="product_form" class="product-form" enctype="multipart/form-data" novalidate>
-                        <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="productName">Product Name</label>
-                                <input type="text" name="product_name" id="productName" value=" Fender Squier Sonic Stratocaster Electric Guitar" class="form-input" />
+                    <!-- Product Information Section -->
+                    <section class="product-form-section">
+                        <div class="section-header">
+                            <div class="section-icon">
+                                <span class="edit-icon">✏️</span>
+                            </div>
+                            <div class="section-text">
+                                <h2>Product Information</h2>
+                                <p>Modify the product details below.</p>
                             </div>
                         </div>
 
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="price">Price ($)</label>
-                                <input type="number" name="product_price" id="price" value="18342" step="0.01" class="form-input" />
-                            </div>
-                            <div class="form-group">
-                                <label for="stock">Stock Quantity</label>
-                                <input type="number" name="product_stock" id="stock" value="12" class="form-input" />
-                            </div>
-                        </div>
+                        <form action="/admin/product-mgmt/product-edit?product_id=<?php echo $product_id; ?>" method="POST" name="product_form" class="product-form" enctype="multipart/form-data" novalidate>
+                            <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="productName">Product Name</label>
+                                    <input type="text" name="product_name" id="productName" value="<?php echo $product_name; ?>" class="form-input">
+                                </div>
 
-                        <div class="form-group full-width">
-                            <label for="description">Product Description</label>
-                            <textarea id="description" name="product_description" class="form-textarea" rows="4"> </textarea>
-                        </div>
+                            </div>
 
-                        <div class="form-group full-width">
-                            <label for="productImage">Product Image</label>
-                            <div class="image-upload-container">
-                                <div class="file-upload">
-                                    <input type="file" name="product_image" accept="image/*" />
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="price">Price ($)</label>
+                                    <input type="number" name="product_price" id="price" value="<?php echo $price; ?>" step="0.01" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="stock">Stock Quantity</label>
+                                    <input type="number" name="product_stock" id="stock" value="<?php echo $stock; ?>" class="form-input">
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="form-actions">
-                            <button type="button" class="btn btn-cancel">
-                                <a href="/admin/product-mgmt" style=" text-decoration: none; color: white; "> ✕ Cancel </a>
-                            </button>
-                            <button type="submit" name="submit" class="btn btn-primary">
-                                <a href="/admin/product-mgmt/product-list" style=" text-decoration: none; color: white; "> 💾 Save Changes </a>
-                            </button>
-                        </div>
-                    </form>
-                </section>
+                            <div class="form-group full-width">
+                                <label for="description">Product Description</label>
+                                <textarea id="description" name="product_description" class="form-textarea" rows="4">
+                                        <?php echo htmlspecialchars(trim($description)); ?>
+                                    </textarea>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-cancel">
+                                    <a href="/admin/product-mgmt/product-list" style="text-decoration:none; color: white;"> ✕ Cancel </a>
+                                </button>
+                                <button type="submit" name="submit" class="btn btn-primary"> 💾 Save Changes </button>
+                            </div>
+                        </form>
+                    </section>
+                <?php endif; ?>
             </div>
         </div>
     </div>

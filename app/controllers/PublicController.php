@@ -23,11 +23,5 @@ class PublicController extends BaseController
         include VIEW_PATH . '/public/contact.php';
     }
 
-    public function categories()
-    {
-        include VIEW_PATH . '/public/categories.php';
-    }
-
-
     public function notFound() {}
 }

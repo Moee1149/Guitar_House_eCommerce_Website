@@ -41,7 +41,7 @@
                             </div>
                         </div>
 
-                        <form action="#" method="POST" name="product_form" enctype="multipart/form-data" class="product-form" novalidate>
+                        <form action="/admin/product-mgmt/product-register" method="POST" name="product_form" enctype="multipart/form-data" class="product-form" novalidate>
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="productName">Product Name</label>
@@ -51,9 +51,9 @@
                                     <label for="category">Category</label>
                                     <select id="category" name="product_category" class="form-input">
                                         <option value="1" selected>Select Category</option>
-                                        <option value="1">Solid Body</option>
-                                        <option value="1">Hollow Body</option>
-                                        <option value="1">Semi-Hollow Body</option>
+                                        <option value="4">Solid Body</option>
+                                        <option value="2">Hollow Body</option>
+                                        <option value="3">Semi-Hollow Body</option>
                                     </select>
                                 </div>
                             </div>
@@ -78,7 +78,7 @@
                                 <label for="productImage">Product Image</label>
                                 <div class="image-upload-container">
                                     <div class="file-upload">
-                                        <input type="file" name="product_image" accept="image/*">
+                                        <input type="file" name="image" accept="image/*">
                                     </div>
                                 </div>
                             </div>
@@ -87,9 +87,7 @@
                                 <button type="button" class="btn btn-cancel" style="background-color: #ef4444;">
                                     <a href="/admin/product-mgmt" style="text-decoration:none; color: white;"> ✕ Cancel </a>
                                 </button>
-                                <button type="submit" name="submit" class="btn btn-primary" style="background-color: #10b981;">
-                                    <a href="#" style="text-decoration:none; color: white;"> 💾 Save Changes </a>
-                                </button>
+                                <button type="submit" name="submit" class="btn btn-primary"> 💾 Save Changes </button>
                             </div>
                         </form>
                     </section>
