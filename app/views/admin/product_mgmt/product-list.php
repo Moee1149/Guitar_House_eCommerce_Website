@@ -7,8 +7,8 @@
     <title>Admin | Product_Mgmt</title>
     <link rel="stylesheet" href="/public/css/admin/styles.css" />
     <link rel="stylesheet" href="/public/css/admin/sidebar.css" />
-    <link rel="stylesheet" href="/public/css/admin/admin-product-mgmt.css" />
     <link rel="stylesheet" href="/public/css/admin/admin-user-mgmt.css" />
+    <link rel="stylesheet" href="/public/css/admin/admin-product-mgmt.css" />
 </head>
 
 <body>
@@ -66,7 +66,7 @@
                                                 }
                                                 ?>
                                             </td>
-                                            <td>
+                                            <td style="margin-top: 5px;">
                                                 <a href="/admin/product-mgmt/product-edit?product_id=<?php echo $row['product_id']; ?>" class="action-btn edit-btn" title="Edit">
                                                     Edit
                                                 </a>

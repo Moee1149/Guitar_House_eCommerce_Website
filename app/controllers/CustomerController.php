@@ -5,11 +5,13 @@ class CustomerController
 {
     private $customerModel;
     private $productModel;
+    private $orderModel;
 
     public function __construct($conn)
     {
         $this->customerModel = new CustomerModel($conn);
         $this->productModel = new ProductModel($conn);
+        $this->orderModel = new OrderModel($conn);
     }
 
     public function showCartPage()
@@ -75,12 +77,32 @@ class CustomerController
     public function showCheckoutPage()
     {
         $customerId = $_SESSION['customer_id'];
+
+        if (isset($_POST['submit'])) {
+            $street = $_POST['address'];
+            $state = $_POST['state'];
+            $city = $_POST['city'];
+            $totalAmount = $_POST['totalAmount'];
+            $res = $this->orderModel->createOrder($customerId, $street, $state, $city, $totalAmount);
+            if ($res) {
+                header("location: /customer/payment");
+                exit;
+            } else {
+                $_SESSION['msg'] = "Error creating order";
+                return;
+            }
+        }
+
         $cartItems = $this->productModel->getCartItems($customerId);
+        $customer_data = $this->customerModel->getCustomerById($customerId);
         include VIEW_PATH . '/customer/checkout.php';
     }
 
     public function showPaymentPage()
     {
+        $customerId = $_SESSION['customer_id'];
+        $cartItems = $this->productModel->getCartItems($customerId);
+        $customer_data = $this->customerModel->getCustomerById($customerId);
         include VIEW_PATH . '/customer/payment.php';
     }
 
@@ -110,6 +132,7 @@ class CustomerController
     {
         unset($_SESSION['login_status']);
         unset($_SESSION['customer_id']);
+        unset($_SESSION['customer_name']);
         header("location: /");
     }
 }

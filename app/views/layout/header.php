@@ -37,7 +37,7 @@
                         </svg>
                     </button>
                     <div class="customer-information">
-                        <p>Aayusha Adhikari</p>
+                        <p><?php echo $_SESSION['customer_name']; ?></p>
                     </div>
                     <div popover id="profile" class="popover">
                         <div class="popover-items">

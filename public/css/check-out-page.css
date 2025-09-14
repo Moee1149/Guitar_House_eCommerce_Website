@@ -103,7 +103,7 @@
     font-weight: bold;
 }
 
-.main-content {
+.main-content form {
     display: grid;
     grid-template-columns: 1.5fr 1fr;
     gap: 20px;

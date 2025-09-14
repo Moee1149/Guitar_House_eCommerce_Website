@@ -16,7 +16,7 @@
 
         <!-- main section -->
         <main class="main-container">
-            <?php echo isset($_SESSION['msg']) ? "<p class='msg-box'>" . $_SESSION['msg'] . "</p>" : '';  ?>
+            <?php echo (!empty($_SESSION['msg'])) ? "<p class='msg-box'>" . $_SESSION['msg'] . "</p>" : '';  ?>
             <div class="content-container">
                 <!-- cart section -->
                 <div class="cart-section">

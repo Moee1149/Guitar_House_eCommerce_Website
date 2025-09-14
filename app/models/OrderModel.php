@@ -15,7 +15,7 @@ class OrderModel
             DATE(o.order_date) AS order_date,
             COUNT(oi.order_id) AS item_count,
             o.total_amount,
-            o.status
+            o.order_status
         FROM orders o
         LEFT JOIN customers c ON o.customer_id= c.customer_id
         LEFT JOIN order_items oi ON o.order_id = oi.order_id
@@ -35,9 +35,9 @@ class OrderModel
             DATE(o.order_date) AS order_date,
             o.total_amount,
             o.shipping_street AS shipping_street,
-            o.shipping_city AS shipping_city,
-            o.shipping_state AS shipping_state,
-            o.status
+            o.city AS shipping_city,
+            o.state AS shipping_state,
+            o.order_status
         FROM orders o
         LEFT JOIN customers c ON o.customer_id= c.customer_id
         WHERE o.order_id = $orderId
@@ -67,5 +67,12 @@ class OrderModel
     public function updateOrder()
     {
         //update order
+    }
+
+    public function createOrder($customerId, $street, $city, $state, $totalAmount)
+    {
+        $sql = "INSERT INTO orders (customer_id, shipping_street, city, state, total_amount) VALUES ($customerId, '$street', '$city', '$state', $totalAmount);";
+        $res = mysqli_query($this->conn, $sql);
+        return $res;
     }
 }
