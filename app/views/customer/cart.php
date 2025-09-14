@@ -24,7 +24,6 @@
                         <p class="msg-box">Your cart is empty.</p>
                     <?php else: ?>
                         <div class="cart-items">
-                            <!-- Cart Item 1 -->
                             <?php foreach ($cartItems as $cartItem): ?>
                                 <div class="cart-item">
                                     <div class="item-image">

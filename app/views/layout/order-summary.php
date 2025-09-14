@@ -1,63 +1,38 @@
 <div class="order-summary">
     <div class="summary-title">ORDER SUMMARY</div>
 
-    <div class="order-item">
-        <div class="item-image">
-            <img src="/public/images/products/p3.jpeg" alt="" />
-        </div>
-        <div class="item-details">
-            <div class="item-name">
-                Fender Squier Sonic Stratocaster
-                Electric Guitar
+    <?php foreach ($cartItems as $cartItem): ?>
+        <div class="order-item">
+            <div class="item-image">
+                <img src="<?= $cartItem['image'] ?>" alt="<?= $cartItem['product_name'] ?>" />
             </div>
-            <div class="item-qty">Qty: 1</div>
-        </div>
-        <div class="item-price">Rs 23,399.00</div>
-    </div>
-
-    <div class="order-item">
-        <div class="item-image">
-            <img src="/public/images/products/p5.png" alt="" />
-        </div>
-        <div class="item-details">
-            <div class="item-name">
-                Vault ST1 Premium Electric Guitar
+            <div class="item-details">
+                <div class="item-name"><?= $cartItem['product_name'] ?></div>
+                <div class="item-qty">Qty: <?= $cartItem['quantity'] ?></div>
             </div>
-            <div class="item-qty">Qty: 2</div>
+            <div class="item-price">Rs <?= $cartItem['price'] * $cartItem['quantity'] ?></div>
         </div>
-        <div class="item-price">Rs 14,234.98</div>
-    </div>
-
-    <div class="order-item">
-        <div class="item-image">
-            <img src="/public/images/products/p1.jpeg" alt="" />
-        </div>
-        <div class="item-details">
-            <div class="item-name">
-                Vault RG1 Soloist Premium Electric
-                Guitar
-            </div>
-            <div class="item-qty">Qty: 1</div>
-        </div>
-        <div class="item-price">Rs 13,449.99</div>
-    </div>
+    <?php endforeach ?>
 
     <div class="summary-calculations">
         <div class="summary-row">
             <span>Subtotal</span>
-            <span>Rs 48,149.96</span>
+            <span>Rs
+                <?php
+                $subtotal = 0;
+                foreach ($cartItems as $item) {
+                    $subtotal += $item['price'] * $item['quantity'];
+                }
+                echo number_format($subtotal, 2);
+                ?></span>
         </div>
         <div class="summary-row">
             <span>Shipping</span>
             <span>Free</span>
         </div>
-        <div class="summary-row">
-            <span>Tax</span>
-            <span>Rs 191.99</span>
-        </div>
         <div class="summary-row total">
             <span>Total</span>
-            <span>Rs 50,241.95</span>
+            <span>Rs <?= number_format($subtotal, 2) ?></span>
         </div>
     </div>
 

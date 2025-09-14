@@ -112,93 +112,13 @@
                                             color: #4a90e2;
                                         ">BACK TO CHECKOUT</a>
                             </button>
-                            <button
-                                type="button"
-                                class="btn btn-primary btn-confirm">
-                                <a
-                                    href="/customer/thankyou"
-                                    style="
-                                            text-decoration: none;
-                                            color: #fff;
-                                        ">CONFIRM ORDER</a>
+                            <button type="button" class="btn btn-primary btn-confirm">
+                                <a href="/customer/thankyou" style=" text-decoration: none; color: #fff; ">CONFIRM ORDER</a>
                             </button>
                         </div>
                     </div>
 
-                    <div class="order-summary">
-                        <div class="summary-title">FINAL ORDER SUMMARY</div>
-
-                        <div class="order-item">
-                            <div class="item-image">
-                                <img src="/public/images/products/p3.jpeg" alt="" />
-                            </div>
-                            <div class="item-details">
-                                <div class="item-name">
-                                    Fender Squier Sonic Stratocaster
-                                    Electric Guitar
-                                </div>
-                                <div class="item-qty">Qty: 1</div>
-                            </div>
-                            <div class="item-price">Rs 23,399.00</div>
-                        </div>
-
-                        <div class="order-item">
-                            <div class="item-image">
-                                <img src="/public/images/products/p5.png" alt="" />
-                            </div>
-                            <div class="item-details">
-                                <div class="item-name">
-                                    Vault ST1 Premium Electric Guitar
-                                </div>
-                                <div class="item-qty">Qty: 2</div>
-                            </div>
-                            <div class="item-price">Rs 14,234.98</div>
-                        </div>
-
-                        <div class="order-item">
-                            <div class="item-image">
-                                <img src="/public/images/products/p1.jpeg" alt="" />
-                            </div>
-                            <div class="item-details">
-                                <div class="item-name">
-                                    Vault RG1 Soloist Premium Electric
-                                    Guitar
-                                </div>
-                                <div class="item-qty">Qty: 1</div>
-                            </div>
-                            <div class="item-price">Rs 13,449.99</div>
-                        </div>
-
-                        <div class="summary-calculations">
-                            <div class="summary-row">
-                                <span>Subtotal</span>
-                                <span>Rs 48,149.96</span>
-                            </div>
-                            <div class="summary-row">
-                                <span>Shipping</span>
-                                <span>Free</span>
-                            </div>
-                            <div class="summary-row">
-                                <span>Tax</span>
-                                <span>Rs 191.99</span>
-                            </div>
-                            <div class="summary-row total">
-                                <span>Total</span>
-                                <span>Rs 50,241.95</span>
-                            </div>
-                        </div>
-
-                        <div class="payment-amount">
-                            Amount to pay on delivery: Rs 50,241.95
-                        </div>
-
-                        <div class="summary-features">
-                            <div>Secure order processing</div>
-                            <div>30-day return policy</div>
-                            <div>2-year warranty included</div>
-                            <div>Order tracking available</div>
-                        </div>
-                    </div>
+                    <?php include VIEW_PATH . '/layout/order-summary.php'; ?>
                 </div>
             </div>
         </main>

@@ -13,7 +13,7 @@
 <body>
     <div class="container">
         <!-- header section -->
-        <?php include VIEW_PATH . '/layout/customer-header.php'; ?>
+        <?php include VIEW_PATH . '/layout/header.php'; ?>
 
         <!-- main section -->
         <main class="main-container">

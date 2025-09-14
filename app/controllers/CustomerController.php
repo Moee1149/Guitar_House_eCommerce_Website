@@ -74,6 +74,8 @@ class CustomerController
 
     public function showCheckoutPage()
     {
+        $customerId = $_SESSION['customer_id'];
+        $cartItems = $this->productModel->getCartItems($customerId);
         include VIEW_PATH . '/customer/checkout.php';
     }
 
