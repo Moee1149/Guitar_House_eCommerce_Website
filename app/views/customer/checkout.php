@@ -147,3 +147,4 @@
 </body>
 
 </html>
+<?php unset($_SESSION['cart']); ?>

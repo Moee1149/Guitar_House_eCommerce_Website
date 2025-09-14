@@ -103,6 +103,17 @@
     font-weight: bold;
 }
 
+.main-content .msg-box {
+    margin: 10px 10px 0 10px;
+    background-color: #334155;
+    border: 1px solid #475569;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    color: #cbd5e1;
+    font-size: 14px;
+}
+
 .main-content form {
     display: grid;
     grid-template-columns: 1.5fr 1fr;

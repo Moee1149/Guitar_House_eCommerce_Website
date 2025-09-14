@@ -29,10 +29,6 @@
                             <a href="#">Dashboard</a> > Profile Settings
                         </div>
                     </div>
-                    <div class="header-actions">
-                        <a href="./customer-dashboard-page.html" class="btn">← Back to Dashboard</a>
-                        <a href="#" class="btn">View Public Profile</a>
-                    </div>
                 </div>
 
                 <!-- Success Alert -->
@@ -84,72 +80,18 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="first-name">First Name *</label>
-                                <input
-                                    type="text"
-                                    id="first-name"
-                                    value="John"
-                                    required />
-                            </div>
-                            <div class="form-group">
-                                <label for="last-name">Last Name *</label>
-                                <input
-                                    type="text"
-                                    id="last-name"
-                                    value="Smith"
-                                    required />
+                                <label for="first-name">Customer Name *</label>
+                                <input type="text" id="first-name" value="John" required />
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="email">Email Address *</label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    value="john@email.com"
-                                    required />
-                                <span class="help-text">We'll send account updates to this
-                                    email</span>
+                                <input type="email" id="email" value="john@email.com" required /> <span class="help-text">We'll send account updates to this email</span>
                             </div>
                             <div class="form-group">
                                 <label for="phone">Phone Number</label>
-                                <input
-                                    type="tel"
-                                    id="phone"
-                                    value="+1 (555) 123-4567" />
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="birth-date">Date of Birth</label>
-                                <input
-                                    type="date"
-                                    id="birth-date"
-                                    value="1990-01-15" />
-                            </div>
-                            <div class="form-group">
-                                <label for="gender">Gender</label>
-                                <select id="gender">
-                                    <option value="">
-                                        Prefer not to say
-                                    </option>
-                                    <option value="male" selected>
-                                        Male
-                                    </option>
-                                    <option value="female">Female</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-row single">
-                            <div class="form-group">
-                                <label for="bio">Bio</label>
-                                <textarea
-                                    id="bio"
-                                    placeholder="Tell us about yourself...">
- Tech enthusiast and coffee lover. Always looking for the latest gadgets and innovations.</textarea>
-                                <span class="help-text">Brief description for your profile
-                                    (optional)</span>
+                                <input type="tel" id="phone" value="+1 (555) 123-4567" />
                             </div>
                         </div>
                     </div>
@@ -170,15 +112,6 @@
                                     required />
                             </div>
                         </div>
-                        <div class="form-row single">
-                            <div class="form-group">
-                                <label for="address2">Apartment, suite, etc.</label>
-                                <input
-                                    type="text"
-                                    id="address2"
-                                    value="Apartment 4B" />
-                            </div>
-                        </div>
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="city">City *</label>
@@ -195,29 +128,6 @@
                                     id="state"
                                     value="NY"
                                     required />
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="zip">ZIP/Postal Code *</label>
-                                <input
-                                    type="text"
-                                    id="zip"
-                                    value="10001"
-                                    required />
-                            </div>
-                            <div class="form-group">
-                                <label for="country">Country *</label>
-                                <select id="country" required>
-                                    <option value="US" selected>
-                                        United States
-                                    </option>
-                                    <option value="CA">Canada</option>
-                                    <option value="UK">
-                                        United Kingdom
-                                    </option>
-                                    <option value="AU">Australia</option>
-                                </select>
                             </div>
                         </div>
                     </div>
@@ -278,20 +188,6 @@
                             <strong>Warning:</strong> These actions cannot
                             be undone. Please proceed with caution.
                         </div>
-                        <div class="form-row">
-                            <div>
-                                <h4>Deactivate Account</h4>
-                                <p>
-                                    Temporarily disable your account. You
-                                    can reactivate it later.
-                                </p>
-                            </div>
-                            <div style="display: flex; align-items: center">
-                                <button class="btn">
-                                    Deactivate Account
-                                </button>
-                            </div>
-                        </div>
                         <hr
                             style="
                                     margin: 20px 0;
@@ -301,15 +197,10 @@
                         <div class="form-row">
                             <div>
                                 <h4>Delete Account</h4>
-                                <p>
-                                    Permanently delete your account and all
-                                    associated data.
-                                </p>
+                                <p> Permanently delete your account and all associated data. </p>
                             </div>
                             <div style="display: flex; align-items: center">
-                                <button class="btn btn-danger">
-                                    Delete Account
-                                </button>
+                                <button class="btn btn-danger"> Delete Account </button>
                             </div>
                         </div>
                     </div>
@@ -317,8 +208,6 @@
 
                 <!-- Form Actions -->
                 <div class="form-actions">
-                    <button class="btn">Cancel Changes</button>
-                    <button class="btn">Save Draft</button>
                     <button class="btn btn-primary">Save Changes</button>
                 </div>
             </div>

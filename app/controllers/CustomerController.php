@@ -83,8 +83,14 @@ class CustomerController
             $state = $_POST['state'];
             $city = $_POST['city'];
             $totalAmount = $_POST['totalAmount'];
-            $res = $this->orderModel->createOrder($customerId, $street, $state, $city, $totalAmount);
-            if ($res) {
+            if (!$city || !$state || !$city) {
+                $_SESSION['msg'] = "Please fill in all required fields";
+                header("location: /customer/checkout");
+                exit;
+            }
+            $order_id = $this->orderModel->createOrder($customerId, $street, $state, $city, $totalAmount);
+            if ($order_id) {
+                $_SESSION['order_id'] = $order_id; // Store order_id in session
                 header("location: /customer/payment");
                 exit;
             } else {
@@ -101,13 +107,45 @@ class CustomerController
     public function showPaymentPage()
     {
         $customerId = $_SESSION['customer_id'];
+        $order_id = $_SESSION['order_id'];
+
         $cartItems = $this->productModel->getCartItems($customerId);
         $customer_data = $this->customerModel->getCustomerById($customerId);
+        $order_data = $this->orderModel->getOrderById($order_id);
+
         include VIEW_PATH . '/customer/payment.php';
+    }
+
+    public function confirmOrder()
+    {
+        $order_id = $_SESSION['order_id'];
+        $customerId = $_SESSION['customer_id'];
+
+        if (isset($_POST['submit'])) {
+            $payment_type = $_POST['payment'];
+            if ($payment_type === "esewa") {
+                header("location: /customer/payment/esewa");
+            }
+            $res =  $this->orderModel->updateOrder($order_id, $payment_type);
+            if ($res) {
+                header("location: /customer/thankyou");
+            }
+        }
+    }
+
+    public function payWithEsewa()
+    {
+        include VIEW_PATH . '/customer/esewa.php';
     }
 
     public function showThankyouPage()
     {
+        $customerId = $_SESSION['customer_id'];
+        $order_id = $_SESSION['order_id'];
+
+        $cartItems = $this->productModel->getCartItems($customerId);
+        $customer_data = $this->customerModel->getCustomerById($customerId);
+        $order_data = $this->orderModel->getOrderById($order_id);
         include VIEW_PATH . '/customer/thankyou.php';
     }
 

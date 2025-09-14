@@ -124,6 +124,20 @@ switch ($path) {
         }
         $customer->showPaymentPage();
         break;
+    case '/customer/payment/confirmOrder':
+        if (!$login_status) {
+            header("location: /login");
+            exit;
+        }
+        $customer->confirmOrder();
+        break;
+    case '/customer/payment/esewa':
+        if (!$login_status) {
+            header("location: /login");
+            exit;
+        }
+        $customer->payWithEsewa();
+        break;
     case '/customer/thankyou':
         if (!$login_status) {
             header("location: /login");

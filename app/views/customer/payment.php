@@ -35,96 +35,62 @@
                 </div>
 
                 <div class="main-content">
-                    <div class="left-section">
-                        <div class="section">
-                            <div class="section-title card">
-                                PAYMENT METHOD
-                            </div>
+                    <form action="/customer/payment/confirmOrder" method="POST">
+                        <div class="left-section">
+                            <div class="section">
+                                <div class="section-title card"> PAYMENT METHOD </div>
 
-                            <div class="payment-method selected">
-                                <input
-                                    type="radio"
-                                    id="cash-delivery"
-                                    name="payment"
-                                    value="cash"
-                                    checked />
-                                <div class="payment-content">
-                                    <div class="payment-title">
-                                        💵 Cash on Delivery
+                                <div class="payment-method selected">
+                                    <input type="radio" id="cash-delivery" name="payment" value="cash_on_delivery" checked />
+                                    <div class="payment-content">
+                                        <div class="payment-title"> 💵 Cash on Delivery </div>
+                                        <div class="payment-description"> Pay when your order is delivered to your address<br />Available for all orders </div>
                                     </div>
-                                    <div class="payment-description">
-                                        Pay when your order is delivered to
-                                        your address<br />Available for all
-                                        orders
+                                </div>
+
+                                <div class="payment-method">
+                                    <input type="radio" id="credit-card" name="payment" value="esewa" />
+                                    <div class="payment-content">
+                                        <div class="btn btn-primary e-sewa">
+                                            <img src="/public/images/esewa.svg" alt="" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="payment-method">
-                                <input
-                                    type="radio"
-                                    id="credit-card"
-                                    name="payment"
-                                    value="card" />
-                                <div class="payment-content">
-                                    <div class="btn btn-primary e-sewa">
-                                        <img
-                                            src="/public/images/esewa.svg"
-                                            alt="" />
+                            <div class="confirmation-section">
+                                <div class="confirmation-title"> ORDER CONFIRMATION </div>
+                                <div class="confirmation-details">
+                                    <div class="detail-row">
+                                        <span class="detail-label">Customer Information:</span>
+                                        <div class="detail-value"> <?= $customer_data['customer_name'] ?><br /> +977 <?= $customer_data['phone'] ?><br /> <?= $customer_data['email'] ?></div>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Delivery Address:</span>
+                                        <div class="detail-value"><?= $order_data['shipping_street'] ?><br /> <?= $order_data['shipping_city'] ?>, <?= $order_data['shipping_state'] ?></div>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Payment Method:</span>
+                                        <span class="detail-value"><?= $order_data['payment_type'] ?></span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="confirmation-section">
-                            <div class="confirmation-title">
-                                ORDER CONFIRMATION
+                            <div class="button-row">
+                                <button type="submit" name="submit" class="btn btn-primary btn-confirm">
+                                    CONFIRM ORDER
+                                </button>
                             </div>
-                            <div class="confirmation-details">
-                                <div class="detail-row">
-                                    <span class="detail-label">Delivery Address:</span>
-                                    <div class="detail-value">
-                                        Reecha Dangi<br />
-                                        12 Tyape Street<br />
-                                        Jhapa, 10001
-                                    </div>
-                                </div>
-                                <div class="detail-row">
-                                    <span class="detail-label">Delivery Method:</span>
-                                    <span class="detail-value">Home Delivery (3-5 business
-                                        days)</span>
-                                </div>
-                                <div class="detail-row">
-                                    <span class="detail-label">Payment Method:</span>
-                                    <span class="detail-value">Cash on Delivery</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="button-row">
-                            <button
-                                type="button"
-                                class="btn btn-outline btn-back">
-                                <a
-                                    href="/customer/checkout"
-                                    style="
-                                            text-decoration: none;
-                                            color: #4a90e2;
-                                        ">BACK TO CHECKOUT</a>
-                            </button>
-                            <button type="button" class="btn btn-primary btn-confirm">
-                                <a href="/customer/thankyou" style=" text-decoration: none; color: #fff; ">CONFIRM ORDER</a>
-                            </button>
-                        </div>
-                    </div>
-
-                    <?php include VIEW_PATH . '/layout/order-summary.php'; ?>
+                    </form>
                 </div>
-            </div>
-        </main>
 
-        <!-- footer section -->
-        <?php include VIEW_PATH . '/layout/footer.php'; ?>
+                <?php include VIEW_PATH . '/layout/order-summary.php'; ?>
+            </div>
+    </div>
+    </main>
+
+    <!-- footer section -->
+    <?php include VIEW_PATH . '/layout/footer.php'; ?>
     </div>
 
     <script>

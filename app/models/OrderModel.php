@@ -19,7 +19,7 @@ class OrderModel
         FROM orders o
         LEFT JOIN customers c ON o.customer_id= c.customer_id
         LEFT JOIN order_items oi ON o.order_id = oi.order_id
-        GROUP BY o.order_id, c.customer_name, o.order_date, o.total_amount, o.status
+        GROUP BY o.order_id, c.customer_name, o.order_date, o.total_amount, o.order_status
         ORDER BY o.order_date DESC;";
         $res = mysqli_query($this->conn, $sql);
         return $res->fetch_all(MYSQLI_ASSOC);
@@ -37,11 +37,12 @@ class OrderModel
             o.shipping_street AS shipping_street,
             o.city AS shipping_city,
             o.state AS shipping_state,
+            o.payment_type,
             o.order_status
         FROM orders o
         LEFT JOIN customers c ON o.customer_id= c.customer_id
         WHERE o.order_id = $orderId
-        GROUP BY o.order_id, c.customer_name, o.order_date, o.total_amount, o.status;";
+        GROUP BY o.order_id, c.customer_name, o.order_date, o.total_amount, o.order_status;";
         $res = mysqli_query($this->conn, $sql);
         return $res->fetch_assoc();
     }
@@ -64,15 +65,21 @@ class OrderModel
         return [$res, $order_items_count];
     }
 
-    public function updateOrder()
+    public function updateOrder($orderId, $paymentType)
     {
         //update order
+        $sql = "UPDATE orders SET payment_type = '$paymentType' WHERE order_id = $orderId;";
+        $res = mysqli_query($this->conn, $sql);
+        return $res;
     }
 
     public function createOrder($customerId, $street, $city, $state, $totalAmount)
     {
         $sql = "INSERT INTO orders (customer_id, shipping_street, city, state, total_amount) VALUES ($customerId, '$street', '$city', '$state', $totalAmount);";
         $res = mysqli_query($this->conn, $sql);
-        return $res;
+        if ($res) {
+            return mysqli_insert_id($this->conn); // Return the new order_id
+        }
+        return false;
     }
 }
