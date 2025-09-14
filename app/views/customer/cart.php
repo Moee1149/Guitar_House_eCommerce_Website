@@ -36,9 +36,9 @@
                                     </div>
                                     <div class="item-controls">
                                         <div class="quantity-controls">
-                                            <button class="btn btn-primary qty-btn decrease"> - </button>
+                                            <a href="/customer/cart?update=true&cart_id=<?= $cartItem['cart_id'] ?>&quantity=<?= $cartItem['quantity'] - 1 ?>" style="text-decoration: none;" class="btn btn-primary qty-btn decrease"> - </a>
                                             <span class="quantity"><?= $cartItem['quantity'] ?></span>
-                                            <button class="btn btn-primary qty-btn increase"> + </button>
+                                            <a href="/customer/cart?update=true&cart_id=<?= $cartItem['cart_id'] ?>&quantity=<?= $cartItem['quantity'] + 1 ?>" style="text-decoration: none;" class="btn btn-primary qty-btn increase"> + </a>
                                         </div>
                                         <a href="/customer/cart?delete=true&cart_id=<?= $cartItem['cart_id'] ?>" style="text-decoration: none;" class="remove-btn">×</a>
                                     </div>
@@ -53,14 +53,22 @@
                         <?php endif; ?>
                     </div>
                 </div>
+
                 <!-- order summary section -->
                 <div class="order-summary">
                     <h2 class="summary-title">ORDER SUMMARY</h2>
 
                     <div class="summary-details">
                         <div class="summary-row">
-                            <span class="summary-label">Subtotal (4 items)</span>
-                            <span class="summary-value">Rs 1,149.96</span>
+                            <span class="summary-label">Subtotal (<?= count($cartItems) ?> items)</span>
+                            <span class="summary-value">Rs
+                                <?php
+                                $subtotal = 0;
+                                foreach ($cartItems as $item) {
+                                    $subtotal += $item['price'] * $item['quantity'];
+                                }
+                                echo number_format($subtotal, 2);
+                                ?></span>
                         </div>
                         <div class="summary-row">
                             <span class="summary-label">Shipping</span>
@@ -68,7 +76,7 @@
                         </div>
                         <div class="summary-row total">
                             <span class="summary-label">Total</span>
-                            <span class="summary-value">Rs 1,241.95</span>
+                            <span class="summary-value">Rs <?= number_format($subtotal, 2); ?></span>
                         </div>
                     </div>
 

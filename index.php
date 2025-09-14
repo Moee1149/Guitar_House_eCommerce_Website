@@ -92,6 +92,12 @@ switch ($path) {
             header("location: /login");
             exit;
         }
+
+        if (isset($_GET['update'])) {
+            $customer->updateCartItemQuantity();
+            break;
+        }
+
         if (isset($_GET['delete'])) {
             $customer->removeItemFromCart();
             break;

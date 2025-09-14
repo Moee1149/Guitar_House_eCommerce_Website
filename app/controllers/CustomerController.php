@@ -48,6 +48,18 @@ class CustomerController
         }
     }
 
+    public function updateCartItemQuantity()
+    {
+        $cart_id = $_GET['cart_id'];
+        $quantity = $_GET['quantity'];
+        $res = $this->productModel->updateCartItemQuantity($cart_id, $quantity);
+        if ($res) {
+            header("location: /customer/cart");
+        } else {
+            $_SESSION['msg'] = "Error updating cart item quantity";
+        }
+    }
+
     public function clearCart()
     {
         $customerId = $_SESSION['customer_id'];
