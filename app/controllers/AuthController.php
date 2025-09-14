@@ -34,10 +34,11 @@ class AuthController
     {
         $email = $_POST['email'];
         $pwd = $_POST['password'];
-        $isLogin = $this->authmodel->verifyCustomer($email, $pwd);
+        [$isLogin, $customerId] = $this->authmodel->verifyCustomer($email, $pwd);
 
         if ($isLogin) {
             $_SESSION['login_status'] = true;
+            $_SESSION['customer_id'] = $customerId;
             header("location: /customer/dashboard");
         } else {
             $_SESSION['msg'] = "Email/Username or password doesn't match";

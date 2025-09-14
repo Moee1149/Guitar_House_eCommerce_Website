@@ -19,7 +19,7 @@ $conn = $database->handleConnection();
 $login_status = $_SESSION['login_status'] ?? false;
 
 //Decide which page to load
-$controller = new PublicController();
+$controller = new PublicController($conn);
 $authController = new AuthController($conn);
 $customer = new CustomerController($conn);
 $admin = new AdminController($conn);
@@ -35,6 +35,15 @@ switch ($path) {
             $controller->product($_GET['id']);
         } else {
             $controller->productList();
+        }
+        break;
+    case '/product/add-to-cart':
+        if (!$login_status) {
+            header("location: /login");
+            break;
+        }
+        if (isset($_GET['product_id'])) {
+            $customer->addToCart();
         }
         break;
     case '/contact':
@@ -83,6 +92,16 @@ switch ($path) {
             header("location: /login");
             exit;
         }
+        if (isset($_GET['delete'])) {
+            $customer->removeItemFromCart();
+            break;
+        }
+
+        if (isset($_GET['clear'])) {
+            $customer->clearCart();
+            break;
+        }
+
         $customer->showCartPage();
         break;
     case '/customer/checkout':

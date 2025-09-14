@@ -16,113 +16,43 @@
 
         <!-- main section -->
         <main class="main-container">
+            <?php echo isset($_SESSION['msg']) ? "<p class='msg-box'>" . $_SESSION['msg'] . "</p>" : '';  ?>
             <div class="content-container">
                 <!-- cart section -->
                 <div class="cart-section">
-                    <div class="cart-items">
-                        <!-- Cart Item 1 -->
-                        <div class="cart-item">
-                            <div class="item-image">
-                                <img src="/public/images/products/fp1.png" alt="" />
-                            </div>
-                            <div class="item-details">
-                                <h3 class="item-name">
-                                    Ibanez GRX40 RG Gio Series Maple Neck 6
-                                    String Electric Guitar
-                                </h3>
-                                <p class="item-description">
-                                    High-performance electric guitar
-                                </p>
-                                <p class="item-price">Rs 18,789.99</p>
-                            </div>
-                            <div class="item-controls">
-                                <div class="quantity-controls">
-                                    <button
-                                        class="btn btn-primary qty-btn decrease">
-                                        -
-                                    </button>
-                                    <span class="quantity">1</span>
-                                    <button
-                                        class="btn btn-primary qty-btn increase">
-                                        +
-                                    </button>
+                    <?php if (empty($cartItems)): ?>
+                        <p class="msg-box">Your cart is empty.</p>
+                    <?php else: ?>
+                        <div class="cart-items">
+                            <!-- Cart Item 1 -->
+                            <?php foreach ($cartItems as $cartItem): ?>
+                                <div class="cart-item">
+                                    <div class="item-image">
+                                        <img src="<?= $cartItem['image'] ?>" alt="" />
+                                    </div>
+                                    <div class="item-details">
+                                        <h3 class="item-name"><?= $cartItem['product_name'] ?></h3>
+                                        <p class="item-price">Rs <?= $cartItem['price'] ?></p>
+                                    </div>
+                                    <div class="item-controls">
+                                        <div class="quantity-controls">
+                                            <button class="btn btn-primary qty-btn decrease"> - </button>
+                                            <span class="quantity"><?= $cartItem['quantity'] ?></span>
+                                            <button class="btn btn-primary qty-btn increase"> + </button>
+                                        </div>
+                                        <a href="/customer/cart?delete=true&cart_id=<?= $cartItem['cart_id'] ?>" style="text-decoration: none;" class="remove-btn">×</a>
+                                    </div>
                                 </div>
-                                <button class="remove-btn">×</button>
-                            </div>
+                            <?php endforeach ?>
                         </div>
-
-                        <!-- Cart Item 2 -->
-                        <div class="cart-item">
-                            <div class="item-image">
-                                <img src="/public/images/products/p1.jpeg" alt="" />
-                            </div>
-                            <div class="item-details">
-                                <h3 class="item-name">
-                                    Fender Squier Classic Vibe '60s
-                                    Stratocaster Electric Guitar
-                                </h3>
-                                <p class="item-description"></p>
-                                <p class="item-price">Rs 12,853.93</p>
-                            </div>
-                            <div class="item-controls">
-                                <div class="quantity-controls">
-                                    <button
-                                        class="btn btn-primary qty-btn decrease">
-                                        -
-                                    </button>
-                                    <span class="quantity">2</span>
-                                    <button
-                                        class="btn btn-primary qty-btn increase">
-                                        +
-                                    </button>
-                                </div>
-                                <button class="remove-btn">×</button>
-                            </div>
-                        </div>
-
-                        <!-- Cart Item 3 -->
-                        <div class="cart-item">
-                            <div class="item-image">
-                                <img src="/public/images/products/p3.jpeg" alt="" />
-                            </div>
-                            <div class="item-details">
-                                <h3 class="item-name">
-                                    Fender Squier Sonic Stratocaster
-                                    Electric Guitar
-                                </h3>
-                                <p class="item-description">
-                                    Most Popular eletric guitar
-                                </p>
-                                <p class="item-price">Rs 44,369.99</p>
-                            </div>
-                            <div class="item-controls">
-                                <div class="quantity-controls">
-                                    <button
-                                        class="btn btn-primary qty-btn decrease">
-                                        -
-                                    </button>
-                                    <span class="quantity">1</span>
-                                    <button
-                                        class="btn btn-primary qty-btn increase">
-                                        +
-                                    </button>
-                                </div>
-                                <button class="remove-btn">×</button>
-                            </div>
-                        </div>
-                    </div>
-
+                    <?php endif; ?>
                     <div class="cart-actions">
-                        <button
-                            class="btn btn-primary continue-shopping-btn">
-                            CONTINUE SHOPPING
-                        </button>
-                        <button class="btn btn-outline clear-cart-btn">
-                            CLEAR CART
-                        </button>
+                        <a href="/product" class="btn btn-primary continue-shopping-btn">CONTINUE SHOPPING</a>
+                        <?php if (!empty($cartItems)): ?>
+                            <a href="/customer/cart?clear=true?>" class="btn btn-outline clear-cart-btn">CLEAR CART</a>
+                        <?php endif; ?>
                     </div>
                 </div>
-
                 <!-- order summary section -->
                 <div class="order-summary">
                     <h2 class="summary-title">ORDER SUMMARY</h2>
@@ -136,21 +66,17 @@
                             <span class="summary-label">Shipping</span>
                             <span class="summary-value">Free</span>
                         </div>
-                        <div class="summary-row">
-                            <span class="summary-label">Tax</span>
-                            <span class="summary-value">Rs 91.99</span>
-                        </div>
                         <div class="summary-row total">
                             <span class="summary-label">Total</span>
                             <span class="summary-value">Rs 1,241.95</span>
                         </div>
                     </div>
 
-                    <button class="btn btn-primary checkout-btn">
-                        <a
-                            href="/customer/checkout"
-                            style="text-decoration: none; color: #fff">PROCEED TO CHECKOUT</a>
-                    </button>
+                    <?php if (!empty($cartItems)): ?>
+                        <button class="btn btn-primary checkout-btn">
+                            <a href="/customer/checkout" style="text-decoration: none; color: #fff">PROCEED TO CHECKOUT</a>
+                        </button>
+                    <?php endif; ?>
 
                     <div class="secure-checkout">
                         <p class="secure-text">Secure checkout with:</p>
@@ -195,7 +121,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- buttons -->
             </div>
         </main>
 
@@ -205,3 +130,4 @@
 </body>
 
 </html>
+<?php unset($_SESSION['msg']);

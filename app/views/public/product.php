@@ -27,273 +27,73 @@
                     </div>
                 </div>
 
-                <div class="sort-wrapper">
-                    <select class="sort-select" id="sort-select">
-                        <option value="" disabled selected>
-                            Filter By Categories
-                        </option>
-                        <option value="solid-body">Solid Body</option>
-                        <option value="semi-hollow-body">
-                            Semi-Hollow Body
-                        </option>
-                        <option value="hollow-body">Hollow Body</option>
-                    </select>
-                    <select class="sort-select" id="sort-select">
-                        <option value="" disabled selected>Sort by</option>
-                        <option value="popularity">Popularity</option>
-                        <option value="price-low-high">
-                            Price: Low to High
-                        </option>
-                        <option value="price-high-low">
-                            Price: High to Low
-                        </option>
-                        <option value="new-arrivals">New Arrivals</option>
-                        <option value="customer-rating">
-                            Customer Rating
-                        </option>
-                    </select>
-                </div>
+                <form action="/product/" method="POST">
+                    <div class="sort-wrapper">
+                        <select class="sort-select" id="sort-select" name="category">
+                            <option value="" disabled selected>
+                                Filter By Categories
+                            </option>
+                            <option value="solid body">Solid Body</option>
+                            <option value="semi-hollow body">
+                                Semi-Hollow Body
+                            </option>
+                            <option value="hollow body">Hollow Body</option>
+                        </select>
+                        <select class="sort-select" id="sort-select" name="sort">
+                            <option value="" disabled selected>Sort by</option>
+                            <option value="popularity">Popularity</option>
+                            <option value="price-low-high">
+                                Price: Low to High
+                            </option>
+                            <option value="price-high-low">
+                                Price: High to Low
+                            </option>
+                            <option value="new-arrivals">New Arrivals</option>
+                            <option value="customer-rating">
+                                Customer Rating
+                            </option>
+                        </select>
+                    </div>
+                </form>
 
                 <section class="featured-products">
                     <div class="product-grid">
-                        <div class="product-card">
-                            <div class="product-image">
-                                <span class="sale-badge">Sale</span>
-                                <img src="/public/images/products/fp1.png" alt="" />
-                            </div>
-                            <div class="product-info">
-                                <h3 class="product-name">
-                                    Ibanez GRX40 RG Gio Series Maple Neck 6
-                                    String Electric Guitar
-                                </h3>
-                                <div class="product-pricing">
-                                    <span class="sale-price">Rs 20,900</span>
-                                    <span class="original-price">Rs 23,455</span>
+                        <?php foreach ($products as $product): ?>
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <span class="sale-badge">Sale</span>
+                                    <img src="<?= $product['image']; ?>" "alt="" />
                                 </div>
-                                <div class="product-rating">
-                                    <div class="stars">
-                                        <span class="star filled">★</span>
-                                        <span class="star filled">★</span>
-                                        <span class="star filled">★</span>
-                                        <span class="star filled">★</span>
-                                        <span class="star filled">★</span>
+                                <div class=" product-info">
+                                    <h3 class="product-name"><?= $product['product_name']; ?></h3>
+                                    <div>
+                                        <div class="btn btn-primary category"><?= $product['category_name']; ?></div>
                                     </div>
-                                    <span class="review-count">(154)</span>
-                                </div>
-                                <button
-                                    class="btn btn-primary add-to-cart-btn">
-                                    <a
-                                        href="cart-page.html"
-                                        style="
-                                                text-decoration: none;
-                                                color: white;
-                                            ">
-                                        Add to Cart
-                                    </a>
-                                </button>
-                                <a
-                                    href="./product-detail-page.html"
-                                    class="btn btn-outline add-to-cart-btn">View Details</a>
-                            </div>
-                        </div>
-
-                        <div class="product-card">
-                            <div class="product-image">
-                                <span class="sale-badge">Sale</span>
-                                <img src="/public/images/products/fp2.png" alt="" />
-                            </div>
-                            <div class="product-info">
-                                <h3 class="product-name">
-                                    Fender Squier Sonic Mustang HH 6 String
-                                    Electric Guitar
-                                </h3>
-                                <div class="product-pricing">
-                                    <span class="sale-price">Rs 18,453</span>
-                                    <span class="original-price">Rs 19,424</span>
-                                </div>
-                                <div class="product-rating">
-                                    <div class="stars">
-                                        <span class="star filled">★</span>
-                                        <span class="star filled">★</span>
-                                        <span class="star filled">★</span>
-                                        <span class="star filled">★</span>
-                                        <span class="star filled">★</span>
+                                    <div class="product-pricing">
+                                        <span class="sale-price">Rs <?= $product['price']; ?></span>
+                                        <span class="original-price">Rs 23,455</span>
                                     </div>
-                                    <span class="review-count">(124)</span>
-                                </div>
-                                <button
-                                    class="btn btn-primary add-to-cart-btn">
-                                    <a
-                                        href="cart-page.html"
-                                        style="
-                                                text-decoration: none;
-                                                color: white;
-                                            ">
-                                        Add to Cart
-                                    </a>
-                                </button>
-                                <a
-                                    href="./product-detail-page.html"
-                                    class="btn btn-outline add-to-cart-btn">View Details</a>
-                            </div>
-                        </div>
-
-                        <div class="product-card">
-                            <div class="product-image">
-                                <span class="sale-badge">Sale</span>
-                                <img src="/public/images/products/fp3.png" alt="" />
-                            </div>
-                            <div class="product-info">
-                                <h3 class="product-name">
-                                    Fender Squier Classic Vibe '60s
-                                    Stratocaster Electric Guitar
-                                </h3>
-                                <div class="product-pricing">
-                                    <span class="sale-price">Rs 44,369</span>
-                                    <span class="original-price">Rs 46,704</span>
-                                </div>
-                                <div class="product-rating">
-                                    <div class="stars">
-                                        <span class="star filled">★</span>
-                                        <span class="star filled">★</span>
-                                        <span class="star filled">★</span>
-                                        <span class="star filled">★</span>
-                                        <span class="star filled">★</span>
+                                    <div class="product-rating">
+                                        <div class="stars">
+                                            <div class="stars">
+                                                <?php
+                                                $maxStars = 5;
+                                                $rating = (int)$product['rating'];
+                                                for ($i = 1; $i <= $maxStars; $i++) {
+                                                    echo $i <= $rating ? '<span class="star filled">★</span>' : '<span class="star">☆</span>';
+                                                }
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <span class="review-count">(<?= $product['review_count']; ?>)</span>
                                     </div>
-                                    <span class="review-count">(124)</span>
+                                    <button class="btn btn-primary add-to-cart-btn">
+                                        <a href="/product/add-to-cart?product_id=<?= $product['product_id'] ?>" style=" text-decoration: none; color: white; "> Add to Cart </a>
+                                    </button>
+                                    <a href="/product?product_id=<?= $product['product_id'] ?>" class="btn btn-outline add-to-cart-btn">View Details</a>
                                 </div>
-                                <button
-                                    class="btn btn-primary add-to-cart-btn">
-                                    <a
-                                        href="cart-page.html"
-                                        style="
-                                                text-decoration: none;
-                                                color: white;
-                                            ">
-                                        Add to Cart
-                                    </a>
-                                </button>
-                                <a
-                                    href="./product-detail-page.html"
-                                    class="btn btn-outline add-to-cart-btn">View Details</a>
                             </div>
-                        </div>
-
-                        <div class="product-card">
-                            <div class="product-image">
-                                <span class="sale-badge">Sale</span>
-                                <img src="public/images/products/fp4.png" alt="" />
-                            </div>
-                            <div class="product-info">
-                                <h3 class="product-name">
-                                    Cort CR250 6 String Electric Guitar
-                                </h3>
-                                <div class="product-pricing">
-                                    <span class="sale-price">Rs 38,200</span>
-                                    <span class="original-price">Rs 42,378</span>
-                                </div>
-                                <div class="product-rating">
-                                    <div class="stars">
-                                        <span class="star filled">★</span>
-                                        <span class="star filled">★</span>
-                                        <span class="star filled">★</span>
-                                        <span class="star filled">★</span>
-                                        <span class="star filled">★</span>
-                                    </div>
-                                    <span class="review-count">(124)</span>
-                                </div>
-                                <button
-                                    class="btn btn-primary add-to-cart-btn">
-                                    <a
-                                        href="cart-page.html"
-                                        style="
-                                                text-decoration: none;
-                                                color: white;
-                                            ">
-                                        Add to Cart
-                                    </a>
-                                </button>
-                                <a
-                                    href="./product-detail-page.html"
-                                    class="btn btn-outline add-to-cart-btn">View Details</a>
-                            </div>
-                        </div>
-
-                        <div class="product-card">
-                            <div class="product-image">
-                                <span class="sale-badge">Sale</span>
-                                <img src="/public/images/products/p3.jpeg" alt="" />
-                            </div>
-                            <div class="product-info">
-                                <h3 class="product-name">
-                                    Fender Squier Classic Vibe '60s
-                                    Stratocaster Electric Guitar
-                                </h3>
-                                <div class="product-pricing">
-                                    <span class="sale-price">Rs 44,369</span>
-                                    <span class="original-price">Rs 46,704</span>
-                                </div>
-                                <div class="product-rating">
-                                    <div class="stars">
-                                        <span class="star filled">★</span>
-                                        <span class="star filled">★</span>
-                                        <span class="star filled">★</span>
-                                        <span class="star filled">★</span>
-                                        <span class="star filled">★</span>
-                                    </div>
-                                    <span class="review-count">(124)</span>
-                                </div>
-                                <button
-                                    class="btn btn-primary add-to-cart-btn">
-                                    <a
-                                        href="cart-page.html"
-                                        style="
-                                                text-decoration: none;
-                                                color: white;
-                                            ">
-                                        Add to Cart
-                                    </a>
-                                </button>
-                                <a
-                                    href="./product-detail-page.html"
-                                    class="btn btn-outline add-to-cart-btn">View Details</a>
-                            </div>
-                        </div>
-
-                        <div class="product-card">
-                            <div class="product-image">
-                                <span class="sale-badge">Sale</span>
-                                <img src="public/images/products/p1.jpeg" alt="" />
-                            </div>
-                            <div class="product-info">
-                                <h3 class="product-name">
-                                    Ibanez GRX40 RG Gio Series Maple Neck 6
-                                    String Electric Guitar
-                                </h3>
-                                <div class="product-pricing">
-                                    <span class="sale-price">Rs 20,900</span>
-                                    <span class="original-price">Rs 23,455</span>
-                                </div>
-                                <div class="product-rating">
-                                    <div class="stars">
-                                        <span class="star filled">★</span>
-                                        <span class="star filled">★</span>
-                                        <span class="star filled">★</span>
-                                        <span class="star filled">★</span>
-                                        <span class="star filled">★</span>
-                                    </div>
-                                    <span class="review-count">(154)</span>
-                                </div>
-                                <button
-                                    class="btn btn-primary add-to-cart-btn">
-                                    Add to Cart
-                                </button>
-                                <button
-                                    class="btn btn-outline add-to-cart-btn">
-                                    View Details
-                                </button>
-                            </div>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </section>
 
@@ -315,6 +115,14 @@
             </div>
         </main>
     </div>
+    <script>
+        document.querySelectorAll('.sort-select, .search-input').forEach(el => {
+            el.addEventListener('change', function() {
+                console.log("moee")
+                // el.form.submit();
+            });
+        });
+    </script>
 </body>
 
 </html>

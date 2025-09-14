@@ -1,8 +1,14 @@
 <?php
-include 'BaseController.php';
 
-class PublicController extends BaseController
+class PublicController
 {
+    private $productModel;
+
+    public function __construct($conn)
+    {
+        $this->productModel = new ProductModel($conn);
+    }
+
     public function index()
     {
         include VIEW_PATH . '/public/home.php';
@@ -10,6 +16,7 @@ class PublicController extends BaseController
 
     public function productList()
     {
+        $products = $this->productModel->getProductsWithCategory();
         include VIEW_PATH . '/public/product.php';
     }
 
