@@ -34,22 +34,14 @@
                     <div class="summary-card">
                         <h3>24</h3>
                         <p>Total Orders</p>
-                        <span class="trend up">+3 this month</span>
                     </div>
                     <div class="summary-card">
                         <h3>$1,245.67</h3>
                         <p>Total Spent</p>
-                        <span class="trend up">+$156.23</span>
                     </div>
                     <div class="summary-card">
                         <h3>3</h3>
                         <p>Pending Orders</p>
-                        <span class="trend neutral">Same as last month</span>
-                    </div>
-                    <div class="summary-card">
-                        <h3>$87.45</h3>
-                        <p>Average Order Value</p>
-                        <span class="trend down">-$12.33</span>
                     </div>
                 </div>
 
@@ -57,7 +49,7 @@
                     <!-- Main Content -->
                     <div class="main-content">
                         <!-- Recent Orders -->
-                        <div class="card">
+                        <div class="card recent-orders">
                             <div class="card-header">
                                 <h2>Recent Orders</h2>
                                 <a href="#" class="btn btn-primary">View All Orders</a>
@@ -99,26 +91,16 @@
                                         <td>Aug 22, 2024</td>
                                         <td>2</td>
                                         <td>$89.99</td>
-                                        <td>
-                                            <span
-                                                class="status status-shipped">Shipped</span>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn">View</a>
-                                        </td>
+                                        <td> <span class="status status-shipped">Shipped</span> </td>
+                                        <td> <a href="#" class="btn">View</a> </td>
                                     </tr>
                                     <tr>
                                         <td>#ORD-2024-023</td>
                                         <td>Aug 20, 2024</td>
                                         <td>1</td>
                                         <td>$45.50</td>
-                                        <td>
-                                            <span
-                                                class="status status-delivered">Delivered</span>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn">View</a>
-                                        </td>
+                                        <td> <span class="status status-delivered">Delivered</span> </td>
+                                        <td> <a href="#" class="btn">View</a> </td>
                                     </tr>
                                     <tr>
                                         <td>#ORD-2024-022</td>
@@ -161,125 +143,11 @@
                                     </tr>
                                 </tbody>
                             </table>
-
-                            <div class="pagination">
-                                <a href="#">Previous</a>
-                                <a href="#" class="active">1</a>
-                                <a href="#">2</a>
-                                <a href="#">3</a>
-                                <a href="#">Next</a>
-                            </div>
-                        </div>
-
-                        <!-- Transaction History -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h2>Recent Transactions</h2>
-                                <a href="#" class="btn btn-primary">View All</a>
-                            </div>
-
-                            <div class="filter-section">
-                                <select>
-                                    <option>All Transactions</option>
-                                    <option>Payments</option>
-                                    <option>Refunds</option>
-                                    <option>Credits</option>
-                                </select>
-                                <input type="month" value="2024-08" />
-                            </div>
-
-                            <div class="transaction-item">
-                                <div class="transaction-info">
-                                    <h4>Order Payment - #ORD-2024-024</h4>
-                                    <p>
-                                        Aug 22, 2024 • Credit Card ending in
-                                        4567
-                                    </p>
-                                </div>
-                                <div
-                                    class="transaction-amount amount-negative">
-                                    -$89.99
-                                </div>
-                            </div>
-                            <div class="transaction-item">
-                                <div class="transaction-info">
-                                    <h4>Refund - #ORD-2024-019</h4>
-                                    <p>
-                                        Aug 21, 2024 • Refunded to original
-                                        payment method
-                                    </p>
-                                </div>
-                                <div
-                                    class="transaction-amount amount-positive">
-                                    +$34.50
-                                </div>
-                            </div>
-                            <div class="transaction-item">
-                                <div class="transaction-info">
-                                    <h4>Order Payment - #ORD-2024-023</h4>
-                                    <p>Aug 20, 2024 • PayPal</p>
-                                </div>
-                                <div
-                                    class="transaction-amount amount-negative">
-                                    -$45.50
-                                </div>
-                            </div>
-                            <div class="transaction-item">
-                                <div class="transaction-info">
-                                    <h4>Store Credit Applied</h4>
-                                    <p>
-                                        Aug 18, 2024 • Applied to order
-                                        #ORD-2024-022
-                                    </p>
-                                </div>
-                                <div
-                                    class="transaction-amount amount-positive">
-                                    +$15.00
-                                </div>
-                            </div>
-                            <div class="transaction-item">
-                                <div class="transaction-info">
-                                    <h4>Order Payment - #ORD-2024-022</h4>
-                                    <p>
-                                        Aug 18, 2024 • Credit Card ending in
-                                        4567
-                                    </p>
-                                </div>
-                                <div
-                                    class="transaction-amount amount-negative">
-                                    -$127.25
-                                </div>
-                            </div>
                         </div>
                     </div>
 
                     <!-- Sidebar -->
                     <div class="sidebar">
-                        <!-- Quick Stats -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h2>Quick Stats</h2>
-                            </div>
-                            <div class="quick-stats">
-                                <div class="stat-item">
-                                    <h4>5</h4>
-                                    <p>Orders This Month</p>
-                                </div>
-                                <div class="stat-item">
-                                    <h4>$245.67</h4>
-                                    <p>Spent This Month</p>
-                                </div>
-                                <div class="stat-item">
-                                    <h4>92%</h4>
-                                    <p>On-Time Delivery</p>
-                                </div>
-                                <div class="stat-item">
-                                    <h4>15</h4>
-                                    <p>Loyalty Points</p>
-                                </div>
-                            </div>
-                        </div>
-
                         <!-- Order Status Breakdown -->
                         <div class="card">
                             <div class="card-header">

@@ -27,7 +27,7 @@ class CustomerModel
 
     public function getCustomerById($user_id)
     {
-        $sql = "SELECT customer_name, phone, email, address FROM customers WHERE customer_id=$user_id";
+        $sql = "SELECT customer_name, phone, email, password, address FROM customers WHERE customer_id=$user_id";
         $res = mysqli_query($this->conn, $sql);
         return mysqli_fetch_assoc($res);
     }
@@ -35,6 +35,13 @@ class CustomerModel
     public function updateCustomer($user_id, $fname, $phone, $addr)
     {
         $sql = "UPDATE customers SET customer_name='$fname', phone='$phone', address='$addr' WHERE customer_id=$user_id";
+        $res = mysqli_query($this->conn, $sql);
+        return $res;
+    }
+
+    public function updateCustomerPassword($user_id, $hashedPwd)
+    {
+        $sql = "UPDATE customers SET password='$hashedPwd' WHERE customer_id=$user_id";
         $res = mysqli_query($this->conn, $sql);
         return $res;
     }

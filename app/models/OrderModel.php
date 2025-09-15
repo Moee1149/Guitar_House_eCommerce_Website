@@ -82,4 +82,11 @@ class OrderModel
         }
         return false;
     }
+
+    public function createOrderDetail($orderId, $productId, $quantity, $price)
+    {
+        $sql = "INSERT INTO order_items (order_id, product_id, quantity, price) VALUES ($orderId, $productId, $quantity, $price);";
+        $res = mysqli_query($this->conn, $sql);
+        return $res;
+    }
 }

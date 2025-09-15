@@ -32,187 +32,109 @@
                 </div>
 
                 <!-- Success Alert -->
-                <div class="alert">
-                    <span class="alert-icon">✓</span>
-                    <strong>Profile updated successfully!</strong> Your
-                    changes have been saved.
-                </div>
-
-                <div class="form-container">
-                    <!-- Profile Picture -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h2>Profile Picture</h2>
-                            <p>
-                                Upload a new profile picture to personalize
-                                your account
-                            </p>
-                        </div>
-                        <div class="profile-picture-section">
-                            <div class="profile-picture">Profile Photo</div>
-                            <div class="picture-actions">
-                                <input
-                                    type="file"
-                                    id="profile-pic"
-                                    accept="image/*"
-                                    style="display: none" />
-                                <button
-                                    class="btn btn-primary"
-                                    onclick="document.getElementById('profile-pic').click()">
-                                    Upload New Photo
-                                </button>
-                                <button class="btn">Remove Photo</button>
-                                <p class="help-text">
-                                    JPG, PNG or GIF. Max size 2MB.
-                                </p>
-                            </div>
-                        </div>
+                <?php if (isset($_SESSION['msg'])): ?>
+                    <div class="alert">
+                        <span class="alert-icon">✓</span>
+                        <strong>Profile updated successfully!</strong> Your changes have been saved.
                     </div>
-
-                    <!-- Personal Information -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h2>Personal Information</h2>
-                            <p>
-                                Update your personal details and contact
-                                information
-                            </p>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="first-name">Customer Name *</label>
-                                <input type="text" id="first-name" value="John" required />
+                <?php endif; ?>
+                <form action="/customer/profile" method="POST">
+                    <div class="form-container">
+                        <!-- Profile Picture -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>Profile Picture</h2>
+                                <p> Upload a new profile picture to personalize your account </p>
                             </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="email">Email Address *</label>
-                                <input type="email" id="email" value="john@email.com" required /> <span class="help-text">We'll send account updates to this email</span>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Phone Number</label>
-                                <input type="tel" id="phone" value="+1 (555) 123-4567" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Address Information -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h2>Address Information</h2>
-                            <p>Your default shipping and billing address</p>
-                        </div>
-                        <div class="form-row single">
-                            <div class="form-group">
-                                <label for="address">Street Address *</label>
-                                <input
-                                    type="text"
-                                    id="address"
-                                    value="123 Main Street"
-                                    required />
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="city">City *</label>
-                                <input
-                                    type="text"
-                                    id="city"
-                                    value="New York"
-                                    required />
-                            </div>
-                            <div class="form-group">
-                                <label for="state">State/Province *</label>
-                                <input
-                                    type="text"
-                                    id="state"
-                                    value="NY"
-                                    required />
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Change Password -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h2>Change Password</h2>
-                            <p>
-                                Update your password to keep your account
-                                secure
-                            </p>
-                        </div>
-                        <div class="form-row single">
-                            <div class="form-group">
-                                <label for="current-password">Current Password *</label>
-                                <input
-                                    type="password"
-                                    id="current-password"
-                                    required />
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="new-password">New Password *</label>
-                                <input
-                                    type="password"
-                                    id="new-password"
-                                    required />
-                                <div class="password-strength">
-                                    <div class="strength-bar">
-                                        <div
-                                            class="strength-fill strength-good"></div>
-                                    </div>
-                                    <div class="strength-text">
-                                        Password strength: Good
-                                    </div>
+                            <div class="profile-picture-section">
+                                <div class="profile-picture">Profile Photo</div>
+                                <div class="picture-actions">
+                                    <input type="file" id="profile-pic" accept="image/*" style="display: none" />
+                                    <button class="btn btn-primary" onclick="document.getElementById('profile-pic').click()"> Upload New Photo </button>
+                                    <button class="btn">Remove Photo</button>
+                                    <p class="help-text"> JPG, PNG or GIF. Max size 2MB. </p>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="confirm-password">Confirm New Password *</label>
-                                <input
-                                    type="password"
-                                    id="confirm-password"
-                                    required />
+                        </div>
+
+                        <!-- Personal Information -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>Personal Information</h2>
+                                <p> Update your personal details and contact information </p>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="first-name">Customer Name *</label>
+                                    <input type="text" name="name" id="first-name" value="<?= $customer_data['customer_name'] ?>" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="address">Street Address *</label>
+                                    <input type="text" name="address" id="address" value="<?= $customer_data['address'] ?>" required />
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email">Email Address *</label>
+                                    <input type="email" id="email" value="<?= $customer_data['email'] ?>" disabled /> <span class="help-text">We'll send account updates to this email</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" name="phone" id="phone" value="<?= $customer_data['phone'] ?>" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Change Password -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>Change Password</h2>
+                                <p> Update your password to keep your account secure </p>
+                            </div>
+                            <div class="form-row ">
+                                <div class="form-group">
+                                    <label for="current-password">Current Password *</label>
+                                    <input type="password" name="currentPassword" id="current-password" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-password">New Password *</label>
+                                    <input type="password" name="newPassword" id="new-password" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Danger Zone -->
+                        <div class="card danger-zone">
+                            <div class="card-header">
+                                <h2>Danger Zone</h2>
+                                <p>Irreversible and destructive actions</p>
+                            </div>
+                            <div class="alert danger">
+                                <span class="alert-icon">⚠</span>
+                                <strong>Warning:</strong> These actions cannot be undone. Please proceed with caution.
+                            </div>
+                            <hr style=" margin: 20px 0; border: none; border-top: 1px solid #eee; " />
+                            <div class="form-row">
+                                <div>
+                                    <h4>Delete Account</h4>
+                                    <p> Permanently delete your account and all associated data. </p>
+                                </div>
+                                <div style="display: flex; align-items: center">
+                                    <button class="btn btn-danger"> <a href="/customer/profile?delete=1&customer_id=<?= $customerId ?>" style="text-decoration: none; color: inherit;">Delete Account</a> </button>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Danger Zone -->
-                    <div class="card danger-zone">
-                        <div class="card-header">
-                            <h2>Danger Zone</h2>
-                            <p>Irreversible and destructive actions</p>
-                        </div>
-                        <div class="alert danger">
-                            <span class="alert-icon">⚠</span>
-                            <strong>Warning:</strong> These actions cannot
-                            be undone. Please proceed with caution.
-                        </div>
-                        <hr
-                            style="
-                                    margin: 20px 0;
-                                    border: none;
-                                    border-top: 1px solid #eee;
-                                " />
-                        <div class="form-row">
-                            <div>
-                                <h4>Delete Account</h4>
-                                <p> Permanently delete your account and all associated data. </p>
-                            </div>
-                            <div style="display: flex; align-items: center">
-                                <button class="btn btn-danger"> Delete Account </button>
-                            </div>
-                        </div>
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <button class="btn btn-primary" type="submit" name="submit">Save Changes</button>
                     </div>
-                </div>
-
-                <!-- Form Actions -->
-                <div class="form-actions">
-                    <button class="btn btn-primary">Save Changes</button>
-                </div>
+                </form>
             </div>
         </main>
     </div>
 </body>
 
 </html>
+<?php unset($_SESSION['msg']);

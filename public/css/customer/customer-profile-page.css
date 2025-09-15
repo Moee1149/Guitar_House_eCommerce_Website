@@ -1,18 +1,3 @@
-:root {
-    --bg-card: #1e2532;
-    --accent-primary: #6366f1;
-    --accent-secondary: #10b981;
-    --accent-warning: #f59e0b;
-    --accent-danger: #ef4444;
-    --border-primary: #374151;
-    --spacing-md: 1rem;
-    --spacing-lg: 1.5rem;
-    --spacing-xl: 2rem;
-    --spacing-2xl: 3rem;
-    --radius-lg: 0.75rem;
-    --radius-xl: 1rem;
-}
-
 .main-container {
     margin-top: var(--nav-height);
     position: relative;
@@ -291,47 +276,6 @@ textarea:focus {
     margin: 0;
     font-weight: normal;
     cursor: pointer;
-}
-
-.password-strength {
-    margin-top: 5px;
-}
-
-.strength-bar {
-    height: 4px;
-    background-color: #eee;
-    border-radius: 2px;
-    overflow: hidden;
-}
-
-.strength-fill {
-    height: 100%;
-    transition:
-        width 0.3s,
-        background-color 0.3s;
-}
-
-.strength-weak {
-    background-color: #dc3545;
-    width: 25%;
-}
-.strength-fair {
-    background-color: #fd7e14;
-    width: 50%;
-}
-.strength-good {
-    background-color: #ffc107;
-    width: 75%;
-}
-.strength-strong {
-    background-color: #28a745;
-    width: 100%;
-}
-
-.strength-text {
-    font-size: 12px;
-    margin-top: 2px;
-    color: #666;
 }
 
 .form-actions {

@@ -21,7 +21,7 @@
         <!-- main section -->
         <main class="main-container">
             <div class="login-card">
-                <?php echo isset($_SESSION['msg']) ? "<p class='msg-box'>" . $_SESSION['msg'] . "</p>" : '';  ?>
+                <?php echo (!empty($_SESSION['msg'])) ? "<p class='msg-box'>" . $_SESSION['msg'] . "</p>" : '';  ?>
                 <h2>Customer Login</h2>
                 <form action="/login" method="POST">
                     <div class="form-group">

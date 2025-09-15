@@ -116,6 +116,21 @@ class CustomerController
         include VIEW_PATH . '/customer/payment.php';
     }
 
+    public function createOrderDetails($order_id, $customerId)
+    {
+        // Get cart items for the customer
+        $cartItems = $this->productModel->getCartItems($customerId);
+
+        foreach ($cartItems as $item) {
+            $product_id = $item['product_id'];
+            $quantity = $item['quantity'];
+            $price = $item['price']; // Adjust if your cart item uses a different key
+
+            // Insert order detail using your model's method
+            $this->orderModel->createOrderDetail($order_id, $product_id, $quantity, $price);
+        }
+    }
+
     public function confirmOrder()
     {
         $order_id = $_SESSION['order_id'];
@@ -127,6 +142,7 @@ class CustomerController
                 header("location: /customer/payment/esewa");
             }
             $res =  $this->orderModel->updateOrder($order_id, $payment_type);
+            $this->createOrderDetails($order_id, $customerId);
             if ($res) {
                 header("location: /customer/thankyou");
             }
@@ -156,13 +172,53 @@ class CustomerController
 
     public function showCustomerReport()
     {
-
         include VIEW_PATH . '/customer/customer-report.php';
     }
 
     public function showCustomerProfile()
     {
+        $customerId = $_SESSION['customer_id'];
+        $customer_data = $this->customerModel->getCustomerById($customerId);
 
+        if (isset($_GET['delete']) && $_GET['delete'] == 1 && isset($_GET['customer_id'])) {
+            $customerId = $_GET['customer_id'];
+            $res = $this->customerModel->deleteCustomer($customerId);
+            if (!$res) {
+                $_SESSION['msg'] = "Failed to delete customer.";
+                return;
+            }
+            $_SESSION['msg'] = "Customer deleted successfully.";
+            unset($_SESSION['login_status']);
+            unset($_SESSION['customer_id']);
+            unset($_SESSION['customer_name']);
+            header("location: /login");
+            exit;
+        }
+
+        if (isset($_POST['submit'])) {
+            $name = $_POST['name'];
+            $phone = $_POST['phone'];
+            $address = $_POST['address'];
+            $dbPwd = $customer_data['password']; //hashing password
+            $currentPassword = $_POST['currentPassword'];
+            $newPassword = $_POST['newPassword'];
+
+            if (!empty($currentPassword) && !empty($newPassword)) {
+                switch (true) {
+                    case (sha1($currentPassword) != $dbPwd):
+                        $_SESSION['msg'] = "password is incorrect.";
+                        break;
+                    default:
+                        $hashedNewPwd = sha1($newPassword);
+                        $this->customerModel->updateCustomerPassword($customerId, $hashedNewPwd);
+                        break;
+                }
+            }
+            $this->customerModel->updateCustomer($customerId, $name, $phone, $address);
+            $_SESSION['msg'] = "Profile updated successfully.";
+            header("location: /customer/profile");
+            exit;
+        }
         include VIEW_PATH . '/customer/customer-profile.php';
     }
 
