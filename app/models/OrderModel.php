@@ -89,4 +89,33 @@ class OrderModel
         $res = mysqli_query($this->conn, $sql);
         return $res;
     }
+
+    public function getOrderReport($customerId, $status = null, $dateFrom = null, $dateTo = null)
+    {
+        $where = ["o.customer_id = " . intval($customerId)];
+        if ($status !== null) {
+            $where[] = "o.order_status = '" . mysqli_real_escape_string($this->conn, $status) . "'";
+        }
+        if ($dateFrom !== null) {
+            $where[] = "DATE(o.order_date) >= '" . mysqli_real_escape_string($this->conn, $dateFrom) . "'";
+        }
+        if ($dateTo !== null) {
+            $where[] = "DATE(o.order_date) <= '" . mysqli_real_escape_string($this->conn, $dateTo) . "'";
+        }
+        $whereSql = "WHERE " . implode(" AND ", $where);
+
+        $sql = "SELECT
+            o.order_id,
+            DATE(o.order_date) AS order_date,
+            COUNT(oi.order_item_id) AS items,
+            o.total_amount,
+            o.order_status AS status
+        FROM orders o
+        LEFT JOIN order_items oi ON o.order_id = oi.order_id
+        $whereSql
+        GROUP BY o.order_id, o.order_date, o.total_amount, o.order_status
+        ORDER BY o.order_date DESC;";
+        $res = mysqli_query($this->conn, $sql);
+        return $res->fetch_all(MYSQLI_ASSOC);
+    }
 }

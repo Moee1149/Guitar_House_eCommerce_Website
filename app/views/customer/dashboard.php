@@ -24,10 +24,8 @@
                 <header class="content-header">
                     <div class="header-content">
                         <div class="header-text">
-                            <h1>Welcome Back, Aayusha</h1>
-                            <p>
-                                Discover amazing guitars and gear at Guitar
-                                House
+                            <h1>Welcome Back, <?= $customername ?></h1>
+                            <p> Discover amazing guitars and gear at Guitar House
                             </p>
                         </div>
                     </div>

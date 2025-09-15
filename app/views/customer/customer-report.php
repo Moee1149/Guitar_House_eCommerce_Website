@@ -56,22 +56,19 @@
                             </div>
 
                             <div class="filter-section">
-                                <select>
-                                    <option>All Status</option>
-                                    <option>Pending</option>
-                                    <option>Confirmed</option>
-                                    <option>Shipped</option>
-                                    <option>Delivered</option>
+                                <select id="status-select">
+                                    <option value="">All Status</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="confirmed">Confirmed</option>
+                                    <option value="shipped">Shipped</option>
+                                    <option value="delivered">Delivered</option>
                                 </select>
-                                <select>
-                                    <option>Last 30 days</option>
-                                    <option>Last 3 months</option>
-                                    <option>Last 6 months</option>
-                                    <option>This year</option>
+
+                                <select id="date-select">
+                                    <option value="daily">Today</option>
+                                    <option value="monthly">This Month</option>
+                                    <option value="yearly">This Year</option>
                                 </select>
-                                <input
-                                    type="search"
-                                    placeholder="Search orders..." />
                             </div>
 
                             <table class="orders-table">
@@ -80,67 +77,20 @@
                                         <th>Order ID</th>
                                         <th>Date</th>
                                         <th>Items</th>
-                                        <th>Amount</th>
+                                        <th>Total Amount</th>
                                         <th>Status</th>
-                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>#ORD-2024-024</td>
-                                        <td>Aug 22, 2024</td>
-                                        <td>2</td>
-                                        <td>$89.99</td>
-                                        <td> <span class="status status-shipped">Shipped</span> </td>
-                                        <td> <a href="#" class="btn">View</a> </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#ORD-2024-023</td>
-                                        <td>Aug 20, 2024</td>
-                                        <td>1</td>
-                                        <td>$45.50</td>
-                                        <td> <span class="status status-delivered">Delivered</span> </td>
-                                        <td> <a href="#" class="btn">View</a> </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#ORD-2024-022</td>
-                                        <td>Aug 18, 2024</td>
-                                        <td>3</td>
-                                        <td>$127.25</td>
-                                        <td>
-                                            <span
-                                                class="status status-delivered">delivered</span>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn">View</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#ORD-2024-021</td>
-                                        <td>Aug 15, 2024</td>
-                                        <td>1</td>
-                                        <td>$65.00</td>
-                                        <td>
-                                            <span
-                                                class="status status-confirmed">Confirmed</span>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn">View</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>#ORD-2024-020</td>
-                                        <td>Aug 12, 2024</td>
-                                        <td>2</td>
-                                        <td>$98.75</td>
-                                        <td>
-                                            <span
-                                                class="status status-pending">Pending</span>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn">View</a>
-                                        </td>
-                                    </tr>
+                                    <?php foreach ($orderReport as $report) { ?>
+                                        <tr>
+                                            <td><?= $report['order_id'] ?></td>
+                                            <td><?= $report['order_date'] ?></td>
+                                            <td><?= $report['items'] ?></td>
+                                            <td><?= $report['total_amount'] ?></td>
+                                            <td><span class="status status-shipped"><?= $report['status'] ?></span> </td>
+                                        </tr>
+                                    <?php }; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -187,6 +137,36 @@
             </div>
         </main>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const statusSelect = document.getElementById('status-select');
+            const dateSelect = document.getElementById('date-select');
+            const params = new URLSearchParams(window.location.search);
+
+            // Set selected value from URL params
+            if (params.has('status')) {
+                statusSelect.value = params.get('status');
+            }
+            if (params.has('date')) {
+                dateSelect.value = params.get('date');
+            }
+
+            function updateReport() {
+                const status = statusSelect.value;
+                const date = dateSelect.value;
+                const newParams = new URLSearchParams(window.location.search);
+
+                newParams.set('status', status);
+                newParams.set('date', date);
+
+                window.location.search = newParams.toString();
+            }
+
+            statusSelect.addEventListener('change', updateReport);
+            dateSelect.addEventListener('change', updateReport);
+        });
+    </script>
 </body>
 
 </html>

@@ -167,11 +167,31 @@ class CustomerController
 
     public function showCustomerDashboard()
     {
+        $customername = $_SESSION['customer_name'];
         include VIEW_PATH . '/customer/dashboard.php';
     }
 
     public function showCustomerReport()
     {
+        $customerId = $_SESSION['customer_id'];
+        $status = isset($_GET['status']) && $_GET['status'] !== '' ? $_GET['status'] : null;
+        $dateType = isset($_GET['date']) && $_GET['date'] !== '' ? $_GET['date'] : null;
+
+        // Calculate date_from and date_to based on dateType
+        $dateFrom = null;
+        $dateTo = null;
+        if ($dateType === 'daily') {
+            $dateFrom = $dateTo = date('Y-m-d');
+        } elseif ($dateType === 'monthly') {
+            $dateFrom = date('Y-m-01');
+            $dateTo = date('Y-m-t');
+        } elseif ($dateType === 'yearly') {
+            $dateFrom = date('Y-01-01');
+            $dateTo = date('Y-12-31');
+        }
+
+        $orderReport = $this->orderModel->getOrderReport($customerId, $status, $dateFrom, $dateTo);
+
         include VIEW_PATH . '/customer/customer-report.php';
     }
 
@@ -216,6 +236,7 @@ class CustomerController
             }
             $this->customerModel->updateCustomer($customerId, $name, $phone, $address);
             $_SESSION['msg'] = "Profile updated successfully.";
+            $_SESSION['customer_name'] = $name;
             header("location: /customer/profile");
             exit;
         }
