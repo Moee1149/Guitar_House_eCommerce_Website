@@ -32,15 +32,15 @@
                 <!-- Summary Cards -->
                 <div class="summary-cards">
                     <div class="summary-card">
-                        <h3>24</h3>
+                        <h3><?php echo $totalOrders; ?></h3>
                         <p>Total Orders</p>
                     </div>
                     <div class="summary-card">
-                        <h3>$1,245.67</h3>
+                        <h3>$<?php echo $totalSpend; ?></h3>
                         <p>Total Spent</p>
                     </div>
                     <div class="summary-card">
-                        <h3>3</h3>
+                        <h3><?= $orderStatusCounts['pending'] ?? 0 ?></h3>
                         <p>Pending Orders</p>
                     </div>
                 </div>
@@ -108,28 +108,28 @@
                                     <h4>Pending Orders</h4>
                                     <p>Awaiting confirmation</p>
                                 </div>
-                                <div class="transaction-amount">3</div>
+                                <div class="transaction-amount"><?= $orderStatusCounts['pending'] ?? 0 ?></div>
                             </div>
                             <div class="transaction-item">
                                 <div class="transaction-info">
                                     <h4>Confirmed Orders</h4>
                                     <p>Ready for dispatch</p>
                                 </div>
-                                <div class="transaction-amount">2</div>
+                                <div class="transaction-amount"><?= $orderStatusCounts['processing'] ?? 0 ?></div>
                             </div>
                             <div class="transaction-item">
                                 <div class="transaction-info">
                                     <h4>Shipped Orders</h4>
                                     <p>On the way</p>
                                 </div>
-                                <div class="transaction-amount">4</div>
+                                <div class="transaction-amount"><?= $orderStatusCounts['shipped'] ?? 0 ?></div>
                             </div>
                             <div class="transaction-item">
                                 <div class="transaction-info">
                                     <h4>Delivered Orders</h4>
                                     <p>Successfully completed</p>
                                 </div>
-                                <div class="transaction-amount">15</div>
+                                <div class="transaction-amount"><?= $orderStatusCounts['delivered'] ?? 0 ?></div>
                             </div>
                         </div>
                     </div>

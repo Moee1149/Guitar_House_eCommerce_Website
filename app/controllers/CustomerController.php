@@ -190,8 +190,33 @@ class CustomerController
             $dateTo = date('Y-12-31');
         }
 
+        // 1. Get overall totals (no filters)
+        $allOrders = $this->orderModel->getOrderReport($customerId);
+        $totalOrders = count($allOrders);
+        $totalSpend = 0;
+        foreach ($allOrders as $order) {
+            $totalSpend += $order['total_amount'];
+        }
+
+        // 2. Get filtered report (for table and sidebar)
         $orderReport = $this->orderModel->getOrderReport($customerId, $status, $dateFrom, $dateTo);
 
+        // 3. Calculate status breakdown for filtered report
+        $orderStatusCounts = [
+            'pending' => 0,
+            'confirmed' => 0,
+            'shipped' => 0,
+            'delivered' => 0
+        ];
+
+        foreach ($allOrders as $order) {
+            $statusKey = strtolower($order['status']);
+            if (isset($orderStatusCounts[$statusKey])) {
+                $orderStatusCounts[$statusKey]++;
+            }
+        }
+
+        // Pass all variables to the view
         include VIEW_PATH . '/customer/customer-report.php';
     }
 
