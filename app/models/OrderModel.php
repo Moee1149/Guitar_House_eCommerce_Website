@@ -126,6 +126,101 @@ class OrderModel
         return $res->fetch_assoc()['total_sold'];
     }
 
+    public function getReportForAdmin($dateFrom = null, $dateTo = null)
+    {
+        // 1. Products Added
+        $where = [];
+        if ($dateFrom !== null) {
+            $where[] = "DATE(created_at) >= '" . mysqli_real_escape_string($this->conn, $dateFrom) . "'";
+        }
+        if ($dateTo !== null) {
+            $where[] = "DATE(created_at) <= '" . mysqli_real_escape_string($this->conn, $dateTo) . "'";
+        }
+        $whereSql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
+        $productSql = "SELECT * FROM products $whereSql";
+        $res = mysqli_query($this->conn, $productSql);
+        $productcount = $res ? mysqli_num_rows($res) : 0;
+
+        // 2. Products Sold
+        $where = [];
+        if ($dateFrom !== null) {
+            $where[] = "DATE(o.order_date) >= '" . mysqli_real_escape_string($this->conn, $dateFrom) . "'";
+        }
+        if ($dateTo !== null) {
+            $where[] = "DATE(o.order_date) <= '" . mysqli_real_escape_string($this->conn, $dateTo) . "'";
+        }
+        $whereSql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
+        $soldSql = "SELECT SUM(quantity) as total_sold FROM order_items oi
+                    JOIN orders o ON oi.order_id = o.order_id $whereSql";
+        $res = mysqli_query($this->conn, $soldSql);
+        $row = $res ? mysqli_fetch_assoc($res) : ['total_sold' => 0];
+        $product_sold = $row['total_sold'] ?: 0;
+
+        // 3. Most Viewed Products
+        $where = [];
+        if ($dateFrom !== null) {
+            $where[] = "DATE(p.created_at) >= '" . mysqli_real_escape_string($this->conn, $dateFrom) . "'";
+        }
+        if ($dateTo !== null) {
+            $where[] = "DATE(p.created_at) <= '" . mysqli_real_escape_string($this->conn, $dateTo) . "'";
+        }
+        $whereSql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
+        $viewSql = "SELECT p.*, c.name
+                    FROM products p
+                    LEFT JOIN categories c ON p.category_id = c.category_id
+                    $whereSql
+                    ORDER BY p.review_count DESC LIMIT 3";
+        $res = mysqli_query($this->conn, $viewSql);
+        $mostViewedProducts = $res ? mysqli_fetch_all($res, MYSQLI_ASSOC) : [];
+
+        // 4. Transactions Report
+        $where = [];
+        if ($dateFrom !== null) {
+            $where[] = "DATE(o.order_date) >= '" . mysqli_real_escape_string($this->conn, $dateFrom) . "'";
+        }
+        if ($dateTo !== null) {
+            $where[] = "DATE(o.order_date) <= '" . mysqli_real_escape_string($this->conn, $dateTo) . "'";
+        }
+        $whereSql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
+        $transSql = "SELECT
+                o.order_id,
+                DATE(o.order_date) AS order_date,
+                c.customer_name,
+                p.product_name,
+                o.total_amount,
+                o.order_status AS status
+            FROM orders o
+            JOIN customers c ON o.customer_id = c.customer_id
+            JOIN order_items oi ON o.order_id = oi.order_id
+            JOIN products p ON oi.product_id = p.product_id
+            $whereSql
+            ORDER BY o.order_date DESC LIMIT 5";
+        $res = mysqli_query($this->conn, $transSql);
+        $transactionsReport = $res ? mysqli_fetch_all($res, MYSQLI_ASSOC) : [];
+
+        // Total Revenue
+        $where = [];
+        if ($dateFrom !== null) {
+            $where[] = "DATE(order_date) >= '" . mysqli_real_escape_string($this->conn, $dateFrom) . "'";
+        }
+        if ($dateTo !== null) {
+            $where[] = "DATE(order_date) <= '" . mysqli_real_escape_string($this->conn, $dateTo) . "'";
+        }
+        $whereSql = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
+        $revenueSql = "SELECT SUM(total_amount) as total_revenue FROM orders $whereSql";
+        $res = mysqli_query($this->conn, $revenueSql);
+        $row = $res ? mysqli_fetch_assoc($res) : ['total_revenue' => 0];
+        $total_revenue = $row['total_revenue'] ?: 0;
+
+        return [
+            'productcount' => $productcount,
+            'product_sold' => $product_sold,
+            'mostViewedProducts' => $mostViewedProducts,
+            'transactionsReport' => $transactionsReport,
+            'totalRevenue' => $total_revenue
+        ];
+    }
+
     public function getTranscationReportForAdmin()
     {
         $sql = "SELECT

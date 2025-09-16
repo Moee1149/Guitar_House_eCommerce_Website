@@ -25,10 +25,32 @@ class AdminController
 
     public function showAdminReport()
     {
-        [$res, $productcount] = $this->productModel->getAllProducts();
-        $product_sold = $this->orderModel->getProductSold();
-        $mostViewedProducts = $this->productModel->getTopViewedProducts();
-        $transcationsReport = $this->orderModel->getTranscationReportForAdmin();
+        $dateType = isset($_GET['period']) && $_GET['period'] !== '' ? $_GET['period'] : null;
+        $startDate = isset($_GET['startDate']) && $_GET['startDate'] !== '' ? $_GET['startDate'] : null;
+        $endDate = isset($_GET['endDate']) && $_GET['endDate'] !== '' ? $_GET['endDate'] : null;
+
+        // Calculate date_from and date_to based on dateType
+        $dateFrom = null;
+        $dateTo = null;
+        if (!$startDate && !$endDate) {
+            if ($dateType === 'weekly') {
+                $dateFrom = date('Y-m-d', strtotime('-7 days'));
+                $dateTo = date('Y-m-d');
+            } elseif ($dateType === 'monthly') {
+                $dateFrom = date('Y-m-01');
+                $dateTo = date('Y-m-t');
+            } elseif ($dateType === 'yearly') {
+                $dateFrom = date('Y-01-01');
+                $dateTo = date('Y-12-31');
+            } else {
+                $dateFrom = $dateTo = date('Y-m-d');
+            }
+        } else {
+            $dateFrom = $startDate;
+            $dateTo = $endDate;
+        }
+
+        extract($this->orderModel->getReportForAdmin($dateFrom, $dateTo));
         include VIEW_PATH . '/admin/admin-report.php';
     }
 

@@ -1,0 +1,335 @@
+.content-container {
+    overflow-y: auto;
+    padding: 10px 20px;
+    margin-top: 2rem;
+}
+
+.content-header {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.content-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.report-card {
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.page-title {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    position: relative;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.product-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.product-image {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    background-color: #64748b;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.product-id {
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+.product-image-placeholder {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    background-color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #cbd5e1;
+    font-size: 12px;
+    flex-shrink: 0;
+}
+
+.product-details h3 {
+    font-size: 14px;
+    font-weight: 500;
+    color: #f1f5f9;
+    margin-bottom: 2px;
+    margin-top: -5px;
+}
+
+.filters {
+    background-color: var(--bg-secondary);
+    padding: 25px;
+    border-radius: 16px;
+    margin-bottom: 45px;
+    border: 2px solid rgba(102, 126, 234, 0.1);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.08);
+}
+
+.filter-section {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 20px;
+}
+
+.filter-section:last-child {
+    margin-bottom: 0;
+}
+
+.filter-label {
+    font-size: 1.8rem;
+    color: #333;
+    display: inline-block;
+    font-weight: 700;
+    color: white;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.date-range {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+select {
+    width: 200px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    outline: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    background-color: var(--bg-primary);
+}
+
+select:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+}
+
+.date-input {
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    outline: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    background-color: var(--bg-primary);
+}
+
+.date-input:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+}
+
+.apply-btn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+}
+
+.apply-btn:hover {
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    background: var(--bg-secondary);
+    padding: 15px 0;
+    border-radius: 16px;
+    text-align: center;
+    border: 2px solid rgba(102, 126, 234, 0.1);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.stat-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
+    border-color: rgba(102, 126, 234, 0.3);
+}
+
+.stat-icon {
+    margin-top: 10px;
+    display: block;
+    filter: drop-shadow(0 2px 4px rgba(102, 126, 234, 0.2));
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #333;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.stat-label {
+    font-size: 0.95rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.stat-period {
+    font-size: 0.85rem;
+    color: #999;
+    font-weight: 500;
+}
+
+.report-section {
+    margin-bottom: 25px;
+}
+
+.section-title {
+    font-size: 1.6rem;
+    color: #333;
+    display: inline-block;
+    font-weight: 700;
+    color: white;
+}
+
+/*table styling*/
+.table-container table {
+    margin-bottom: 20px;
+}
+
+/* Table Styling - Add this to your existing CSS file */
+
+.table-container table {
+    width: 100%;
+    background-color: #1e293b;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border-collapse: collapse;
+    border: none;
+}
+
+.table-container table thead {
+    background-color: #334155;
+}
+
+.table-container table th {
+    padding: 16px 20px;
+    font-weight: 500;
+    font-size: 14px;
+    color: #cbd5e1;
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid #475569;
+}
+
+.table-container table tbody tr {
+    background-color: #1e293b;
+    transition: background-color 0.2s ease;
+    border-bottom: 1px solid #334155;
+}
+
+.table-container table tbody tr:hover {
+    background-color: #334155;
+}
+
+.table-container table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.table-container table td {
+    padding: 16px 20px;
+    font-size: 14px;
+    color: #cbd5e1;
+    border: none;
+    vertical-align: middle;
+}
+
+.table-container table td:first-child {
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+.table-container table td:nth-child(2) {
+    color: #f1f5f9;
+    font-weight: 500;
+}
+
+.table-container table td:nth-child(3) {
+    color: #cbd5e1;
+}
+
+.status {
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+}
+
+.status.completed {
+    background: linear-gradient(135deg, #d4edda, #c3e6cb);
+    color: #155724;
+    box-shadow: 0 2px 8px rgba(21, 87, 36, 0.2);
+}
+
+.status.pending {
+    background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+    color: #856404;
+    box-shadow: 0 2px 8px rgba(133, 100, 4, 0.2);
+}
+
+.rank-badge {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
