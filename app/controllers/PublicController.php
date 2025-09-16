@@ -20,9 +20,10 @@ class PublicController
         include VIEW_PATH . '/public/product.php';
     }
 
-    public function product($id)
+    public function productDetail($product_id)
     {
-        echo $id;
+        $product = $this->productModel->getProductById($product_id);
+        include VIEW_PATH . '/public/product-detail.php';
     }
 
     public function contact()

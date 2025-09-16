@@ -31,8 +31,8 @@ switch ($path) {
         $controller->index();
         break;
     case '/product':
-        if (isset($_GET['id'])) {
-            $controller->product($_GET['id']);
+        if (isset($_GET['product_id'])) {
+            $controller->productDetail($_GET['product_id']);
         } else {
             $controller->productList();
         }

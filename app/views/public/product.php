@@ -30,28 +30,18 @@
                 <form action="/product/" method="POST">
                     <div class="sort-wrapper">
                         <select class="sort-select" id="sort-select" name="category">
-                            <option value="" disabled selected>
-                                Filter By Categories
-                            </option>
+                            <option value="" disabled selected> Filter By Categories </option>
                             <option value="solid body">Solid Body</option>
-                            <option value="semi-hollow body">
-                                Semi-Hollow Body
-                            </option>
+                            <option value="semi-hollow body"> Semi-Hollow Body </option>
                             <option value="hollow body">Hollow Body</option>
                         </select>
                         <select class="sort-select" id="sort-select" name="sort">
                             <option value="" disabled selected>Sort by</option>
                             <option value="popularity">Popularity</option>
-                            <option value="price-low-high">
-                                Price: Low to High
-                            </option>
-                            <option value="price-high-low">
-                                Price: High to Low
-                            </option>
+                            <option value="price-low-high"> Price: Low to High </option>
+                            <option value="price-high-low"> Price: High to Low </option>
                             <option value="new-arrivals">New Arrivals</option>
-                            <option value="customer-rating">
-                                Customer Rating
-                            </option>
+                            <option value="customer-rating"> Customer Rating </option>
                         </select>
                     </div>
                 </form>
