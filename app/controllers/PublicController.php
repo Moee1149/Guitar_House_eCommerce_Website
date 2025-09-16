@@ -31,5 +31,8 @@ class PublicController
         include VIEW_PATH . '/public/contact.php';
     }
 
-    public function notFound() {}
+    public function notFound()
+    {
+        include VIEW_PATH . '/public/notfound.php';
+    }
 }

@@ -347,6 +347,5 @@ switch ($path) {
     default:
         $controller->notFound();
         http_response_code(404);
-        echo "Page not found";
         break;
 }
