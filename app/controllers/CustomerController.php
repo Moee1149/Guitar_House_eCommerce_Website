@@ -1,23 +1,26 @@
 <?php
 include_once APP_PATH . '/models/CustomerModel.php';
+include_once APP_PATH . '/models/CartModel.php';
 
 class CustomerController
 {
     private $customerModel;
     private $productModel;
     private $orderModel;
+    private $cartModel;
 
     public function __construct($conn)
     {
         $this->customerModel = new CustomerModel($conn);
         $this->productModel = new ProductModel($conn);
         $this->orderModel = new OrderModel($conn);
+        $this->cartModel = new CartModel($conn);
     }
 
     public function showCartPage()
     {
         $customerId = $_SESSION['customer_id'];
-        $cartItems = $this->productModel->getCartItems($customerId);
+        $cartItems = $this->cartModel->getCartItems($customerId);
         include VIEW_PATH . '/customer/cart.php';
     }
 
@@ -25,13 +28,13 @@ class CustomerController
     {
         $product_id = $_GET['product_id'];
         $customerId = $_SESSION['customer_id'];
-        if ($this->productModel->checkProductExitsInCart($customerId, $product_id)) {
+        if ($this->cartModel->checkProductExitsInCart($customerId, $product_id)) {
             $_SESSION['msg'] = "Product already exists in cart";
             header("location: /customer/cart");
             return;
         }
 
-        $res = $this->productModel->addToCart($product_id);
+        $res = $this->cartModel->addToCart($product_id);
         if ($res) {
             header("location: /customer/cart");
         } else {
@@ -42,7 +45,7 @@ class CustomerController
     public function removeItemFromCart()
     {
         $cart_id = $_GET['cart_id'];
-        $res = $this->productModel->removeItemFromCart($cart_id);
+        $res = $this->cartModel->removeItemFromCart($cart_id);
         if ($res) {
             header("location: /customer/cart");
         } else {
@@ -54,7 +57,7 @@ class CustomerController
     {
         $cart_id = $_GET['cart_id'];
         $quantity = $_GET['quantity'];
-        $res = $this->productModel->updateCartItemQuantity($cart_id, $quantity);
+        $res = $this->cartModel->updateCartItemQuantity($cart_id, $quantity);
         if ($res) {
             header("location: /customer/cart");
         } else {
@@ -65,7 +68,7 @@ class CustomerController
     public function clearCart()
     {
         $customerId = $_SESSION['customer_id'];
-        $res = $this->productModel->clearCart($customerId);
+        $res = $this->cartModel->clearCart($customerId);
         if ($res) {
             header("location: /customer/cart");
             $_SESSION['msg'] = "Clear Cart Successfully";
@@ -99,7 +102,7 @@ class CustomerController
             }
         }
 
-        $cartItems = $this->productModel->getCartItems($customerId);
+        $cartItems = $this->cartModel->getCartItems($customerId);
         $customer_data = $this->customerModel->getCustomerById($customerId);
         include VIEW_PATH . '/customer/checkout.php';
     }
@@ -109,7 +112,7 @@ class CustomerController
         $customerId = $_SESSION['customer_id'];
         $order_id = $_SESSION['order_id'];
 
-        $cartItems = $this->productModel->getCartItems($customerId);
+        $cartItems = $this->cartModel->getCartItems($customerId);
         $customer_data = $this->customerModel->getCustomerById($customerId);
         $order_data = $this->orderModel->getOrderById($order_id);
 
@@ -119,7 +122,7 @@ class CustomerController
     public function createOrderDetails($order_id, $customerId)
     {
         // Get cart items for the customer
-        $cartItems = $this->productModel->getCartItems($customerId);
+        $cartItems = $this->cartModel->getCartItems($customerId);
 
         foreach ($cartItems as $item) {
             $product_id = $item['product_id'];
@@ -159,7 +162,7 @@ class CustomerController
         $customerId = $_SESSION['customer_id'];
         $order_id = $_SESSION['order_id'];
 
-        $cartItems = $this->productModel->getCartItems($customerId);
+        $cartItems = $this->cartModel->getCartItems($customerId);
         $customer_data = $this->customerModel->getCustomerById($customerId);
         $order_data = $this->orderModel->getOrderById($order_id);
         include VIEW_PATH . '/customer/thankyou.php';
@@ -266,13 +269,5 @@ class CustomerController
             exit;
         }
         include VIEW_PATH . '/customer/customer-profile.php';
-    }
-
-    public function handleCustomerLogout()
-    {
-        unset($_SESSION['login_status']);
-        unset($_SESSION['customer_id']);
-        unset($_SESSION['customer_name']);
-        header("location: /");
     }
 }

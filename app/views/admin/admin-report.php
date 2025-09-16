@@ -40,6 +40,48 @@
             letter-spacing: -0.5px;
         }
 
+        .product-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .product-image {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            background-color: #64748b;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .product-id {
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        .product-image-placeholder {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            background-color: #64748b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #cbd5e1;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .product-details h3 {
+            font-size: 14px;
+            font-weight: 500;
+            color: #f1f5f9;
+            margin-bottom: 2px;
+            margin-top: -5px;
+        }
+
+
         .filters {
             background: linear-gradient(135deg, #f8f9ff 0%, #e8eeff 100%);
             padding: 30px;
@@ -145,7 +187,7 @@
         }
 
         .stat-card {
-            background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
+            background: var(--bg-secondary);
             padding: 15px 0;
             border-radius: 16px;
             text-align: center;
@@ -163,8 +205,7 @@
         }
 
         .stat-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
+            margin-top: 10px;
             display: block;
             filter: drop-shadow(0 2px 4px rgba(102, 126, 234, 0.2));
         }
@@ -202,64 +243,76 @@
         .section-title {
             font-size: 1.6rem;
             color: #333;
-            margin-bottom: 25px;
-            padding-bottom: 12px;
             display: inline-block;
             font-weight: 700;
             color: white;
         }
 
-        .table-container {
-            background: white;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(102, 126, 234, 0.1);
+        /*table styling*/
+        .table-container table {
+            margin-bottom: 20px;
         }
 
-        table {
+        /* Table Styling - Add this to your existing CSS file */
+
+        .table-container table {
             width: 100%;
+            background-color: #1e293b;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             border-collapse: collapse;
-            background-color: #eee;
-            color: #333;
+            border: none;
         }
 
-        thead {
-            background-color: #fff;
-            color: #333;
+        .table-container table thead {
+            background-color: #334155;
         }
 
-        th,
-        td {
-            padding: 18px 16px;
+        .table-container table th {
+            padding: 16px 20px;
+            font-weight: 500;
+            font-size: 14px;
+            color: #cbd5e1;
             text-align: left;
-            border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+            border: none;
+            border-bottom: 1px solid #475569;
         }
 
-        th {
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        .table-container table tbody tr {
+            background-color: #1e293b;
+            transition: background-color 0.2s ease;
+            border-bottom: 1px solid #334155;
         }
 
-        tbody tr {
-            transition: all 0.3s ease;
+        .table-container table tbody tr:hover {
+            background-color: #334155;
         }
 
-        tbody tr:hover {
-            background: linear-gradient(135deg, #f8f9ff 0%, #e8eeff 100%);
-            transform: scale(1.01);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+        .table-container table tbody tr:last-child {
+            border-bottom: none;
         }
 
-        tbody tr:nth-child(even) {
-            background: rgba(102, 126, 234, 0.03);
+        .table-container table td {
+            padding: 16px 20px;
+            font-size: 14px;
+            color: #cbd5e1;
+            border: none;
+            vertical-align: middle;
         }
 
-        tbody tr:nth-child(even):hover {
-            background: linear-gradient(135deg, #f8f9ff 0%, #e8eeff 100%);
+        .table-container table td:first-child {
+            color: #94a3b8;
+            font-weight: 500;
+        }
+
+        .table-container table td:nth-child(2) {
+            color: #f1f5f9;
+            font-weight: 500;
+        }
+
+        .table-container table td:nth-child(3) {
+            color: #cbd5e1;
         }
 
         .status {
@@ -284,54 +337,6 @@
             box-shadow: 0 2px 8px rgba(133, 100, 4, 0.2);
         }
 
-        .export-section {
-            background: linear-gradient(135deg, #f8f9ff 0%, #e8eeff 100%);
-            padding: 35px;
-            border-radius: 16px;
-            text-align: center;
-            border: 2px solid rgba(102, 126, 234, 0.1);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.08);
-        }
-
-        .export-title {
-            font-size: 1.4rem;
-            color: #333;
-            margin-bottom: 25px;
-            font-weight: 700;
-        }
-
-        .export-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .export-btn {
-            background: white;
-            border: 2px solid #667eea;
-            color: #667eea;
-            padding: 15px 30px;
-            border-radius: 12px;
-            cursor: pointer;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-size: 14px;
-        }
-
-        .export-btn:hover {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-        }
-
         .rank-badge {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
@@ -340,94 +345,6 @@
             font-weight: 700;
             font-size: 0.8rem;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 10px;
-            }
-
-            .report-card {
-                padding: 25px;
-            }
-
-            .page-title {
-                font-size: 1.8rem;
-            }
-
-            .filters {
-                padding: 20px;
-            }
-
-            .filter-buttons {
-                flex-direction: column;
-                gap: 8px;
-            }
-
-            .filter-btn {
-                text-align: center;
-            }
-
-            .date-range {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .export-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            table {
-                font-size: 0.85rem;
-            }
-
-            th,
-            td {
-                padding: 12px 8px;
-            }
-
-            .section-title {
-                font-size: 1.3rem;
-            }
-        }
-
-        /* Animation for loading */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .report-card {
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        .stat-card:nth-child(1) {
-            animation: fadeInUp 0.7s ease-out;
-        }
-
-        .stat-card:nth-child(2) {
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .stat-card:nth-child(3) {
-            animation: fadeInUp 0.9s ease-out;
-        }
-
-        .stat-card:nth-child(4) {
-            animation: fadeInUp 1s ease-out;
         }
     </style>
 </head>
@@ -470,21 +387,40 @@
 
                     <div class="stats-grid">
                         <div class="stat-card">
-                            <span class="stat-icon">📦</span>
-                            <div class="stat-number">89</div>
+                            <span class="stat-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package-open-icon lucide-package-open">
+                                    <path d="M12 22v-9" />
+                                    <path d="M15.17 2.21a1.67 1.67 0 0 1 1.63 0L21 4.57a1.93 1.93 0 0 1 0 3.36L8.82 14.79a1.655 1.655 0 0 1-1.64 0L3 12.43a1.93 1.93 0 0 1 0-3.36z" />
+                                    <path d="M20 13v3.87a2.06 2.06 0 0 1-1.11 1.83l-6 3.08a1.93 1.93 0 0 1-1.78 0l-6-3.08A2.06 2.06 0 0 1 4 16.87V13" />
+                                    <path d="M21 12.43a1.93 1.93 0 0 0 0-3.36L8.83 2.2a1.64 1.64 0 0 0-1.63 0L3 4.57a1.93 1.93 0 0 0 0 3.36l12.18 6.86a1.636 1.636 0 0 0 1.63 0z" />
+                                </svg></span>
+                            <div class="stat-number"><?= $productcount ?></div>
+                            <div class="stat-label">Products Added</div>
+                            <div class="stat-period"> +15% from last month </div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart-icon lucide-shopping-cart">
+                                    <circle cx="8" cy="21" r="1" />
+                                    <circle cx="19" cy="21" r="1" />
+                                    <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+                                </svg>
+                            </span>
+                            <div class="stat-number"><?= $product_sold ?></div>
                             <div class="stat-label">Products Sold</div>
                             <div class="stat-period"> +15% from last month </div>
                         </div>
 
                         <div class="stat-card">
-                            <span class="stat-icon">💳</span>
-                            <div class="stat-number">156</div>
-                            <div class="stat-label">Transactions</div>
-                            <div class="stat-period"> +12% from last month </div>
-                        </div>
-
-                        <div class="stat-card">
-                            <span class="stat-icon">💰</span>
+                            <span class="stat-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-indian-rupee-icon lucide-indian-rupee">
+                                    <path d="M6 3h12" />
+                                    <path d="M6 8h12" />
+                                    <path d="m6 13 8.5 8" />
+                                    <path d="M6 13h3" />
+                                    <path d="M9 13c6.667 0 6.667-10 0-10" />
+                                </svg>
+                            </span>
                             <div class="stat-number">$12,450</div>
                             <div class="stat-label">Total Revenue</div>
                             <div class="stat-period"> +22% from last month </div>
@@ -501,48 +437,31 @@
                                         <th>Product Name</th>
                                         <th>Category</th>
                                         <th>Views</th>
-                                        <th>Conversion Rate</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            <span class="rank-badge">#1</span>
-                                        </td>
-                                        <td>
-                                            <strong>
-                                                Vault RG1 Soloist Premium
-                                                Electric Guitar</strong>
-                                        </td>
-                                        <td>Hollow Body</td>
-                                        <td><strong>458</strong></td>
-                                        <td>
-                                            <span
-                                                style="
-                                                        color: #28a745;
-                                                        font-weight: 600;
-                                                    ">17%</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span class="rank-badge">#2</span>
-                                        </td>
-                                        <td>
-                                            <strong>Fender Squier Sonic
-                                                Stratocaster Electric
-                                                Guitar</strong>
-                                        </td>
-                                        <td>Gaming</td>
-                                        <td><strong>408</strong></td>
-                                        <td>
-                                            <span
-                                                style="
-                                                        color: #28a745;
-                                                        font-weight: 600;
-                                                    ">15%</span>
-                                        </td>
-                                    </tr>
+                                    <?php $i = 1;
+                                    foreach ($mostViewedProducts as $product) : ?>
+                                        <tr>
+                                            <td> <span class="rank-badge">#<?= $i ?></span> </td>
+                                            <td>
+                                                <div class="product-info">
+                                                    <?php if (!empty($product['image'])): ?>
+                                                        <img src="<?php echo $product['image']; ?>" alt="<?php echo $product['product_name']; ?>" class="product-image">
+                                                    <?php else: ?>
+                                                        <div class="product-image-placeholder">IMG</div>
+                                                    <?php endif; ?>
+                                                    <div class="product-details">
+                                                        <h3><?php echo htmlspecialchars($product['product_name']); ?></h3>
+                                                        <div class="product-id">prod<?php echo str_pad($product['product_id'], 3, '0', STR_PAD_LEFT); ?></div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td><?= $product['category_name'] ?></td>
+                                            <td><strong><?= $product['review_count'] ?></strong></td>
+                                        </tr>
+                                        <?php $i++; ?>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -565,58 +484,23 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td><strong>FTN-002567</strong></td>
-                                        <td>2024-01-18</td>
-                                        <td>Aayusha Aadhikari</td>
-                                        <td>
-                                            Vault RG1 Soloist Premium
-                                            Electric Guitar
-                                        </td>
-                                        <td><strong>$249</strong></td>
-                                        <td>
-                                            <span class="status completed">Completed</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>FTN-002568</strong></td>
-                                        <td>2024-01-17</td>
-                                        <td>Anima Dahal</td>
-                                        <td>
-                                            Vault RG1 Soloist Premium
-                                            Electric Guitar
-                                        </td>
-                                        <td><strong>$299</strong></td>
-                                        <td>
-                                            <span class="status completed">Completed</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>FTN-002569</strong></td>
-                                        <td>2024-01-16</td>
-                                        <td>Bibash Basnet</td>
-                                        <td>
-                                            Vault RG1 Soloist Premium
-                                            Electric Guitar
-                                        </td>
-                                        <td><strong>$349</strong></td>
-                                        <td>
-                                            <span class="status completed">Completed</span>
-                                        </td>
-                                    </tr>
+                                    <?php foreach ($transcationsReport as $transaction): ?>
+                                        <tr>
+                                            <td><strong><?= $transaction['order_id'] ?></strong></td>
+                                            <td><?= $transaction['order_date'] ?></td>
+                                            <td><?= $transaction['customer_name'] ?></td>
+                                            <td><?= $transaction['product_name'] ?></td>
+                                            <td><strong>$<?= $transaction['total_amount'] ?></strong></td>
+                                            <td>
+                                                <span class="status <?= $transaction['status'] == 'delivered' ? 'completed' : 'pending' ?>"><?= $transaction['status'] ?></span>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
                     </div>
 
-                    <div class="export-section">
-                        <h3 class="export-title">📄 Export Reports</h3>
-                        <div class="export-buttons">
-                            <a href="#" class="export-btn" onclick="exportReport('excel')"> 📊 <span>Excel</span> </a>
-                            <a href="#" class="export-btn" onclick="exportReport('pdf')"> 📋 <span>PDF</span> </a>
-                            <a href="#" class="export-btn" onclick="exportReport('csv')"> 📄 <span>CSV</span> </a>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -719,35 +603,6 @@
             }, 1000);
         }
 
-        function exportReport(format) {
-            console.log(`Exporting report in ${format} format`);
-
-            // Simulate export
-            const exportMsg = document.createElement("div");
-            exportMsg.textContent = `Exporting to ${format.toUpperCase()}...`;
-            exportMsg.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: linear-gradient(135deg, #667eea, #764ba2);
-                color: white;
-                padding: 15px 25px;
-                border-radius: 10px;
-                font-weight: 600;
-                box-shadow: 0 5px 15px rgba(102,126,234,0.3);
-                z-index: 1000;
-                animation: fadeInUp 0.3s ease-out;
-            `;
-            document.body.appendChild(exportMsg);
-
-            setTimeout(() => {
-                exportMsg.textContent = `Report exported successfully!`;
-                setTimeout(() => {
-                    exportMsg.remove();
-                }, 2000);
-            }, 1500);
-        }
-
         // Add smooth scrolling to sections
         document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
             anchor.addEventListener("click", function(e) {
@@ -762,22 +617,6 @@
                     });
                 }
             });
-        });
-
-        // Add hover effects to table rows
-        document.querySelectorAll("tbody tr").forEach((row) => {
-            row.addEventListener("mouseenter", function() {
-                this.style.transform = "scale(1.02)";
-            });
-
-            row.addEventListener("mouseleave", function() {
-                this.style.transform = "scale(1)";
-            });
-        });
-
-        // Initialize with daily period
-        document.addEventListener("DOMContentLoaded", function() {
-            console.log("Admin Reports Dashboard loaded successfully");
         });
     </script>
 </body>

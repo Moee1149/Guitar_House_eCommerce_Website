@@ -25,6 +25,10 @@ class AdminController
 
     public function showAdminReport()
     {
+        [$res, $productcount] = $this->productModel->getAllProducts();
+        $product_sold = $this->orderModel->getProductSold();
+        $mostViewedProducts = $this->productModel->getTopViewedProducts();
+        $transcationsReport = $this->orderModel->getTranscationReportForAdmin();
         include VIEW_PATH . '/admin/admin-report.php';
     }
 

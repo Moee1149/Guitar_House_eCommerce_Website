@@ -59,7 +59,7 @@ class AuthModel
 
     public function verifyAdmin($email, $password)
     {
-        $stmt = $this->conn->prepare("SELECT email, password FROM users WHERE email= ?");
+        $stmt = $this->conn->prepare("SELECT user_id, user_name, email, password FROM users WHERE email= ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $res = $stmt->get_result();
@@ -67,7 +67,7 @@ class AuthModel
 
         if ($res->num_rows > 0) {
             $data = mysqli_fetch_assoc($res);
-            return $hashedPwd === $data['password'];
+            return [$hashedPwd === $data['password'], $data['user_id'], $data['user_name']];
         }
         return;
     }

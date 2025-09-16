@@ -21,7 +21,7 @@
 
             <div class="customer-page-container">
                 <div class="customer_mgmt">
-                    <?php echo isset($_SESSION['msg']) ? "<p class='msg-box'>" . $_SESSION['msg'] . "</p>" : '';  ?>
+                    <?php echo (!empty($_SESSION['msg'])) ? "<p class='msg-box'>" . $_SESSION['msg'] . "</p>" : '';  ?>
                     <h1 class="page-title">All Customers</h1>
                     <table border="1" cellspacing="0" cellpadding="6">
                         <thead>

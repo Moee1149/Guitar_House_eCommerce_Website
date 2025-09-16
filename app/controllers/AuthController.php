@@ -40,6 +40,7 @@ class AuthController
             $_SESSION['login_status'] = true;
             $_SESSION['customer_id'] = $customerId;
             $_SESSION['customer_name'] = $customer_name;
+            $_SESSION['role'] = "customer";
             header("location: /customer/dashboard");
             exit;
         } else {
@@ -79,10 +80,13 @@ class AuthController
     {
         $email = $_POST['email'];
         $pwd = $_POST['password'];
-        $isLogin = $this->authmodel->verifyAdmin($email, $pwd);
+        [$isLogin, $userId, $username] = $this->authmodel->verifyAdmin($email, $pwd);
 
         if ($isLogin) {
             $_SESSION['login_status'] = true;
+            $_SESSION['admin_id'] = $userId;
+            $_SESSION['admin_name'] = $username;
+            $_SESSION['role'] = "admin";
             header("location: /admin/dashboard");
         } else {
             $_SESSION['msg'] = "Email/Username or password doesn't match";
@@ -115,5 +119,24 @@ class AuthController
         } else {
             $_SESSION['msg'] = "Unknow Error Occured";
         }
+    }
+
+    public function handleLogout()
+    {
+        $role = $_SESSION['role'];
+        switch ($role) {
+            case "admin":
+                unset($_SESSION['login_status']);
+                unset($_SESSION['admin_id']);
+                unset($_SESSION['admin_name']);
+                break;
+            default:
+                unset($_SESSION['login_status']);
+                unset($_SESSION['customer_id']);
+                unset($_SESSION['customer_name']);
+                break;
+        }
+        unset($_SESSION['role']);
+        header("location: /");
     }
 }
