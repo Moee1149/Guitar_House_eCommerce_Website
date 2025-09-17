@@ -25,6 +25,9 @@
     top: var(--nav-height);
     width: 300px;
     overflow-y: auto;
+    border: 1px solid var(--border-primary);
+    background-color: var(--bg-card);
+    border-top: 0;
     bottom: 0;
 }
 
@@ -253,7 +256,7 @@
 }
 
 .link-item:hover {
-    background-color: var(--accent-primary);
+    background-color: var(--bg-primary);
     transform: translateX(4px);
 }
 

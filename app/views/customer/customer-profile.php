@@ -40,23 +40,6 @@
                 <?php endif; ?>
                 <form action="/customer/profile" method="POST">
                     <div class="form-container">
-                        <!-- Profile Picture -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h2>Profile Picture</h2>
-                                <p> Upload a new profile picture to personalize your account </p>
-                            </div>
-                            <div class="profile-picture-section">
-                                <div class="profile-picture">Profile Photo</div>
-                                <div class="picture-actions">
-                                    <input type="file" id="profile-pic" accept="image/*" style="display: none" />
-                                    <button class="btn btn-primary" onclick="document.getElementById('profile-pic').click()"> Upload New Photo </button>
-                                    <button class="btn">Remove Photo</button>
-                                    <p class="help-text"> JPG, PNG or GIF. Max size 2MB. </p>
-                                </div>
-                            </div>
-                        </div>
-
                         <!-- Personal Information -->
                         <div class="card">
                             <div class="card-header">

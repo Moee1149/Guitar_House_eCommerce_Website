@@ -23,25 +23,47 @@
             <div class="content-container">
                 <!-- Header -->
                 <div class="content-header">
-                    <h1>Welcome back, Aayusha!</h1>
+                    <h1>Welcome back, <?= $_SESSION['customer_name'] ?>!</h1>
                     <p class="welcome-text">
                         Here's your account overview and recent activity
                     </p>
                 </div>
 
-                <!-- Summary Cards -->
-                <div class="summary-cards">
-                    <div class="summary-card">
-                        <h3><?php echo $totalOrders; ?></h3>
-                        <p>Total Orders</p>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package-open-icon lucide-package-open">
+                                <path d="M12 22v-9" />
+                                <path d="M15.17 2.21a1.67 1.67 0 0 1 1.63 0L21 4.57a1.93 1.93 0 0 1 0 3.36L8.82 14.79a1.655 1.655 0 0 1-1.64 0L3 12.43a1.93 1.93 0 0 1 0-3.36z" />
+                                <path d="M20 13v3.87a2.06 2.06 0 0 1-1.11 1.83l-6 3.08a1.93 1.93 0 0 1-1.78 0l-6-3.08A2.06 2.06 0 0 1 4 16.87V13" />
+                                <path d="M21 12.43a1.93 1.93 0 0 0 0-3.36L8.83 2.2a1.64 1.64 0 0 0-1.63 0L3 4.57a1.93 1.93 0 0 0 0 3.36l12.18 6.86a1.636 1.636 0 0 0 1.63 0z" />
+                            </svg></span>
+                        <div class="stat-number"><?php echo $totalOrders; ?></div>
+                        <div class="stat-label">Total Orders</div>
+                        <div class="stat-period"> +15% from last month </div>
                     </div>
-                    <div class="summary-card">
-                        <h3>$<?php echo $totalSpend; ?></h3>
-                        <p>Total Spent</p>
+                    <div class="stat-card">
+                        <span class="stat-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart-icon lucide-shopping-cart">
+                                <circle cx="8" cy="21" r="1" />
+                                <circle cx="19" cy="21" r="1" />
+                                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+                            </svg>
+                        </span>
+                        <div class="stat-number">$<?php echo $totalSpend; ?></div>
+                        <div class="stat-label">Total Spent</div>
+                        <div class="stat-period"> +15% from last month </div>
                     </div>
-                    <div class="summary-card">
-                        <h3><?= $orderStatusCounts['pending'] ?? 0 ?></h3>
-                        <p>Pending Orders</p>
+
+                    <div class="stat-card">
+                        <span class="stat-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dollar-sign-icon lucide-dollar-sign">
+                                <line x1="12" x2="12" y1="2" y2="22" />
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                            </svg>
+                        </span>
+                        <div class="stat-number"><?= $orderStatusCounts['pending'] ?? 0 ?></div>
+                        <div class="stat-label">Total Pending Orders</div>
                     </div>
                 </div>
 
