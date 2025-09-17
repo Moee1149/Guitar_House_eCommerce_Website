@@ -205,7 +205,7 @@
                                         <label for="order-status">Order Status</label>
                                         <select id="order-status" name="orderStatus">
                                             <option value="pending" <?php echo ($status == 'pending') ? 'selected' : ''; ?>> Pending </option>
-                                            <option value="confirmed" <?php echo ($status == 'confirmed') ? 'selected' : ''; ?>> Confirmed </option>
+                                            <option value="processing" <?php echo ($status == 'processing') ? 'selected' : ''; ?>> Processing </option>
                                             <option value="shipped" <?php echo ($status == 'shipped') ? 'selected' : ''; ?>> Shipped </option>
                                             <option value="delivered" <?php echo ($status == 'delivered') ? 'selected' : ''; ?>> Delivered </option>
                                             <option value="cancelled" <?php echo ($status == 'cancelled') ? 'selected' : ''; ?>> Cancelled </option>
