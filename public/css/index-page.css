@@ -444,20 +444,15 @@
     }
 }
 
-@media (max-width: 480px) {
-    .testimonials-section {
-        padding: 2rem 1rem;
-    }
+.product-info .category {
+    display: inline-block;
+    width: auto;
+    background-color: var(--primary-bg);
+    padding: 10px;
+    font-size: 12px;
+    margin-bottom: 9px;
+}
 
-    .testimonials-title {
-        font-size: 1.75rem;
-    }
-
-    .testimonials-header {
-        margin-bottom: 2rem;
-    }
-
-    .testimonials-grid {
-        margin-top: 2rem;
-    }
+.product-info .category:hover {
+    transform: none;
 }

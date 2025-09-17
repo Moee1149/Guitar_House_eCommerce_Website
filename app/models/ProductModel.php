@@ -17,6 +17,20 @@ class ProductModel
         return [$res, $product_count];
     }
 
+    public function getMostViewedProducts()
+    {
+        $sql = "SELECT * FROM products ORDER BY views DESC LIMIT 5";
+        $res = mysqli_query($this->conn, $sql);
+        return $res->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getFeaturedProducts()
+    {
+        $sql = "SELECT p.*, c.name As category_name FROM products p JOIN categories c ON p.category_id = c.category_id WHERE is_featured=1 LIMIT 4";
+        $res = mysqli_query($this->conn, $sql);
+        return $res->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function getProductById($product_id)
     {
         $sql = "SELECT * FROM products WHERE product_id=$product_id";

@@ -11,6 +11,8 @@ class PublicController
 
     public function index()
     {
+        $mostViewProducts = $this->productModel->getMostViewedProducts();
+        $featuredProducts = $this->productModel->getFeaturedProducts();
         include VIEW_PATH . '/public/home.php';
     }
 
