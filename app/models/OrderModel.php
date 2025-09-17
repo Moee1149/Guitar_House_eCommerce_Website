@@ -38,6 +38,7 @@ class OrderModel
             o.city AS shipping_city,
             o.state AS shipping_state,
             o.payment_type,
+            o.payment_status,
             o.order_status
         FROM orders o
         LEFT JOIN customers c ON o.customer_id= c.customer_id
@@ -69,6 +70,14 @@ class OrderModel
     {
         //update order
         $sql = "UPDATE orders SET payment_type = '$paymentType' WHERE order_id = $orderId;";
+        $res = mysqli_query($this->conn, $sql);
+        return $res;
+    }
+
+    public function updateOrderWithStatus($orderId, $paymentType, $paymentStatus, $orderStatus)
+    {
+        //update order
+        $sql = "UPDATE orders SET payment_type = '$paymentType', payment_status = '$paymentStatus', order_status = '$orderStatus' WHERE order_id = $orderId;";
         $res = mysqli_query($this->conn, $sql);
         return $res;
     }

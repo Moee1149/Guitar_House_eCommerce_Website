@@ -425,23 +425,28 @@ class AdminController
         $shipping_street = $data['shipping_street'] ?? '';
         $shipping_city   = $data['shipping_city'] ?? '';
         $shipping_state  = $data['shipping_state'] ?? '';
-        $status          = $data['status'] ?? '';
+        $status          = $data['order_status'] ?? '';
+        $payment_type     = $data['payment_type'] ?? '';
+        $payment_status  = $data['payment_status'] ?? '';
 
         // Get order items
         [$order_items, $order_items_count] = $this->orderModel->getOrderItems($order_id);
 
-        // Handle form submission if needed (update logic here if you want to allow editing)
-        if (isset($_POST['submit'])) {
-            // Add your update logic here if needed
-            // Example: $res = $this->orderModel->updateOrder(...);
-            // Redirect or set message as needed
-        }
-
         include VIEW_PATH . '/admin/order_mgmt/order-edit.php';
     }
 
-    public function showOrderDetailMgmt()
+    public function updateOrder($order_id)
     {
-        include VIEW_PATH . '/admin/order_mgmt/order-detail.php';
+        // Handle form submission if needed (update logic here if you want to allow editing)
+        $paymentType = $_POST['paymentType'] ?? null;
+        $payementStatus = $_POST['paymentStatus'] ?? null;
+        $orderStatus = $_POST['orderStatus'] ?? null;
+
+        // Update order details in the database
+        $this->orderModel->updateOrderWithStatus($order_id, $paymentType, $payementStatus, $orderStatus);
+
+        // Redirect back to order list page
+        $_SESSION['msg'] = 'Order updated successfully';
+        header("location: /admin/order-mgmt/order-list");
     }
 }

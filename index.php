@@ -332,19 +332,20 @@ switch ($path) {
         }
         $admin->showOrderListMgmt();
         break;
-    case "/admin/order-mgmt/order-detail":
-        if (!$login_status || $role !== 'admin') {
-            header("location: /admin-login");
-            exit;
-        }
-        $admin->showOrderDetailMgmt();
-        break;
     case "/admin/order-mgmt/order-edit":
         if (!$login_status || $role !== 'admin') {
             header("location: /admin-login");
             exit;
         }
-        $admin->showOrderEditMgmt();
+
+        if (isset($_POST['submit'])) {
+            $order_id = $_GET['updateorder'];
+            $admin->updateOrder($order_id);
+            exit;
+        } else {
+            $admin->showOrderEditMgmt();
+        }
+
         break;
     case "/customer/logout":
         if (!$login_status) {
