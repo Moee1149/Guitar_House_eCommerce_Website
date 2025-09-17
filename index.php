@@ -6,6 +6,7 @@
 define("APP_PATH", __DIR__ . '/app/');
 define("VIEW_PATH", __DIR__ . '/app/views');
 define("UPLOAD_DIR", __DIR__ . "/public/images/products");
+define("STORE_LOGO", __DIR__ . "/public/images/profile/store-profile");
 
 include APP_PATH . 'controllers/PublicController.php';
 include APP_PATH . 'controllers/AuthController.php';
@@ -202,7 +203,15 @@ switch ($path) {
             header("location: /admin-login");
             exit;
         }
-        $admin->showAdminProfile();
+        if (isset($_POST['submit'])) {
+            if ($_GET['tab'] === 'store-profile') {
+                $admin->updateStoreProfile();
+            } else {
+                $admin->updateAdminPassword();
+            }
+        } else {
+            $admin->showAdminProfile();
+        }
         break;
     case "/admin/customer-mgmt":
         if (!$login_status || $role !== 'admin') {

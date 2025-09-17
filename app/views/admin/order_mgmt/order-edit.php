@@ -178,9 +178,9 @@
                         <div class="header-left">
                             <h1>Edit Order - #ORD-<?php echo htmlspecialchars($order_id); ?></h1>
                             <div class="breadcrumb">
-                                <a href="#">Dashboard</a> >
-                                <a href="#">Order Management</a> >
-                                <a href="#">Order List</a> >
+                                <a href="/admin/dashboard">Dashboard</a> >
+                                <a href="/admin/order-mgmt">Order Management</a> >
+                                <a href="/admin/order-mgmt/order-list">Order List</a> >
                                 <a href="#">Order Detail</a> > Edit Order
                             </div>
                         </div>
@@ -357,6 +357,7 @@
             </div>
         </div>
     </div>
+    <script type="module" src="/public/js/sidebar-collapsed.js"></script>
 </body>
 
 </html>

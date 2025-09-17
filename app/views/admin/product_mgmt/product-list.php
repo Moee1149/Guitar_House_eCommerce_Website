@@ -93,6 +93,7 @@
     </div>
     <!-- Script links -->
     <script src="/public/js/scripts.js" type="text/javascript"></script>
+    <script type="module" src="/public/js/sidebar-collapsed.js"></script>
 </body>
 
 </html>

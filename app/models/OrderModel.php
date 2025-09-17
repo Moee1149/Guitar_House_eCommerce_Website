@@ -126,6 +126,13 @@ class OrderModel
         return $res->fetch_assoc()['total_sold'];
     }
 
+    public function totalRevenue()
+    {
+        $sql = "SELECT SUM(total_amount) AS total_revenue FROM orders";
+        $res = mysqli_query($this->conn, $sql);
+        return $res->fetch_assoc()['total_revenue'];
+    }
+
     public function getReportForAdmin($dateFrom = null, $dateTo = null)
     {
         // 1. Products Added
@@ -219,24 +226,5 @@ class OrderModel
             'transactionsReport' => $transactionsReport,
             'totalRevenue' => $total_revenue
         ];
-    }
-
-    public function getTranscationReportForAdmin()
-    {
-        $sql = "SELECT
-            o.order_id,
-            DATE(o.order_date) AS order_date,
-            c.customer_name,
-            p.product_name,
-            o.total_amount,
-            o.order_status As status
-        FROM orders o
-        JOIN customers c ON o.customer_id = c.customer_id
-        JOIN order_items oi ON o.order_id = oi.order_id
-        JOIN products p ON oi.product_id = p.product_id
-        ORDER BY o.order_date DESC LIMIT 5;
-        ";
-        $res = mysqli_query($this->conn, $sql);
-        return $res->fetch_all(MYSQLI_ASSOC);
     }
 }

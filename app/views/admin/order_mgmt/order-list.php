@@ -41,7 +41,7 @@
                                     <td><?php echo $row['order_date']; ?></td>
                                     <td><?php echo $row['item_count']; ?></td>
                                     <td><?php echo $row['total_amount']; ?></td>
-                                    <td><?php echo $row['status']; ?></td>
+                                    <td><?php echo $row['order_status']; ?></td>
                                     <td>
                                         <a href="/admin/order-mgmt/order-edit?order_id=<?php echo $row['order_id']; ?>" title="Edit">View / Edit</a>
                                     </td>
@@ -54,6 +54,7 @@
             </div>
         </div>
     </div>
+    <script type="module" src="/public/js/sidebar-collapsed.js"></script>
 </body>
 
 </html>

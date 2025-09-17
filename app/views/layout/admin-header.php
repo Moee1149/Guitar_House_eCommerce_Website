@@ -4,7 +4,7 @@
             <circle cx="11" cy="11" r="8"></circle>
             <path d="m21 21-4.35-4.35"></path>
         </svg>
-        <input type="text" class="search-input" autocomplete="off" placeholder="Search products, orders, customers..." />
+        <input type="text" class="search-input" placeholder="Search products, orders, customers..." />
     </div>
     <div class="header-right-side">
         <div class="header-items">
@@ -34,7 +34,7 @@
                 <!-- rounded profile -->
                 <div class="rounded-profile"></div>
                 <div class="user-information">
-                    <p>Anima Dahal</p>
+                    <p><?php echo $_SESSION['admin_name'] ?></p>
                     <span>Store Owner</span>
                 </div>
             </div>

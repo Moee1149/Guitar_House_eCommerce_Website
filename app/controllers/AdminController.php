@@ -2,6 +2,8 @@
 include_once APP_PATH . '/models/UserModel.php';
 include_once APP_PATH . '/models/ProductModel.php';
 include_once APP_PATH . 'models/OrderModel.php';
+include_once APP_PATH . 'models/StoreModel.php';
+
 
 class AdminController
 {
@@ -9,6 +11,7 @@ class AdminController
     private $customerModel;
     private $productModel;
     private $orderModel;
+    private $storeModel;
 
     public function __construct($conn)
     {
@@ -16,10 +19,14 @@ class AdminController
         $this->customerModel = new CustomerModel($conn);
         $this->productModel = new ProductModel($conn);
         $this->orderModel = new OrderModel($conn);
+        $this->storeModel = new StoreModel($conn);
     }
 
     public function showAdminDashboard()
     {
+        [$res, $productcount] = $this->productModel->getAllProducts();
+        $productsold = $this->orderModel->getProductSold();
+        $totalRevenue = $this->orderModel->totalRevenue();
         include VIEW_PATH . '/admin/admin-dashboard.php';
     }
 
@@ -56,7 +63,78 @@ class AdminController
 
     public function showAdminProfile()
     {
+        $store = $this->storeModel->getStoreProfile($_SESSION['admin_id']);
         include VIEW_PATH . '/admin/admin-profile.php';
+    }
+
+    public function updateAdminPassword()
+    {
+        $adminId = $_SESSION['admin_id'];
+        $admin = $this->userModel->getUserById($adminId);
+
+        if (isset($_POST['submit'])) {
+            $dbPwd = $admin['password']; //hashing password
+            $currentPassword = $_POST['current_password'];
+            $newPassword = $_POST['new_password'];
+            $confirmPassword = $_POST['confirm_password'];
+
+            if (!empty($currentPassword) && !empty($newPassword)) {
+                switch (true) {
+                    case (sha1($currentPassword) != $dbPwd):
+                        $_SESSION['msg'] = "Password is incorrect.";
+                        break;
+                    case ($newPassword != $confirmPassword):
+                        $_SESSION['msg'] = "Passwords do not match.";
+                        break;
+                    default:
+                        $hashedNewPwd = sha1($newPassword);
+                        $this->userModel->updateAdminPasswod($adminId, $hashedNewPwd);
+                        $_SESSION['msg'] = "Password updated successfully.";
+                        break;
+                }
+            }
+            header("location: /admin/profile?tab=security");
+        }
+    }
+
+    public function updateStoreProfile()
+    {
+        $storeName = $_POST['storename'];
+        $storeAddress = $_POST['address'];
+        $storePhone = $_POST['phone'];
+        $storeEmail = $_POST['email'];
+        $city = $_POST['city'];
+        $state = $_POST['state'];
+        $imagePath = $_FILES['image']['name'];
+        $user_id = $_SESSION['admin_id'];
+
+        $currentStore = $this->storeModel->getStoreProfile($user_id);
+        $imagePath = $currentStore['store_logo'] ?? null;
+
+        // Check if file is uploaded
+        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+            $tmpName = $_FILES['image']['tmp_name'];
+            $originalName = basename($_FILES['image']['name']);
+            $extension = pathinfo($originalName, PATHINFO_EXTENSION);
+
+            // Generate unique filename to avoid overwrites
+            $newFileName = uniqid("", true) . "." . $extension;
+            $destination = STORE_LOGO . "/" . $newFileName;
+
+            // Move file from temp directory to uploads/
+            if (move_uploaded_file($tmpName, $destination)) {
+                // Save relative path in DB (better than absolute path)
+                $imagePath = "/public/images/profile/store-profile/$newFileName";
+            } else {
+                $_SESSION['msg'] = "❌ Failed to move uploaded file.";
+            }
+        } else {
+            $_SESSION['msg'] = "❌ No image uploaded or error occurred.";
+        }
+        $res = $this->storeModel->updateStoreProfile($user_id, $storeName, $storeAddress, $city, $state, $storePhone, $storeEmail, $imagePath);
+        $res ? $_SESSION['msg'] = "✅ Store profile updated successfully." : $_SESSION['msg'] = "❌ Failed to save store profile.";
+        header("location: /admin/profile?tab=store-profile");
+        exit;
     }
 
     //customer management methods

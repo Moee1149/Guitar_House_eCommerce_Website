@@ -157,14 +157,67 @@
     width: 70px;
 }
 
-.sidebar.collapsed .brand-info,
-.sidebar.collapsed .badge,
-.sidebar.collapsed .low-stock-badge {
+.sidebar-header {
+    padding: 15px 20px;
+    height: 80px;
+    transition:
+        padding 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar .logo-section,
+.sidebar .brand-info {
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform;
+}
+
+.sidebar.collapsed .logo-section,
+.sidebar.collapsed .brand-info {
     opacity: 0;
+    transform: translateX(-40px);
+    visibility: hidden;
+}
+
+.sidebar:not(.collapsed) .logo-section,
+.sidebar:not(.collapsed) .brand-info {
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible;
+}
+
+/* Add transition to logo-section and brand-info */
+.sidebar .logo-section,
+.sidebar .brand-info {
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform;
+}
+
+/* Collapsed state: move out and hide */
+.sidebar.collapsed .logo-section,
+.sidebar.collapsed .brand-info {
+    opacity: 0;
+    transform: translateX(-40px);
     visibility: hidden;
     transition:
         opacity 0.2s ease,
+        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
         visibility 0.2s ease;
+}
+
+/* Expanded state: visible and in place */
+.sidebar:not(.collapsed) .logo-section,
+.sidebar:not(.collapsed) .brand-info {
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible;
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        visibility 0.3s ease;
 }
 
 .sidebar.collapsed .nav-link span {
@@ -190,13 +243,13 @@
 
 .sidebar.collapsed .sidebar-header {
     justify-content: center;
-    padding: 24px 10px;
+    padding: 4px;
 }
 
 .sidebar.collapsed .collapse-btn {
     position: absolute;
     top: 24px;
-    right: 10px;
+    right: 20px;
 }
 
 /* Tooltip for collapsed state */

@@ -26,7 +26,7 @@ class UserModel
 
     public function getUserById($user_id)
     {
-        $sql = "SELECT user_name, phone, email, address FROM users WHERE user_id=$user_id";
+        $sql = "SELECT user_name, password, phone, email, address FROM users WHERE user_id=$user_id";
         $res = mysqli_query($this->conn, $sql);
         return mysqli_fetch_assoc($res);
     }
@@ -34,6 +34,13 @@ class UserModel
     public function updateUser($user_id, $fname, $phone, $addr)
     {
         $sql = "UPDATE users SET user_name='$fname', phone='$phone', address='$addr' WHERE user_id=$user_id";
+        $res = mysqli_query($this->conn, $sql);
+        return $res;
+    }
+
+    public function updateAdminPasswod($user_id, $hashedPwd)
+    {
+        $sql = "UPDATE users SET password='$hashedPwd' WHERE user_id=$user_id";
         $res = mysqli_query($this->conn, $sql);
         return $res;
     }

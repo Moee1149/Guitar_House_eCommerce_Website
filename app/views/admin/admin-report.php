@@ -223,6 +223,7 @@
             });
         });
     </script>
+    <script type="module" src="/public/js/sidebar-collapsed.js"></script>
 </body>
 
 </html>
