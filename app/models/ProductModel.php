@@ -31,6 +31,13 @@ class ProductModel
         return $res->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function updateViewCount($product_id)
+    {
+        $sql = "UPDATE products SET views = views + 1 WHERE product_id = $product_id";
+        $res = mysqli_query($this->conn, $sql);
+        return $res;
+    }
+
     public function getProductById($product_id)
     {
         $sql = "SELECT * FROM products WHERE product_id=$product_id";

@@ -24,6 +24,7 @@ class PublicController
 
     public function productDetail($product_id)
     {
+        $this->productModel->updateViewCount($product_id);
         $product = $this->productModel->getProductById($product_id);
         include VIEW_PATH . '/public/product-detail.php';
     }
