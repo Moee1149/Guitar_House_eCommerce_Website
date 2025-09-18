@@ -31,7 +31,7 @@
                                     </div>
                                     <div class="item-details">
                                         <h3 class="item-name"><?= $cartItem['product_name'] ?></h3>
-                                        <p class="item-price">Rs <?= $cartItem['price'] ?></p>
+                                        <p class="item-price">$ <?= $cartItem['price'] ?></p>
                                     </div>
                                     <div class="item-controls">
                                         <div class="quantity-controls">
@@ -60,7 +60,7 @@
                     <div class="summary-details">
                         <div class="summary-row">
                             <span class="summary-label">Subtotal (<?= count($cartItems) ?> items)</span>
-                            <span class="summary-value">Rs
+                            <span class="summary-value">$
                                 <?php
                                 $subtotal = 0;
                                 foreach ($cartItems as $item) {
@@ -75,7 +75,7 @@
                         </div>
                         <div class="summary-row total">
                             <span class="summary-label">Total</span>
-                            <span class="summary-value">Rs <?= number_format($subtotal, 2); ?></span>
+                            <span class="summary-value">$ <?= number_format($subtotal, 2); ?></span>
                         </div>
                     </div>
 

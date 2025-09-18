@@ -141,19 +141,27 @@ class CustomerController
 
         if (isset($_POST['submit'])) {
             $payment_type = $_POST['payment'];
-            if ($payment_type === "esewa") {
-                header("location: /customer/payment/esewa");
-            }
+            // Always update order and create details first
             $res =  $this->orderModel->updateOrder($order_id, $payment_type);
             $this->createOrderDetails($order_id, $customerId);
+
+            if ($payment_type === "esewa") {
+                header("location: /customer/payment/esewa");
+                exit;
+            }
+
             if ($res) {
                 header("location: /customer/thankyou");
+                exit;
             }
         }
     }
 
     public function payWithEsewa()
     {
+        $order_id = $_SESSION['order_id'];
+        $order_data = $this->orderModel->getOrderById($order_id);
+        $total_amount = $order_data['total_amount']; // Make sure this is in the correct currency and below 1000 for test
         include VIEW_PATH . '/customer/esewa.php';
     }
 

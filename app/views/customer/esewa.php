@@ -18,7 +18,7 @@
             <h2 class="apibox__title">Purchase a Product</h2>
             <div clas="meta-box">
                 <span class="meta-box__item">
-                    Rs. <strong>1000</strong>
+                    Rs. <strong><?= number_format($total_amount, 2) ?></strong>
                 </span>
             </div>
             <div class="text-box">
@@ -27,7 +27,7 @@
             <form action="https://rc-epay.esewa.com.np/api/epay/main/v2/form" method="POST" onsubmit="generateSignature()" target="_blank">
                 <div class="field-group">
                     <label form="amount">Amount:</label>
-                    <input type="text" id="amount" name="amount" value="1000" class="form" required=""> <br>
+                    <input type="text" id="amount" name="amount" value="<?= htmlspecialchars($total_amount) ?>" class="form" required=""> <br>
                 </div>
                 <div class="field-group">
                     <label for="tax_amount">Tax Amount:</label>
@@ -35,7 +35,7 @@
                 </div>
                 <div class="field-group">
                     <label for="total_amount">Total Amount:</label>
-                    <input type="text" id="total_amount" name="total_amount" value="1000" class="form" required="">
+                    <input type="text" id="total_amount" name="total_amount" value="<?= htmlspecialchars($total_amount) ?>" class="form" required="">
                 </div>
                 <div class="field-group">
                     <label for="transaction_uuid">Transaction UUID:</label>
@@ -55,7 +55,9 @@
                 </div>
                 <div class="field-group">
                     <label for="success_url">Success URL:</label>
-                    <input type="text" id="success_url" name="success_url" value="http://localhost:8082/customer/thankyou" class="form" required="">
+                    <input type="text" id="success_url" name="success_url"
+                        value="<?= (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]/customer/thankyou" ?>"
+                        class="form" required="">
                 </div>
                 <div class="field-group">
                     <label for="failure_url">Failure URL:</label>

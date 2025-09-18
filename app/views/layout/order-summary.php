@@ -10,14 +10,14 @@
                 <div class="item-name"><?= $cartItem['product_name'] ?></div>
                 <div class="item-qty">Qty: <?= $cartItem['quantity'] ?></div>
             </div>
-            <div class="item-price">Rs <?= $cartItem['price'] * $cartItem['quantity'] ?></div>
+            <div class="item-price">$ <?= $cartItem['price'] * $cartItem['quantity'] ?></div>
         </div>
     <?php endforeach ?>
 
     <div class="summary-calculations">
         <div class="summary-row">
             <span>Subtotal</span>
-            <span>Rs
+            <span>$
                 <?php
                 $subtotal = 0;
                 foreach ($cartItems as $item) {
@@ -32,7 +32,7 @@
         </div>
         <div class="summary-row total">
             <span>Total</span>
-            <span>Rs <?= number_format($subtotal, 2) ?></span>
+            <span>$ <?= number_format($subtotal, 2) ?></span>
         </div>
     </div>
 

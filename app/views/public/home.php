@@ -120,7 +120,7 @@
                                     <div class="btn btn-primary category"><?= $product['category_name']; ?></div>
                                 </div>
                                 <div class="product-pricing">
-                                    <span class="sale-price">Rs <?= $product['price']; ?></span>
+                                    <span class="sale-price">$ <?= $product['price']; ?></span>
                                     <span class="original-price">Rs 23,455</span>
                                 </div>
                                 <div class="product-rating">
