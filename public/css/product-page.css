@@ -57,7 +57,7 @@
 .search-wrapper {
     position: relative;
     flex: 1;
-    max-width: 350px;
+    min-width: 350px;
 }
 
 .search-input {

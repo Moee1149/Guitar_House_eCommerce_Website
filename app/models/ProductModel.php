@@ -46,6 +46,47 @@ class ProductModel
         return $product;
     }
 
+    public function getFilteredSortedProducts($category = null, $sort = null, $search = null)
+    {
+        $sql = "SELECT p.*, c.name AS category_name FROM products p JOIN categories c ON p.category_id = c.category_id WHERE 1=1";
+
+        if ($category) {
+            $sql .= " AND c.name = '" . mysqli_real_escape_string($this->conn, $category) . "'";
+        }
+
+        if ($search) {
+            $searchEscaped = mysqli_real_escape_string($this->conn, $search);
+            $sql .= " AND (p.product_name LIKE '%$searchEscaped%' OR p.description LIKE '%$searchEscaped%')";
+        }
+        // Sorting logic
+        if ($sort) {
+            switch ($sort) {
+                case 'popularity':
+                    $sql .= " ORDER BY p.views DESC";
+                    break;
+                case 'price-low-high':
+                    $sql .= " ORDER BY p.price ASC";
+                    break;
+                case 'price-high-low':
+                    $sql .= " ORDER BY p.price DESC";
+                    break;
+                case 'new-arrivals':
+                    $sql .= " ORDER BY p.created_at DESC";
+                    break;
+                case 'customer-rating':
+                    $sql .= " ORDER BY p.rating DESC";
+                    break;
+                default:
+                    $sql .= " ORDER BY p.product_id DESC";
+            }
+        } else {
+            $sql .= " ORDER BY p.product_id DESC";
+        }
+
+        $res = mysqli_query($this->conn, $sql);
+        return $res->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function addNewProduct($productName, $category, $description, $price, $stock, $imagePath)
     {
         $sql = "INSERT INTO products (category_id, product_name, description, price, stock, image) VALUES

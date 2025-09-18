@@ -21,27 +21,30 @@
                     <div>
                         <h2>All Products</h2>
                     </div>
-                    <div class="search-wrapper">
-                        <span class="search-icon">🔍</span>
-                        <input type="text" class="search-input" placeholder="Search guitars..." id="guitar-search" />
-                    </div>
+                    <form action="/product" method="POST">
+                        <div class="search-wrapper">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" name="search" class="search-input" placeholder="Search guitars..." id="guitar-search" value="<?= isset($_POST['search']) ? htmlspecialchars($_POST['search']) : '' ?>"
+                                onkeydown="if(event.key==='Enter'){document.getElementById('filterForm').submit();}">
+                        </div>
+                    </form>
                 </div>
 
-                <form action="/product/" method="POST">
+                <form action="/product" method="POST" id="filterForm">
                     <div class="sort-wrapper">
-                        <select class="sort-select" id="sort-select" name="category">
-                            <option value="" disabled selected> Filter By Categories </option>
-                            <option value="solid body">Solid Body</option>
-                            <option value="semi-hollow body"> Semi-Hollow Body </option>
-                            <option value="hollow body">Hollow Body</option>
+                        <select class="sort-select" name="category" onchange="document.getElementById('filterForm').submit();">
+                            <option value="" disabled <?= !isset($_POST['category']) ? 'selected' : '' ?>>Filter By Categories</option>
+                            <option value="solid body" <?= (isset($_POST['category']) && $_POST['category'] == 'solid body') ? 'selected' : '' ?>>Solid Body</option>
+                            <option value="semi-hollow body" <?= (isset($_POST['category']) && $_POST['category'] == 'semi-hollow body') ? 'selected' : '' ?>>Semi-Hollow Body</option>
+                            <option value="hollow body" <?= (isset($_POST['category']) && $_POST['category'] == 'hollow body') ? 'selected' : '' ?>>Hollow Body</option>
                         </select>
-                        <select class="sort-select" id="sort-select" name="sort">
-                            <option value="" disabled selected>Sort by</option>
-                            <option value="popularity">Popularity</option>
-                            <option value="price-low-high"> Price: Low to High </option>
-                            <option value="price-high-low"> Price: High to Low </option>
-                            <option value="new-arrivals">New Arrivals</option>
-                            <option value="customer-rating"> Customer Rating </option>
+                        <select class="sort-select" name="sort" onchange="document.getElementById('filterForm').submit();">
+                            <option value="" disabled <?= !isset($_POST['sort']) ? 'selected' : '' ?>>Sort by</option>
+                            <option value="popularity" <?= (isset($_POST['sort']) && $_POST['sort'] == 'popularity') ? 'selected' : '' ?>>Popularity</option>
+                            <option value="price-low-high" <?= (isset($_POST['sort']) && $_POST['sort'] == 'price-low-high') ? 'selected' : '' ?>>Price: Low to High</option>
+                            <option value="price-high-low" <?= (isset($_POST['sort']) && $_POST['sort'] == 'price-high-low') ? 'selected' : '' ?>>Price: High to Low</option>
+                            <option value="new-arrivals" <?= (isset($_POST['sort']) && $_POST['sort'] == 'new-arrivals') ? 'selected' : '' ?>>New Arrivals</option>
+                            <option value="customer-rating" <?= (isset($_POST['sort']) && $_POST['sort'] == 'customer-rating') ? 'selected' : '' ?>>Customer Rating</option>
                         </select>
                     </div>
                 </form>

@@ -18,7 +18,14 @@ class PublicController
 
     public function productList()
     {
-        $products = $this->productModel->getProductsWithCategory();
+        $category =  $_POST['category'] ?? null;
+        $sort = $_POST['sort'] ?? null;
+        $search = $_POST['search'] ?? null;
+        if ($category || $sort || $search) {
+            $products = $this->productModel->getFilteredSortedProducts($category, $sort, $search);
+        } else {
+            $products = $this->productModel->getProductsWithCategory();
+        }
         include VIEW_PATH . '/public/product.php';
     }
 
