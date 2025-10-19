@@ -1,6 +1,4 @@
 test.php
 docker-compose.yml
-.htaccess
 Dockerfile
 guitar_house_db.sql
-
